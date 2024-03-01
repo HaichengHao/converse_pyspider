@@ -1,0 +1,4 @@
+break和continue
+break 让当前的循环停止
+
+continue 用于结束当前的循环并执行下一次的循环
