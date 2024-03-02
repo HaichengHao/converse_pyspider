@@ -135,28 +135,77 @@ print(s1.split(sep='ll'))
 
 
 
-s1='你好，我是渣渣辉，是兄弟来看我'
-ans1=s1.find('渣辉')
-print(ans1)
-# 6 <--find会匹配指定的字符串第一次出现的位置
-ans2=s1.find('周润发')
-print(ans2)
-# -1 <--如果返回的是-1表示没有该字符串出现
-ans3=s1.find('辉渣')
-print(ans3)
-# -1
+'''
+# 5字符串的查找和判断
 
-ans4=s1.index('渣渣辉')
-print(ans4)
-# 5  <--只匹配字符，忽略符号
+# #查找
+# s1='你好，我是渣渣辉，是兄弟来看我'
+# ans1=s1.find('渣辉')
+# print(ans1)
+# # 6 <--find会匹配指定的字符串第一次出现的位置
+# ans2=s1.find('周润发')
+# print(ans2)
+# # -1 <--如果返回的是-1表示没有该字符串出现
+# ans3=s1.find('辉渣')
+# print(ans3)
+# # -1
+#
+# ans4=s1.index('渣渣辉')
+# print(ans4)
+# # 5  <--只匹配字符，忽略符号
+#
+# try:
+#     ans5=s1.index('周润发')
+# except BaseException as e:
+#     print(e)
+#     # substring not found <--index()在没匹配到内容时会报错而.find()不会报错而是返回-1
+#
+# print('渣渣辉' in s1)
+# # True
+# print('渣渣辉' not in s1)
+# # False
 
-try:
-    ans5=s1.index('周润发')
-except BaseException as e:
-    print(e)
-    # substring not found <--index()在没匹配到内容时会报错而.find()不会报错而是返回-1
+# 判断
+# name_=input("请输入您的名字")
+# # 判断是不是姓张
+# if name_.startswith('张'):
+#     print('四大姓之首')
+# else:
+#     print(f'姓名{name_}')
 
-print('渣渣辉' in s1)
-# True
-print('渣渣辉' not in s1)
-# False
+# 判断输入的是不是字符串类型的数字整数，如果是转换为整数类型
+# money=input('请输入您的存款额度')
+# print(type(money))
+# if money.isdigit():  #判断字符串是否由整数组成
+#     money=int(money)
+#     print(type(money))
+# else:
+#     print('请输入整数金额!!')
+# #     请输入您的存款额度10000
+# # <class 'str'>
+# # <class 'int'>
+# s1='hello'
+# if s1.endswith('o'):
+#     print('以o结尾')
+
+# 判断是否为小数其实一般不直接用.isdecimal()
+# 而是使用.split('.')来分隔整数部分和小数部分再做判断
+# a=123.57
+# a_ls=str(a).split('.')
+# print(a_ls)
+# print(len(a_ls))
+# if len(a_ls)==2:
+#     print(str(a)+'是一个小数')'''
+
+
+# .join()
+
+# split()和join()刚好反着来
+s1='hello_world_hi_python'
+lst_s1=s1.split('_')
+print(lst_s1)
+# ['hello', 'world', 'hi', 'python']
+
+s2='-'.join(lst_s1)
+print(s2)
+# hello-world-hi-python

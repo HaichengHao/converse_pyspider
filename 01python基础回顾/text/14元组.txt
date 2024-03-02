@@ -1,0 +1,6 @@
+tuple--元组
+特点
+    可以理解为不可变的列表
+    用()包起来
+    可以进行索引和切片
+    但不可变，不可以修改 'tuple' object does not support item assignment
