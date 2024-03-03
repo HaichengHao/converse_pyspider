@@ -17,3 +17,21 @@ print(t1,type(t1))
 t2=(1)
 print(type(t2))
 # <class 'int'> <--同上的结论
+
+# 但是！如果加上逗号，则会识别为元组
+t3=('2',)
+print(type(t3))
+# <class 'tuple'>
+
+# 元组是不可变的（指的是内存地址不可变）
+t5=(1,2,3,[1,2,3])
+print(id(t5))
+# 2082438983136
+try:#尝试往元组内的列表新增元素
+    t5[3].append(10)
+    print(t5)
+    print(id(t5))
+except BaseException as e:
+    print(e)
+# (1, 2, 3, [1, 2, 3, 10]) <--发现可以向元组内的列表新增元素
+# 2082438983136 <--内存地址没有发生改变

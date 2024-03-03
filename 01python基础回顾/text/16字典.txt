@@ -1,0 +1,50 @@
+空字典的创建d=dict()
+{key,value}
+1
+字典是以键值对方式存储数据的
+字典的key必须是可哈希的数据类型，即不可变的数据类型，不能是lst,dict,set
+字典的value可以是任何数据类型
+
+
+2字典的增删改查
+    增
+        dic['key']=value
+        字典中不可出现重复的key,若key重复指定value,则会按最后一个value修改
+    改
+        1 dic['key']=new_value
+        2 dic.setdefault{key,value} #设置默认值，如果之前设置过默认值那么就不能再设置了
+
+
+    删
+        1 .pop('key') <--推荐
+        2 del dic['key']
+    查
+        通过字典的key查到对应的值
+        1 dic['key']
+        2 dic.get('key')
+
+        当不确定key时最好使用.get('key')取值法
+        None 单纯的空就是空，什么操作也干不了
+
+3字典的循环
+    for key in dic:
+        print(dic[key])
+
+获取所有键并组成列表
+  dic.keys()可以获得一个<class 'dict_keys'> 类的对象，要想将其转为列表，只需强制类型转换即可
+获取所有值并组成列表
+  dic.values()可以获得一个<class 'dict_values'>类的对象，同样利用类型转换便可将其转换为列表
+
+获取所有的键和值并组成列表
+   dic.items()可以获得一个<class 'dict_items'>类的对象，利用类型转换便可获得由键值对组成的元组作为其元素的列表
+   如：[('张三', '爱吃面'), ('李四', '爱吃米饭'), ('王五', '爱吃炸鸡'), ('陈六', '爱吃牛肉')]
+
+   利用解包可以遍历,必须记住，非常高效
+    for key ,value in dic.items():
+        print(key,value)
+4字典的嵌套 见codeinfo
+
+5补充知识点
+    字典的循环删除
+    # 注意这里比对列表那一节进行学习，创建一个临时的列表进行存储要删除的数据，最后读取要删除数据的key再删除掉原字典的元素
+
