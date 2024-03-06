@@ -1,0 +1,46 @@
+内置函数，能直接拿来使用的函数
+几个常用的内置函数
+
+数值运算
+max() max([])
+min() min([])
+sum([])
+pow()
+
+类型转换
+list()
+tuple()
+str()
+int()
+float()
+
+字符串操作
+切片操作slice()
+元字符操作 ord()
+转换为字符chr()
+格式化引申format(num,'b\o\x')
+            如果要指定补全操作 则把之后的指定为08b这样的形式，表示利用8位二进制补齐
+
+
+frozenset 把集合冻结，即不可变集合，无法进行增删改查
+
+
+逻辑运算
+all any
+
+枚举
+enumerate
+用法
+eg:
+lst_1=['张三丰','张无忌','张大炮']
+for item in enumerate(lst_1):
+    print(type(item))
+    print(item)
+
+哈希值计算  利用算法将数据转换为内存地址然后进行数据的存储 <--哈希表
+hash()
+
+帮助
+help() 为了应对无提示编辑情况下
+
+查看内置属性dir()
