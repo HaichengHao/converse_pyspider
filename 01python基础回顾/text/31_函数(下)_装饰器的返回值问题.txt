@@ -1,0 +1,59 @@
+def wrapper(fn):  wrapper:装饰器 fn: 目标函数
+    def inner(*args,**kwargs):
+      #在目标函数执行之前的操作代码
+      res=fn(*args,**kwargs)  #执行目标函数  <--与上一结p30相比，
+      #在目标函数执行之后进行的操作
+      return res #  <--与p30相比，对res进行了返回，让inner()进行返回
+    return inner <--记住，一定要返回inner函数，记住不能加括号，加括号就是把目标函数执行的结果返回
+
+@wrapper #利用装饰器 即调用inner,注意是调用，并不是执行inner()
+def target():
+    pass
+
+target() --> 即 inner() ，执行inner函数
+这个便是通用装饰器的写法，不再只是雏形
+
+# 其它情况
+# 一个函数被多个装饰器装饰
+
+def wrapper_1(fn): # fn=wrapper_2.inner
+    def inner(*args,**kwargs):
+        print('这里是wrapper_1,开始') #1
+        res=fn(*args,**kwargs)   #2 wrapper_2.inner()
+        print('这里是wrapper_1,结束')#8
+        return res#9
+    return inner#10
+
+def wrapper_2(fn): #wrapper_2(target)
+    def inner(*args,**kwargs):
+        print('这里是wrapper_2,开始')#3
+        res=fn(*args,**kwargs)  #4 target()
+        print('这里是wrapper_2,结束')#5
+        return res#6
+    return inner#7
+
+
+@wrapper_1 #target=wrapper_1(wrapper2.inner)
+@wrapper_2 #target=wrapper_2(target)
+def target():
+    print('我是个目标函数')#4
+
+target()
+
+'''
+这里是wrapper_1,开始
+这里是wrapper_2,开始    <--经过观察发现，可以想象成目标函数先被wrapper_2套住，后被wrapper_1套住
+我是个目标函数
+这里是wrapper_2,结束
+这里是wrapper_1,结束
+'''
+
+记住规则规律
+@wrapper1
+@wrapper2
+def target():
+    pass
+target()
+
+那么，结果会是
+wrapper1 wrapper2 target() wrapper2 wrapper1

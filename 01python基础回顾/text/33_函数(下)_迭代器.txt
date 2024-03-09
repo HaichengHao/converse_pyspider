@@ -1,0 +1,15 @@
+最初的python学习中，我们经常会使用for 循环来做迭代
+例如
+for 变量 in 可迭代对象(iterable)  常用iterable对象 str lst tuple dict set
+    pass
+
+可迭代的数据类型都会提供一个叫迭代器的东西，这个迭代器可以帮我们把数据类型中的所有数据逐一拿到
+iterator :迭代器
+iterable :可迭代对象
+
+获取迭代器的两种方案
+    1  iter(可迭代对象)   内置函数，可以直接拿到迭代器，也可理解为创建了迭代器，注意进行接收
+    2  iterable.__iter__()  特殊方法，使用较少
+从迭代器中拿到数据的两种方案
+    1  next(迭代器)
+    2  iterator.__next__()  特殊方法，使用较少
