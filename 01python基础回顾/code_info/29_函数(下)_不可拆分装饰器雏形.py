@@ -37,12 +37,7 @@ func1()
 '''
 
 # 装饰器 >要求记住最后的结论
-def play_lol():
-    print('爱玩，虽然菜')
-def play_cf():
-    print('爱玩，虽然不准')
-def play_qcar():
-    print('爱玩，不会漂移')
+
 # 打游戏想开挂，但是每次开启和关闭外挂都很麻烦
 # print('开挂')
 # play_cf()
@@ -57,9 +52,58 @@ def magic():
 
 '''
 # 所以，我们应该这样写
-def magic():
+def magic(game):
     def inner():
         print('外挂开启')
-        play_cf()
+        game()
         print('外挂关闭')
-    return inner()
+    return inner
+
+# play_cf=magic(play_cf) #让魔法把游戏重新封装一遍
+# # 调用魔法，即执行inner模块,让其完成游戏开启前打开外挂，游戏结束后关闭外挂的功能
+# play_cf()  #结合闭包那节观察代码，即相当于inner函数被执行，即inner()
+# '''
+# 外挂开启
+# 爱玩，虽然不准
+# 外挂关闭
+# '''
+#
+# play_lol=magic(play_lol)  #相当于inner
+# play_lol()  #相当于inner()
+'''
+外挂开启
+爱玩，虽然菜
+外挂关闭'''
+@magic #此时相当于play_lol=magic(play_lol)
+def play_lol():
+    print('爱玩，虽然菜')
+@magic
+def play_cf():
+    print('爱玩，虽然不准')
+@magic
+def play_qcar():
+    print('爱玩，不会漂移')
+
+play_cf()
+'''
+外挂开启
+爱玩，虽然不准
+外挂关闭
+'''
+
+'''
+装饰器本质上是一个闭包，
+作用:在不改变原有函数调用的情况下，给函数增加新的功能
+直白些:可以在函数前后添加新功能，但不改变原来的功能
+核心作用:在目标函数之前或者之后添加新的功能，但不改变原来的代码
+适用环境:
+    例如在员工信息管理系统使用任何功能之前必须先进行登录操作
+    还有日志功能，方便对操作信息进行记录
+实际雏形的写法
+def wrapper(fn):  wrapper:装饰器 fn: 目标函数
+    def inner():
+      #在目标函数执行之前的操作代码
+      fn()  #执行目标函数
+      #在目标函数执行之后进行的操作
+    return inner <--记住，一定要返回inner函数，记住不能加括号，加括号就是把目标函数执行的结果返回
+'''

@@ -1,0 +1,6 @@
+def wrapper(fn):  wrapper:装饰器 fn: 目标函数
+    def inner(*args,**kwargs):
+      #在目标函数执行之前的操作代码
+      fn(*args,**kwargs)  #执行目标函数
+      #在目标函数执行之后进行的操作
+    return inner <--记住，一定要返回inner函数，记住不能加括号，加括号就是把目标函数执行的结果返回
