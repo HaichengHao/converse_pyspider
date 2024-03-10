@@ -72,6 +72,29 @@ while 1:   #这就相当于for循环的循环体
 串
 '''
 
-# +
-# 模拟while 循环的工作原理
+# for 循环里一定是要拿迭代器的，所以所有不可迭代的东西不能用for循环
+# for 循环里面一定有next出现
+# 迭代器统一了所有不同类型数据的遍历工作
 
+#补充：
+# 迭代器本身也是可被迭代的内
+str_demo='你好Python'
+it=iter(str_demo)
+# <str_iterator object at 0x000001BD1B963FA0>
+print(it)
+for item in  it:
+    print(item)
+'''
+你
+好
+P
+y
+t
+h
+o
+n'''
+
+# 迭代器本身的特性
+# 1.只能向前，不能反复
+# 2.特别节省内存
+# 3.惰性机制
