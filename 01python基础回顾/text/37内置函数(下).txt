@@ -1,0 +1,25 @@
+zip
+    把多个可迭代内容进行合并
+locals
+    用法:
+        print(locals())可以查看当前作用域下的内容
+globals
+    用法:
+        print(globals()) 可以查看全局作用域的内容
+
+sorted
+    用法:
+        sorted(__iterable,key,reverse)
+        __iterable 可迭代对象
+        key 排序规则,要求是自己去定义一个函数，这个函数能够返回一些数据
+            一般写lambda函数
+        reverse 是否逆序(T/F)
+filter(self,function_or_None, iterable)
+#filter会进行过滤，把符合条件的进行保留
+# 第一个参数function代表一个函数
+# 第二个参数代表的是可迭代对象
+    用法:
+        filter(过滤条件(一般是函数，而且是lambda表达式),可迭代对象(一般就是自己要进行过滤的数据))
+
+map 映射
+    用法:

@@ -81,6 +81,10 @@ while 1:   #这就相当于for循环的循环体
 str_demo='你好Python'
 it=iter(str_demo)
 # <str_iterator object at 0x000001BD1B963FA0>
+# 学过生成器后的补充，利用list()这一可迭代的特性，即可输出列表形式的可迭代内容
+# ['你', '好', 'P', 'y', 't', 'h', 'o', 'n']
+print(list(it))
+# ['你', '好', 'P', 'y', 't', 'h', 'o', 'n']
 print(it)
 for item in  it:
     print(item)
@@ -98,3 +102,6 @@ n'''
 # 1.只能向前，不能反复
 # 2.特别节省内存
 # 3.惰性机制
+# 如果在这里写了，那么便会返回空列表，因为其已经迭代结束了，便不会有迭代对象产生
+print(list(it))
+# []

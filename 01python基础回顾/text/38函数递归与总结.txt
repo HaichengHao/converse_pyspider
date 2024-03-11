@@ -1,0 +1,70 @@
+递归，自己调用自己，俗称套娃
+递归如过没有东西拦截的话那它默认就是一个死循环
+
+查看Python默认递归最大深度
+import sys
+print(sys.getrecursionlimit())
+可以通过sys.setrecursionlimit(指定的数值)来将Python的默认递归最大深度调整成指定的数值
+
+
+总结
+函数的嵌套
+变量的作用域
+闭包
+装饰器
+    '''
+        def wrapper(fn):
+            def inner(*args, **kwargs): #注意这里是可变位置参数和可变关键字参数
+                res=fn(*args, **kwargs) #注意这里是解包赋值
+                return res
+            return inner
+
+        @wrapper  相当于func=wrapper(func)
+        def func():
+            pass
+
+        func()  #相当于inner()
+    '''
+迭代器
+    ''' 创建迭代器
+        法一:
+            迭代器名=iter(可迭代对象)
+        法二:
+            迭代器=可迭代对象.__iter()
+        获取迭代器的数据
+        法一:
+            data=next(迭代器)
+        法二:
+            data=迭代器.__next()
+
+        特殊法:list(迭代器) #利用list()可以迭代的特性
+
+    '''
+生成器
+    '''
+        法一:
+            yield 对象 #创建生成器对象
+        法二:
+        生成器表达式
+            (对象 ,for循环,[if判断])
+
+
+        获取生成器对象
+        本质和迭代器是一样的，获取生成器数据即获取迭代器数据，方法通用
+
+    '''
+    注意，生成器和迭代器一样都有惰性机制，即只可往前走(next就反应了这个特性)，所以可能操作不当会出现StopIteration的情况
+推导式
+    '''
+    列表推导式
+        [数据对象,for循环,[if判断]]
+    集合推导式
+        {数据对象,for循环,[if判断]}
+    字典推导式
+        {key:value ,for循环,[if判断]}
+    '''
+匿名函数
+    lambda
+    '''
+        lambda 目标数据:表达式
+    '''
