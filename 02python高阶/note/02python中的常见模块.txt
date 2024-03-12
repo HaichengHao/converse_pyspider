@@ -1,0 +1,18 @@
+python中的常见模块
+todo:见others的02demo
+time模块
+   1 时间戳
+        import time
+        time.time()
+   2 时间字符串
+        time.strftime("%Y-%m-%d %H:%M:%S")
+        释意 %Y-%m-%d %H:%M:%S
+            %Y 年
+            %m 月
+            %d 日
+            %H 时
+            %M 分
+            %S 秒
+   3 程序暂定固定的时间
+   import time
+   time.sleep(seconds)
