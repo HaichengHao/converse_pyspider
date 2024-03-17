@@ -1,0 +1,45 @@
+re 模块
+   1. re.findall(pattern, string,flags)
+        pattern 匹配规则
+        string 待匹配字符串
+        flags 标志位表示匹配多少次
+
+       ！！！！ 注意finditer是重点，因为其利用迭代器，合理使用的情况下对内存比较友好
+   2. re.finditer(pattern, string, flags)
+      从匹配到的结果re.Match 对象中拿match到的数据需要利用.group()
+      for i in target:
+            print(i.group())
+
+   其它
+   3. re.search(pattern,string,flags)
+           '''
+           tg_1=re.search(pattern=ptn,string=str)
+           print(tg_1)
+           print(tg_1.group())
+            # <re.Match object; span=(8, 10), match='30'>
+            # 30
+            # 可见其返回的和re.finditer一样都是re.Match对象，
+            # 不同的是search只返回第一个符合匹配规则的，而finditer返回的是全部符合匹配规则的
+            '''
+
+   4 re.match(pattern,string,flag)
+           '''
+           tg_2=re.match(pattern=ptn,string=str)
+            print(tg_2)
+            # None <--返回的是None
+            # 注意，match在匹配的时候，是从字符串的开头匹配的
+            # 例如我们写的匹配规则是 \d+ 而经过match之后就变成了 ^\d+
+            # 即匹配规则变成了字符串开头，可我们的字符串开头并不是数字
+
+            # 我们再写一个以数字开头的字符串
+            str2='1,你就是个光棍,11就是双光棍，筷子罢了'
+            # 再次尝试match
+            tg_3=re.match(pattern=ptn,string=str2)
+            # print(tg_3)
+            # <re.Match object; span=(0, 1), match='1'>
+            # match和search一样，也是只匹配一次，但是match相当于给匹配规则加上了必须以数字开头
+            #数据获取方式也是.group()
+            # 注意，记得注释上面的print(tg_3)，别忘了这是迭代器，迭代完就关闭
+            print(tg_3.group())
+            # 1
+           '''
