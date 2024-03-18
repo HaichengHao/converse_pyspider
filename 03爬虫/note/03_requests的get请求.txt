@@ -1,0 +1,3 @@
+requests.get(url,headers,parama,proxies)
+输出请求头的信息
+print(response.request.headers)

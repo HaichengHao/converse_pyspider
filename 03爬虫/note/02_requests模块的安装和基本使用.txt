@@ -1,0 +1,4 @@
+安装
+    pip install requests
+设置清华镜像源
+    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple

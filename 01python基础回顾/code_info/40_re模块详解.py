@@ -65,3 +65,14 @@ tg_3=re.match(pattern=ptn,string=str2)
 # 注意，记得注释上面的print(tg_3)，别忘了这是迭代器，迭代完就关闭
 print(tg_3.group())
 # 1
+
+
+# 预加载
+str3="一个2，一个250，没救了"
+ptn_3="\d+"
+# 预加载，提前把正则对象加载完毕
+obj=re.compile(pattern=ptn_3)
+# 直接把加载好的正则进行使用
+result=obj.findall(str3)
+print(result)
+# ['2', '250']

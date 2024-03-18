@@ -1,16 +1,16 @@
 re 模块
+基本用法
    1. re.findall(pattern, string,flags)
         pattern 匹配规则
         string 待匹配字符串
         flags 标志位表示匹配多少次
 
-       ！！！！ 注意finditer是重点，因为其利用迭代器，合理使用的情况下对内存比较友好
+   ！！！！ 注意finditer是重点，因为其利用迭代器，合理使用的情况下对内存比较友好
    2. re.finditer(pattern, string, flags)
-      从匹配到的结果re.Match 对象中拿match到的数据需要利用.group()
+      ！！！！！！！！！ 从匹配到的结果re.Match 对象中拿match到的数据需要利用.group()
       for i in target:
             print(i.group())
 
-   其它
    3. re.search(pattern,string,flags)
            '''
            tg_1=re.search(pattern=ptn,string=str)
@@ -43,3 +43,10 @@ re 模块
             print(tg_3.group())
             # 1
            '''
+其它用法
+   1 预加载 把正则对象提前加载完毕
+        先加载正则对象
+        obj=re.compile(pattern,flags=0)
+        再进行使用
+        obj.findall(str)/.finditer(str)/.search(str)/.match(str)
+
