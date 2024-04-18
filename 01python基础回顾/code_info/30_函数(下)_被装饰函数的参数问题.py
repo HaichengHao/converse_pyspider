@@ -18,7 +18,8 @@
 # # 使用
 # lol()  #<--这里即相当于inner() ，即执行了inner函数
 # crossfire() #与上面同理
-# '''  运行结果:
+# '''
+# 运行结果:
 # 外挂开启
 # 英雄联盟开启
 # 外挂关闭
@@ -37,7 +38,7 @@ def magic(game):
 
 
 
-@magic
+@magic #相当于 lol = magic(lol),相当于inner
 def lol(username,passwd,hero):
     print(f'游戏账号:{username},游戏密码:{passwd},英雄:{hero}')
     print('英雄联盟开启')

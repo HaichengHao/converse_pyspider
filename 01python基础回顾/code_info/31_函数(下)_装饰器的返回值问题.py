@@ -57,14 +57,15 @@ def wrapper_1(fn): # fn=wrapper_2.inner
 def wrapper_2(fn): #wrapper_2(target)
     def inner(*args,**kwargs):
         print('这里是wrapper_2,开始')#3
-        res=fn(*args,**kwargs)  #4 target()
+        res=fn(*args,**kwargs)  #4 target()，即打印出'我是个目标函数'
         print('这里是wrapper_2,结束')#5
         return res#6
     return inner#7
 
 
-@wrapper_1 #target=wrapper_1(wrapper2.inner)
-@wrapper_2 #target=wrapper_2(target)
+@wrapper_1 #target=wrapper_1(target) =>此时后面小括号的target是wrapper2.inner ,即target=wrapper_1(wrapper2.inner)而等号前面的target从简单理解上看
+# 其就是wrapper1.inner,如果有疑惑，记得观察返回值类型
+@wrapper_2 #target=wrapper_2(target) => 此时等号前面的target: wrapper2.inner
 def target():
     print('我是个目标函数')#4
 
@@ -91,4 +92,15 @@ target_2()
 我是目标函数2
 这里是wrapper_1,结束
 这里是wrapper_2,结束'''
+
+'''
+记住规则规律
+@wrapper1
+@wrapper2
+def target():
+    pass
+target()
+
+那么，结果会是
+wrapper1 wrapper2 target() wrapper2 wrapper1'''
 

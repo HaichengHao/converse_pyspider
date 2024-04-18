@@ -23,9 +23,9 @@ def func1():
         print(a)
     return inner
 
-res=func1()
-r1=res() #执行一次inner并将其结果赋予r1
-r2=res() #执行一次inner并将其结果赋予r2
+res=func1() #相当于res=inner
+r1=res() #执行一次inner并将其结果赋予r1  相当于inner()
+r2=res() #执行一次inner并将其结果赋予r2  相当于inner()
 # 2
 # 3
 # 通过上面的操作可以看到如果将变量写入函数体内这样可以让变量的更改变得困难

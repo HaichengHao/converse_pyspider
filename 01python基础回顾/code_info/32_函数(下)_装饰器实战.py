@@ -1,6 +1,6 @@
 # editor: 百年
 # time: 2024/3/9 15:02
-login_Flag=False
+login_Flag=False #默认的登录标识为false,即默认未登录
 def login(fn):
     def inner(*args, **kwargs):
         print('还未完成登录操作')
