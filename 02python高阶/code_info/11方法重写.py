@@ -19,7 +19,7 @@ class Student(Person):
 
 #     开始重写父类中的方法 其实ide会给出提示Overwrite method in Person 表示Person类中的方法被重写
     def showinfo(self):
-        super().showinfo() #首先调用父类中的方法，
+        super().showinfo() #首先继承父类中的方法，
 #         然后再加上自己新定义的功能实现代码
         print(f'学分:{self.score}')
 # 定义一个教师类，继承自Person类，除了父类的属性外还要有一个教龄项
