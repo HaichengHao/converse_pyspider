@@ -11,16 +11,18 @@ data={
 }
 
 response=requests.post(url=url,data=data,headers=headers)
-response.encoding=response.apparent_encoding
+response.encoding=response.apparent_encoding #将编码集换成网页返回的编码集
 content=response.text  #拿到的是文本
-print(content)
-print(type(content))
+# print(content)
+# print(type(content))
 # {"errno":0,"data":[{"k":"spider","v":"n. \u8718\u86db; \u661f\u5f62\u8f6e\uff0c\u5341\u5b57\u53c9; \u5e26\u67c4\u4e09\u811a\u5e73\u5e95\u9505; \u4e09\u811a\u67b6"},{"k":"Spider","v":"[\u7535\u5f71]\u8718\u86db"},{"k":"SPIDER","v":"abbr. SEMATECH process induced damage effect revea"},{"k":"spiders","v":"n. \u8718\u86db( spider\u7684\u540d\u8bcd\u590d\u6570 )"},{"k":"spidery","v":"adj. \u50cf\u8718\u86db\u817f\u4e00\u822c\u7ec6\u957f\u7684; \u8c61\u8718\u86db\u7f51\u7684\uff0c\u5341\u5206\u7cbe\u81f4\u7684"}],"logid":1122094504}
 # <class 'str'>
 # 可见是json数据，需要转化为字符串，利用反序列化加载为字典
-import json
-js_content=json.loads(content)
-print(js_content)
-print(type(js_content))
+# import json
+# js_content=json.loads(content)
+# print(js_content)
+# print(type(js_content))
 # {'errno': 0, 'data': [{'k': 'spider', 'v': 'n. 蜘蛛; 星形轮，十字叉; 带柄三脚平底锅; 三脚架'}, {'k': 'Spider', 'v': '[电影]蜘蛛'}, {'k': 'SPIDER', 'v': 'abbr. SEMATECH process induced damage effect revea'}, {'k': 'spiders', 'v': 'n. 蜘蛛( spider的名词复数 )'}, {'k': 'spidery', 'v': 'adj. 像蜘蛛腿一般细长的; 象蜘蛛网的，十分精致的'}], 'logid': 1254957503}
 # <class 'dict'>
+print(response.json()['data'][0][1])
+

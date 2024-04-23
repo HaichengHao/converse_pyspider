@@ -1,6 +1,6 @@
 # editor: 百年
 # time: 2024/3/18 17:53
-import requests
+'''import requests
 import random
 headers={
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
@@ -17,6 +17,26 @@ data={
     'wd':wd
 }
 response=requests.get(url=base_url,headers=headers,params=data)
-response.encoding=response.apparent_encoding
+response.encoding=response.apparent_encoding #利用这个可以自动转换成网页自身的编码集
+content=response.text
+print(content)'''
+
+# 其实也可以这样写
+import requests
+import random
+headers={
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Cookie':'BIDUPSID=CA59DFBCAA61D8EFEB819A18BBC5F507; PSTM=1707878929; BDUSS=mJsaVAyekljQ1c3WU5aN2F3Z25PVVUyYzlEMXFzQzE5ZDBOdWlyY0hlZGNKaDVtRVFBQUFBJCQAAAAAAAAAAAEAAABM~SP2zNLPwvXobwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFyZ9mVcmfZld; BDUSS_BFESS=mJsaVAyekljQ1c3WU5aN2F3Z25PVVUyYzlEMXFzQzE5ZDBOdWlyY0hlZGNKaDVtRVFBQUFBJCQAAAAAAAAAAAEAAABM~SP2zNLPwvXobwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFyZ9mVcmfZld; ab_sr=1.0.1_NjI1NDQ3MTUzMGQwYmYyODY5MDRhMDI0YzVkMzZjZTZmZTBlNzM3NWQwOTNkNmI3ZTg5YzZkNjU3NzJkZjMzZjMwOWZkMTQ5ZjUwYzk2MTc4YjNiOTkwNDkxMDhkMzIwNmExNDIxZDdiZTA2OTczMTMzNDQ3YjEzMWJiNGI0YWM3NmY3YzcxYjUyZWUyZmZjMWFkZDJiZDJlODIxMmNkYw==; H_PS_PSSID=40169_39662_40207_40211_40216_40080_40364_40351_40373_40367_40410_40398_40416_40304; BD_UPN=12314753; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; sug=3; sugstore=1; H_PS_645EC=8124mkFc93MAKlxcRfzg%2BW4di9dvI%2BtXIAxgC%2F0vPI9%2FpdzVnlm%2F%2BrPpNbY'
+}
+proxies_pool=[
+    {'http': '180.120.213.115:8089'},
+
+]
+# proxies=random.choice(proxies_pool)
+query_info=input('请输入您要查找的内容:')
+base_url=f'http://www.baidu.com/s?wd={query_info}' #利用fstring来对请求链接进行包装
+response=requests.get(url=base_url,headers=headers)
+response.encoding=response.apparent_encoding #利用这个可以自动转换成网页自身的编码集
 content=response.text
 print(content)
+
