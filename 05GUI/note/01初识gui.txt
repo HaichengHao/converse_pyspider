@@ -1,0 +1,11 @@
+我们前面实现的都是基于控制台的程序，程序和用户的交互通过控制台来完成。
+本章，我们将学习 GUI（Graphics User Interface），即图形用户界面编程，
+我们可以通过python 提供的丰富的组件，快速的实现使用图形界面和用户交互。
+GUI 编程类似于“搭积木”，将一个个组件(Widget)放到窗口中。
+常用的 GUI 库
+1. Tkinter
+tkinter（Tk interface）是 Python 的标准GUI 库，支持跨平台的 GUI 程序开发。tkinter 适合小型的GUI 程序编写，也特别适合初学者学习 GUI 编程。本书以tkinter 为核心进行讲解。
+2. wxPython
+wxPython是比较流行的GUI库，适合大型应用程序开发，功能强于 tkinter，整体设计框架类似于MFC(MicrosoftFoundation Classes 微软基础类库)。
+3. PyQT
+Qt 是一种开源的 GUI 库，适合大型GUI 程序开发，PyQT是 Qt 工具包标准的 Python 实现。我们也可以使用QtDesginer 界面设计器快速开发GUI 应用程序。

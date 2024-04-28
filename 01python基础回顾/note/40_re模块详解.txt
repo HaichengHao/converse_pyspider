@@ -9,7 +9,8 @@ re 模块
    2. re.finditer(pattern, string, flags)
       ！！！！！！！！！ 从匹配到的结果re.Match 对象中拿match到的数据需要利用.group()
       for i in target:
-            print(i.group())
+            print(i.group("分组名"))
+            关于这里，一定要结合41re提取分组数据学习，因为我们会利用?P<分组名称>来指定分组名
 
    3. re.search(pattern,string,flags)
            '''
