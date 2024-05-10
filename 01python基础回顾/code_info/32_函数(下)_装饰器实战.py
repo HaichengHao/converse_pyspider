@@ -24,7 +24,7 @@ def login(fn):
         return res
     return inner
 
-@login
+@login #相当于add = login(add)
 def add():
     print('增加员工信息')
 @login

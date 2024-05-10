@@ -22,7 +22,7 @@ try:
 except BaseException as e:
     print(e)
     # name 'tool' is not defined
-    # 为何会这样，因为我们利用的是from 模块名 impo 成员变量 的方式，这样只能使用导入的成员变量而不能使用所有成员变量
+    # 为何会这样，因为我们利用的是from 模块名 import 成员变量 的方式，这样只能使用导入的成员变量而不能使用所有成员变量
 # 所以要使用就得导入
 from logger import tool  #这样就导入了tool
 # 使用tool
