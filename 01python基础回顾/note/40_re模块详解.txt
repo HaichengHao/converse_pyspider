@@ -47,7 +47,7 @@ re 模块
 其它用法
    1 预加载 把正则对象提前加载完毕
         先加载正则对象
-        obj=re.compile(pattern,flags=0)
+        obj=re.compile(pattern,flags=0,[re.S]) re.S可以让正则中的.匹配换行符
         再进行使用
         obj.findall(str)/.finditer(str)/.search(str)/.match(str)
 

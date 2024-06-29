@@ -24,5 +24,5 @@ content=response.text  #拿到的是文本
 # print(type(js_content))
 # {'errno': 0, 'data': [{'k': 'spider', 'v': 'n. 蜘蛛; 星形轮，十字叉; 带柄三脚平底锅; 三脚架'}, {'k': 'Spider', 'v': '[电影]蜘蛛'}, {'k': 'SPIDER', 'v': 'abbr. SEMATECH process induced damage effect revea'}, {'k': 'spiders', 'v': 'n. 蜘蛛( spider的名词复数 )'}, {'k': 'spidery', 'v': 'adj. 像蜘蛛腿一般细长的; 象蜘蛛网的，十分精致的'}], 'logid': 1254957503}
 # <class 'dict'>
-print(response.json()['data'][0][1])
+print(response.json()['data'][0]['v'])
 
