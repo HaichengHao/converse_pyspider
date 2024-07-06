@@ -32,7 +32,7 @@ response.encoding = "gb2312"
 content = response.text
 # 1预加载匹配规则
 target = re.compile(r'<div class="bd3l">.*?<div class="co_content2">.*?<ul>(?P<content>.*?)</ul>', re.S)
-# 2调用.search()匹配指定的内容content,注意search只返回一个match结果
+# 2调用.search()匹配指定的内容content,注意search只返回一个match结果,为啥用search呢？因为这里的内容就只有一项而已，没必要用finditer去迭代了
 result = target.search(content)
 # print(result)
 urls = result.group("content")

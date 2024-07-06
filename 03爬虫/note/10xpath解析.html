@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xpath解析</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+        .start{
+            background-color: orangered;
+            font-size: 20px;
+            color: white;
+        }
+        .code{
+            margin-right: 30px;
+            white-space: pre;
+            background-color: black;
+            color:blue
+            
+        }
+        a{
+            color: red;
+            transition: 0.1s all linear;
+        }
+        a:hover{
+            font-size: 40px;
+            color: rebeccapurple;
+        }
+        @media screen and (min-width:600px) and (max-width:700px){
+            .start{
+                background-color: orange;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>xpath解析数据</h2>
+    <div class="start">
+        <ol>
+            <li>引入需要的包
+                <div class="code">
+            from lxml import etree
+            #如果不行，则需要如下写法
+            import html
+            etree=html.etree
+                </div>
+            <li>
+               
+                <a href="https://www.runoob.com/xpath/xpath-tutorial.html"> xpath规则</a>
+            </li>
+            <li></li>
+            <li></li>
+        </ol>
+    </div>
+</body>
+</html>

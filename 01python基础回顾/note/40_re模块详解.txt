@@ -50,4 +50,4 @@ re 模块
         obj=re.compile(pattern,flags=0,[re.S]) re.S可以让正则中的.匹配换行符
         再进行使用
         obj.findall(str)/.finditer(str)/.search(str)/.match(str)
-
+补充，re.S可以让正则中的元字符的 . 匹配换行符

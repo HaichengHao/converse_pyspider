@@ -74,5 +74,7 @@ ptn_3="\d+"
 obj=re.compile(pattern=ptn_3)
 # 直接把加载好的正则进行使用
 result=obj.findall(str3)
+# result=obj.findall(str3,re.S)
+# 补充，re.S可以让正则中的元字符的 . 匹配换行符
 print(result)
 # ['2', '250']
