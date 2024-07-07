@@ -29,9 +29,7 @@ for i in range(number):
         port = tr.findAll('td')[1].text.strip()
         prox = '{\'http\':' + '\'' + f'{ip}:{port}' + '\'},'
         print(prox)
-        # ip_lst.append(prox)
-        # print()
-# print(ip_lst)
+
 '''
 请输入你要爬取到的页数:2
 {'http':'114.99.7.225:8089'}
