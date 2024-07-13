@@ -175,7 +175,7 @@ data = {
     "password": "HHCzio20."
 }
 url = "https://passport.17k.com/ck/user/login"
-session.post(url=url, headers=headers, data=data, proxies=proxies)
+session.post(url=url, data=data, proxies=proxies)
 # content = response.text
 # cookie = response.cookies
 # print(cookie)
@@ -186,3 +186,4 @@ new_url = 'https://user.17k.com/ck/author2/shelf?page=1&appKey=2406394919'
 newresp = session.get(url=new_url)
 newcontent = newresp.text
 print(newcontent)
+
