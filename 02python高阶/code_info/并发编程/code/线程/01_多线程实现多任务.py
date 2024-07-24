@@ -17,14 +17,17 @@ import os
 from threading import Thread
 import time
 def func1():
-    print('func1执行')
-    time.sleep(1)
+    for i in range(10):
+        print('func1执行')
+        time.sleep(0.1)
 def func2():
-    print('func2执行')
-    time.sleep(2)
+    for i in range(5):
+        print('func2执行')
+        time.sleep(0.4)
 def func3():
-    print('func3执行')
-    time.sleep(3)
+    for i in range(4):
+        print('func3执行')
+        time.sleep(0.5)
 
 if __name__ == '__main__':
     t1=Thread(target=func1)
@@ -42,3 +45,24 @@ if __name__ == '__main__':
     t3.join()
 
     print('主线程结束')
+# func1执行
+# func2执行
+# func3执行
+# func1执行
+# func1执行
+# func1执行
+# func2执行
+# func1执行
+# func3执行
+# func1执行
+# func1执行
+# func1执行
+# func2执行
+# func1执行
+# func1执行
+# func3执行
+# func2执行
+# func3执行
+# func2执行
+
+# 交替执行
