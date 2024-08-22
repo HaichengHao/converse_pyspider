@@ -1,5 +1,5 @@
 # @Editor    : 百年
-# @FileName  :04_bs4_三国志.py
+# @FileName  :04_bs4_搜神记.py
 # @Time      :2024/7/2 15:43
 from  bs4 import BeautifulSoup
 import  requests

@@ -90,7 +90,7 @@ if __name__ == '__main__':
     time.sleep(1)
 
     # 销毁子进程
-    process_task1.terminate()  # 销��子进程
+    process_task1.terminate()  # 销毁子进程
 
     print('主进程执行结束')
 

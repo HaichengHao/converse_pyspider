@@ -92,7 +92,6 @@ dic={
     'score':99,
     'name':'David'
 }
-
 # 为什么需要序列化?答:在写入json数据的时候，会遇到如下问题
 # with open('../others/demo.json', 'a+') as wfp:
 #     try:

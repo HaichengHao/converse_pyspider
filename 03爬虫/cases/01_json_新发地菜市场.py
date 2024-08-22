@@ -25,7 +25,7 @@ content=response.text
 # print(content)
 # print(type(content))
 
-# 反序列化
+# 反序列化(字典化，将字符串类型转变为字典类型)
 # js_content=json.loads(content)
 # print(js_content,type(js_content))
 vegitable=response.json().get('list')
