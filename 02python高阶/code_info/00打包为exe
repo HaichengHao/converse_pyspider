@@ -1,0 +1,2 @@
+pyinstaller --onefile your_script.py 执行打包
+pyinstaller --onefile --icon=absolute\path\to\your\icon.ico --clean your_script.py 执行带图标打包
