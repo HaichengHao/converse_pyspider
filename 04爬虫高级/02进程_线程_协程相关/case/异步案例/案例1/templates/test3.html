@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圆的面积，周长,球体积求解器</title>
+    <style>
+        p.youradius{
+            color: rebeccapurple;
+        }
+        .yousqure{
+            color: red;
+        }
+        .youlen{
+            color: aqua;
+        }
+        .youvolum{
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const PI = 3.1415926535
+        let radius_
+        let squre_
+        let volum_
+        radius_ = prompt('请输入圆的半径(m)')
+        document.write('<p class="youradius">您输入的半径为',radius_,'m','<p>')
+        document.write('<p class="yousqure">该半径所求得的圆的面积为',PI*radius_*radius_,'m²<p>')
+        document.write('<p class="youlen">该半径所求得圆的周长为:',2*PI*radius_,'m','<p>')
+        document.write('<p class="youvolum">该半径所求得的球的体积为',4/3*PI*radius_*radius_*radius_,'m³','<p>')
+
+    </script>
+</body>
+</html>

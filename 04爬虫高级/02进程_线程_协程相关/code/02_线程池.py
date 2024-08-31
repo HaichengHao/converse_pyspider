@@ -11,7 +11,7 @@ with ThreadPoolExecutor(指定线程池线程数) as executor:
         executor.submit(任务函数, 任务参数)
 #  如果想要使用回调函数，那么就在其后添加.add_done_callback(回调函数名，参数)
 '''
-
+# todo:学习本节建议看异步案例中的main2.py
 # 导入线程池执行器
 from concurrent.futures import ThreadPoolExecutor
 import time

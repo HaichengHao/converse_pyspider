@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>协程笔记</title>
+    <style>
+        * {
+            margin: 0 auto;
+            padding: 0;
+        }
+        h1{
+            color: blueviolet;
+        }
+        .outer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            background-color: beige;
+        }
+        .code{
+            background-color: black;
+            color: white;
+            white-space: pre;
+        }
+        ul li p{
+            color: tomato;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+
+        <h1>协程</h1>
+        <div class="inner">
+            <ul>
+                <li>
+                    <p>导包</p>
+                    <div class="code">
+                        import asyncio
+                    </div>
+                </li>
+                <li>
+                    <p>特殊函数</p>
+                    <div class="code">
+                async 开头，修饰一个普通函数，便为特殊函数
+                如
+                async def func1(参数):
+                    函数体
+                    需要注意的是如果有阻塞操作，那么需要我们这样使用
+                    使用await关键字
+                    await asyncio.sleep(指定秒数)
+
+                    </div>
+                </li>
+                <li>
+                    <p>回调函数</p>
+                    <div class="code">
+                def t_callback(参数是必须有的):
+                    函数体
+                        data = t.result() #result()可以获取特殊函数的返回值
+                    </div>
+                </li>
+                <li>
+                    <p>创建协程(coroutine)对象</p>
+                    <div class="code">
+                c = func1()
+                    </div>
+                </li>
+                <li>
+                    <p>创建任务对象</p>
+                    <div class="code">
+                task = asyncio.enture_future(c)
+                    </div>
+                </li>
+                <li>
+                    <p>给任务对象加回调函数</p>
+                    <div class="code">
+                task.add_done_callback(t_callback)
+                    </div>
+                </li>
+                <li>
+                    <p>创建事件循环对象</p>
+                    <div class="code">
+                loop=asyncio.get_event_loop()
+                #将任务对象装载在事件循环对象当中并启动事件循环对象
+                loop.run_until_complete(task)
+                #当然，如果是事件对象列表的话就需要使用wait
+                loop.run_until_complete(asyncio.wait((tasks)))
+                    </div>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
