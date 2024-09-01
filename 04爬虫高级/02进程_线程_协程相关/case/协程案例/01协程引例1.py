@@ -40,7 +40,7 @@ loop = asyncio.get_event_loop()
 # loop = asyncio.new_event_loop()
 # asyncio.set_event_loop(loop)
 # 将包含三个任务的任务列表添加到事件循环对象当中
-loop.run_until_complete(asyncio.wait((tasks)))
+loop.run_until_complete(asyncio.wait(tasks))
 '''
 async def wait(fs, *, timeout=None, return_when=ALL_COMPLETED):
     """Wait for the Futures and coroutines given by fs to complete.

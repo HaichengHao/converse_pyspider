@@ -39,7 +39,7 @@ async def get_request(url):
         async with await sess.get(url=url, headers=headers) as response:
             content = await response.text()  # 注意这里也有不同，这里用的是text()方法，而在requests中我们用的是.text属性
             # 并且返回值也不一样，.text()方法返回的是字符串，而requests中的.text返回的是html对象
-            # 它也有另外一个方法.read(),返回的是二进制的响应数据
+            # 它也有另外一个方法.read(),返回的是二进制的响应数据而requests中的是.content模块
 
             return content
 '''
@@ -49,7 +49,7 @@ async def get_request(url):
 '''
 
 # 设置回调函数，爬虫中回调函数一般写为解析数据用的函数
-def parse_content(t):
+def parse_content(t): #这里的t就是和当前回调函数绑定的任务对象
     page_text = t.result()  # 利用.result()获取特殊函数的返回值
     tree = etree.HTML(page_text)
     # 设置要获取的数据的xpath
@@ -70,7 +70,7 @@ for url in urls:
 loop = asyncio.get_event_loop()
 # 如果想使用uvloop加速只需要加上下面这行代码,当然，需要导入uvloop的包
 # asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
-loop.run_until_complete(asyncio.wait((tasks)))
+loop.run_until_complete(asyncio.wait(tasks))
 print(f'总耗时{time.time() - start_t}')
 '''
 D:\python\python.exe D:/converse_fullstack/converse/04爬虫高级/02进程_线程_协程相关/case/协程案例/02_用协程爬取自己的服务器.py
