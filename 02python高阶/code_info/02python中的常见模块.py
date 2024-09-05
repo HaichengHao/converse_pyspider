@@ -49,7 +49,10 @@ print(r_2)
 print(random.uniform(1,6))
 #  7.random.shuffle(lst_obj) 直接将原来的列表元素打乱次序，不会返回一个新的列表
 print(random.shuffle(lst))'''
-
+# 8.random.seed([x])
+# 我们调用random.random()生成随机数时,每一次生成的数都是随机的。但是，但我们预先使用random.seed(x)
+# 设定好的种子之后，其中的x可以是任意数字,如10，这个时候，先调用它的情况下，使用random()生成的随机数将会是同一个
+# 注意,seed()是不能直接访问的,需要导入random模块,然后通过random静态对象调用该方法。
 
 # os 模块
 '''import os
