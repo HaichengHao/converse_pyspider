@@ -8,6 +8,7 @@ sorted 排序
 filter 筛选
 map 映射
 dir 返回包含查询对象的所有属性和方法名称的列表
+enumerate 枚举
 '''
 
 # zip
@@ -170,3 +171,15 @@ print(list(r))  #所以利用list()将其输出
 # 函数可以查看对象内的所有的属性和方法，在python中任何东西都是对象，一种数据类型，一个模块等，都有子集的属性和方法，除了常用的方法外，其他的你不需要全部记住它，交给
 # dir()
 # 函数就好了。
+
+
+# enumerate 枚举
+seq = ['one', 'two', 'three']
+for i in enumerate(seq):
+    print(i)
+'''
+0 one
+1 two
+2 three
+就像自动为列表中的每个元素加上了索引一样
+'''
