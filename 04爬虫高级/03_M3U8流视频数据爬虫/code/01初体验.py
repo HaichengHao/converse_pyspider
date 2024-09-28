@@ -1697,7 +1697,7 @@ for line in content.split("\n"):  # 可以看到每一行以换行结束，我�
 for url in ts_lst:
     # 获取ts片段的数据
     ts_data_raw = requests.get(url=url, headers=headers,verify=False) #注意，一定要加上verify=False，否则会报错
-    ts_data = ts_data_raw.content
+    ts_data = ts_data_raw.content  #这里利用.content获取二进制数据
     ts_name = url.split('/')[-1]
     ts_path = dirname + '/' + ts_name
     with open(ts_path, 'wb') as fp:
