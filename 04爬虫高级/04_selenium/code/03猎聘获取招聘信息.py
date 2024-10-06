@@ -4,7 +4,6 @@
 import time #如果有时候操作叠加过快,那就手动设置timesleep来控制时间,直接进行sleep操作
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.keys import Keys
-from requests import Session
 chdr_path='../others/chromedriver.exe'
 # 创建一个Chrome对象
 web = Chrome(executable_path=chdr_path)
