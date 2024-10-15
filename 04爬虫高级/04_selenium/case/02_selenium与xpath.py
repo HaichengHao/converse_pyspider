@@ -18,3 +18,7 @@ time.sleep(1)
 for li in li_list:
     title = li.xpath("./div[@class='drugs-brief']/p/a/@title")[0]
     print(title)
+
+time.sleep(2)
+# 关闭浏览器
+browser1.quit()
