@@ -35,6 +35,8 @@ browser1 = Chrome(executable_path='../others/chromedriver.exe',options=opts)
 
 browser1.get('https://www.endata.com.cn/BoxOffice/BO/Year/index.html')
 
+# todo: 补充之截屏操作
+browser1.save_screenshot('../others/demo.png')
 # 定位select对象
 sel = browser1.find_element_by_xpath('//*[@id="OptionDate"]')
 time.sleep(2)
