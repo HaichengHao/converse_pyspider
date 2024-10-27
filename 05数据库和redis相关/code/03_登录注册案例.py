@@ -11,20 +11,24 @@ cursor = conn.cursor()
 while True:
     username = input('请输入用户名>>')
     # 判断该用户名是否被注册
-    res0 = cursor.execute('select uname from users where uname = (?) ',(username,))
+    res0 = cursor.execute('select uname from users where uname = (?);',(username,))
     res0=cursor.fetchone()
     if res0 == None:
         passwd = input('请输入密码>>')
         repeat_pwd = input('再次输入密码>>')
         mail = input('请输入邮箱>>')
-        if passwd == repeat_pwd:
-            cursor.execute("insert into users(uname,pwd,email) values (?,?,?);",(username,passwd,mail))
-            conn.commit()
-            print('注册成功')
-            break
+        res1 = cursor.execute('select email from users where email = (?);',(mail,))
+        if res1 == None:
+            if passwd == repeat_pwd:
+                cursor.execute("insert into users(uname,pwd,email) values (?,?,?);",(username,passwd,mail))
+                conn.commit()
+                print('注册成功')
+                break
+            else:
+                print('两次密码不一致，请重新输入')
+                continue
         else:
-            print('两次密码不一致，请重新输入')
-            continue
+            print('该邮箱已经被注册，请勿重新注册')
     else:
         print('该用户名不可用')
         continue
