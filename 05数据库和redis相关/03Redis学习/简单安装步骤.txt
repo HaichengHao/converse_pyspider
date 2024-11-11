@@ -1,0 +1,12 @@
+安装redis可以到github下载
+https://github.com/tporadowski/redis/releases
+下载zip,解压到自己喜欢的盘
+在该盘cmd
+redis-server.exe redis.windows.conf 如果不想每次都这样就配置环境变量
+参考文章
+https://blog.csdn.net/weixin_44893902/article/details/123087435
+开启之后记得要新开一个cmd
+在新cmd里 redis-cli.exe 即可开启
+也可以远程连接远程redies
+redis-cli -h ip地址 -p 端口 --raw auth 密码 raw可以让Redis显示出中文(windows无效)
+如果有密码可以这样来登录,如果没有,那就不用做这一步
