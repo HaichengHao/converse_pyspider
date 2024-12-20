@@ -31,3 +31,8 @@ get_info(stu3)
 
 print(type(stu1),type(stu2),type(stu3))
 
+'''
+姓名:张三,年龄:12,分数:98
+姓名:李四,年龄:14,分数:99
+姓名:王五,年龄:12,分数:100
+<class '__main__.Student'> <class '__main__.Student'> <class '__main__.Student'>'''
