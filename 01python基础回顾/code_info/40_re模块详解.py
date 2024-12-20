@@ -12,7 +12,7 @@ ptn='\d+'
 #         flags 标志位表示匹配多少次
 target=re.findall(pattern=ptn,string=str)
 # 也可直接写明匹配规则
-# 但是要注意"\"反斜杠在python中表示的是转义字符，所以为了避免出现错误，需要用规则的原义,即加上r
+# 但是要注意"\"反斜杠在python中表示的是转义字符，所以为了避免出现错误，需要用规则的原义,即加上r(即Regular Expression)
 target_2=re.findall(r"\d+",str)
 print(target)
 print(target_2)
