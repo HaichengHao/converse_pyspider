@@ -26,7 +26,7 @@ time.sleep(4)
 time.sleep(2)
 web.switch_to.window(web.window_handles[-1])
 # 然后我们就从转换的视角,也就是新的窗口来获取我们真正想要的内容
-# 注意,要获得多个目标内容的话就写成find_elements_by_xpath，把element写成复数形式elements,并且返回值是一个列表,所以不能够直接使用.text属性来获取文字内容,而是遍历每一个列表中的单个element元素来获得.text内容
+#IMPORTANT: 注意,要获得多个目标内容的话就写成find_elements_by_xpath，把element写成复数形式elements,并且返回值是一个列表,所以不能够直接使用.text属性来获取文字内容,而是遍历每一个列表中的单个element元素来获得.text内容
 job_lst=web.find_elements_by_xpath("//div[@class='job-list-box']//div[@class='jsx-2387891236 job-title-box']/div[1]")
 for item in job_lst:
     print(item.text)

@@ -12,27 +12,30 @@
 '''
 # 引入我们需要的包
 from selenium.webdriver import ActionChains
-
+from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome
 import time
+from selenium.webdriver.chrome.service import Service
 
 # 创建浏览器对象
-browser1 = Chrome(executable_path='../others/chromedriver.exe')
+service = Service('../others/chromedriver.exe')
+browser1 = Chrome(service=service)
 
 # 获取页面链接
 browser1.get('https://www.runoob.com/try/try.php?filename=jqueryui-api-draggable')
 
 time.sleep(2)
 
-
 # 先进入iframe中
 # 首先定位
-ifr = browser1.find_element_by_xpath('//*[@id="iframeResult"]')
+# ifr = browser1.find_element_by_xpath('//*[@id="iframeResult"]')
+ifr = browser1.find_element(By.XPATH, '//*[@id="iframeResult"]')
 # 然后进入
 browser1.switch_to.frame(ifr)
 
 # 执行拖动操作
-div_tag = browser1.find_element_by_xpath('//*[@id="draggable"]')
+# div_tag = browser1.find_element_by_xpath('//*[@id="draggable"]')
+div_tag = browser1.find_element(By.XPATH,'//*[@id="draggable"]')
 
 # 打印一下看看我们到底有没有正确定位到
 print(div_tag)
@@ -50,8 +53,8 @@ actchain.click_and_hold(div_tag)
 # 实现向右滑动100px并且向下滑动100px,分五次,每次滑动20px,每次滑动完停止一秒
 for i in range(5):
     # xoffset赋予的值为正数则表示向x轴正方向滑动,单位是像素,同理理解y，正为向下滑动,负为向上滑动
-    actchain.move_by_offset(20,20).perform()
-#   后面加上了perform表示让动作链立即执行,如果没写那就不执行
+    actchain.move_by_offset(20, 20).perform()
+    #   后面加上了perform表示让动作链立即执行,如果没写那就不执行
     time.sleep(1)
 
 time.sleep(2)
@@ -61,4 +64,3 @@ browser1.quit()
 
 # 动作链的使用要小心,对于动作链的操作一定要使用好来解决一些简单的滑动验证码的问题
 # 但是,滑动验证码的问题并不一定能够进行解决,因为部分网站的反扒手段已经将这种方式解决了
-
