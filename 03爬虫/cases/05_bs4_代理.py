@@ -16,7 +16,7 @@ for i in range(number):
     response = requests.get(url=url, headers=headers)
     response.encoding = response.apparent_encoding
     content = response.text
-    # print(content)
+    print(content)
 
     page_source = BeautifulSoup(content, 'lxml')
     # 获取所有的tr中的第一个td和第二个td

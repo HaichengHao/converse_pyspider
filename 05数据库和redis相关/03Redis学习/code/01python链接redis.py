@@ -37,5 +37,4 @@ print(result)
 
 result2 = conn.lpush('hobby','animate')
 print(result2)
-conn.smembers('class')
 # 6 <--最开始插入的是五条数据，这里又加了一条说明我们已经插入数据成功了
