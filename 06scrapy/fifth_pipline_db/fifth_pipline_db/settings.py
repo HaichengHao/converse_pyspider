@@ -1,4 +1,4 @@
-# Scrapy settings for fourth_persistent_storage_pipline project
+# Scrapy settings for fifth_pipline_db project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,10 +7,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "fourth_persistent_storage_pipline"
+BOT_NAME = "fifth_pipline_db"
 
-SPIDER_MODULES = ["fourth_persistent_storage_pipline.spiders"]
-NEWSPIDER_MODULE = "fourth_persistent_storage_pipline.spiders"
+SPIDER_MODULES = ["fifth_pipline_db.spiders"]
+NEWSPIDER_MODULE = "fifth_pipline_db.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -46,13 +46,13 @@ LOG_LEVEL = 'ERROR'
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "fourth_persistent_storage_pipline.middlewares.FourthPersistentStoragePiplineSpiderMiddleware": 543,
+#    "fifth_pipline_db.middlewares.FifthPiplineDbSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "fourth_persistent_storage_pipline.middlewares.FourthPersistentStoragePiplineDownloaderMiddleware": 543,
+#    "fifth_pipline_db.middlewares.FifthPiplineDbDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,10 +63,16 @@ LOG_LEVEL = 'ERROR'
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+# important:开启管道
+# ITEM_PIPELINES = {
+#    "fifth_pipline_db.pipelines.FifthPiplineDbPipeline": 300,
+# }
+#important:开启mysql管道，注意，后面的数字表示的管道类被执行的优先级，数字越小越优先
 ITEM_PIPELINES = {
-   "fourth_persistent_storage_pipline.pipelines.FourthPersistentStoragePiplinePipeline": 300,
+   "fifth_pipline_db.pipelines.MySqlPipeline": 300,
+   "fifth_pipline_db.pipelines.RedisPipeline": 301, #新增一个叫Redis的pipline
+   "fifth_pipline_db.pipelines.FifthPiplineDbPipeline": 302,
 }
-
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
