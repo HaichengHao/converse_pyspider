@@ -14,6 +14,7 @@ class XiaoshuoSpider(scrapy.Spider):
             # print(li)
             title = li.xpath('./a/text()').extract_first()
             # print(title)
+            # important:实例化item对象
             item = FifthPiplineDbItem()
             item['title'] = title
             yield item
