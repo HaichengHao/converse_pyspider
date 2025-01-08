@@ -7,7 +7,14 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 
-
+# import sqlite3
+# class sqlitePipline:
+#     conn = None
+#     def open_spider(self):
+#         self.conn = sqlite3.connect(
+#
+#         )
 class DeepproPipeline:
     def process_item(self, item, spider):
+        print(item)
         return item
