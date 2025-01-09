@@ -10,6 +10,7 @@ from itemadapter import ItemAdapter
 # import sqlite3
 # class sqlitePipline:
 #     conn = None
+#     cursor = None
 #     def open_spider(self):
 #         self.conn = sqlite3.connect(
 #
