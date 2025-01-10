@@ -23,7 +23,7 @@ class mediaPipline(ImagesPipeline):  # important:自己定义的管道类一定�
     # tips:可以根据图片地址，对其进行请求，获取图片数据
     #  参数item:就是接收到的item对象
     def get_media_requests(self, item, info):  # tips:可以对图片数据的地址对图片数据进行请求获取图片数据
-        img_src = item['src']  # tips:先拿到图片地址
+        img_src = item['img_src']  # tips:先拿到图片地址
         yield scrapy.Request(img_src)  # important:生成一个scrapy内置的request请求
 
     # 指定图片的存储路径，(important:只需要返回图片存储的名称即可)

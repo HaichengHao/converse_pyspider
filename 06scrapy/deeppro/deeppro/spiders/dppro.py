@@ -7,7 +7,7 @@ class DpproSpider(scrapy.Spider):
     # allowed_domains = ["www.xxx.com"]
     start_urls = ["https://ypk.39.net/pifu/p1/"]
     page_number = 2
-    model_url = f"https://ypk.39.net/pifu/p%d/"
+    model_url = "https://ypk.39.net/pifu/p%d/"
 
     # important:新写一个详情页面的数据获取规则
     def parse_moreinfo(self, response):
