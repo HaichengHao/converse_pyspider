@@ -6,10 +6,7 @@
 import scrapy
 
 
-class ImgproItem(scrapy.Item):
+class BaidufanyiItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    # pass
-    title = scrapy.Field()
-    img_src = scrapy.Field()
-
+    pass
