@@ -15,13 +15,15 @@ window.navigator.webdriver
 那么如何解决?
 实现js注入,绕过检测'''
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
+# from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.webdriver import Service
 # 规避监测环节1
-chrome_options = Options()
+chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36')
-driver = webdriver.Chrome(executable_path='../others/chromedriver.exe', options=chrome_options)
+service = Service('../others/chromedriver.exe')
+driver = Chrome(service=service, options=chrome_options)
 
 # 规避环节2
 #Selenium在打开任何页面之前，先运行这个Js文件。
