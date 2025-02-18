@@ -11,14 +11,17 @@ class DpproSpider(scrapy.Spider):
 
     # important:新写一个详情页面的数据获取规则
     def parse_moreinfo(self, response):
+        # important: 注意,这一步必须有，这是接收传参
         meta = response.meta  # tips:接收请求传参过来的meta
+        # tips:
+        #  或者这样写: item = response.meta['item']
         item = meta['item']  # tips:我们要的是meta字典当中的item，所以这样就接收到了
         power = response.xpath('//ul[@class="drug-layout-r-ul"]/li[1]/div/p').extract_first().split('>')[1].split('<')[
             0]
         # important:这样就可以向管道提交了
         item['power'] = power
         # print(power)
-        yield item
+        yield item #important:注意是在这里才yield item
 
     def parse(self, response):
         li_lst = response.xpath('//ul[@class="drugs-ul"]/li')
@@ -32,7 +35,7 @@ class DpproSpider(scrapy.Spider):
             item = DeepproItem()
             item['name'] = name
             # important:手动生成对于详情页面的请求
-            yield scrapy.Request(meta={'item': item}, url=moreinfo_href,
+            yield scrapy.Request(meta={'item': item}, url=moreinfo_href, #important:注意这里写了meta={'item':item} 即将item作为参数传递出去给self.parse_moreinfo
                                  callback=self.parse_moreinfo)  # important:对详情页的url发起请求
         # important:一定注意这里的缩进
         if self.page_number < 10:

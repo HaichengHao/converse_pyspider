@@ -60,7 +60,7 @@ class MiddleproDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
-    # tips:创建UA池子
+    # tips:创建UA池
     user_agent_list = [
         "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 "
         "(KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1",
@@ -163,9 +163,6 @@ class MiddleproDownloaderMiddleware:
         request.headers['User-Agent'] = random.choice(self.user_agent_list)
         # tips:尝试打印输出拦截到的请求
         print(request.url+':拦截成功!')
-
-
-
         #important:若想所有的请求都是用代理，则代理操作可以写在该方法当中
         # request.meta['proxy'] = self.proxy
         #tips:弊端-会使得整体的请求效率变低
@@ -185,7 +182,7 @@ class MiddleproDownloaderMiddleware:
     # 参数:
     # response就是拦截到的响应对象
     # request是被拦截到响应的对象对应的唯一的请求对象
-    # spider对应的仍然四爬虫类实例化的对象
+    # spider对应的仍然是爬虫类实例化的对象
     def process_response(self, request, response, spider):
         print(request.url+':响应对象拦截成功!!')
         # Called with the response returned from the downloader.

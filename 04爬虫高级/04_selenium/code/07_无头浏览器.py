@@ -17,6 +17,8 @@ browser_obj = Chrome(executable_path='',options=opt)
 浏览器对象.quit()
 '''
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 # todo:1 导入chrome的配置信息
 from selenium.webdriver.chrome.options import Options
@@ -31,14 +33,15 @@ opts.add_argument("--disable-gpu") #设置为禁止gpu图形渲染
 
 
 # todo:3 然后在构建浏览器对象的时候指定自己设置的配置信息参数
-browser1 = Chrome(executable_path='../others/chromedriver.exe',options=opts)
+service = Service('../others/chromedriver.exe')
+browser1 = Chrome(service=service,options=opts)
 
 browser1.get('https://www.endata.com.cn/BoxOffice/BO/Year/index.html')
 
 # todo: 补充之截屏操作
 browser1.save_screenshot('../others/demo.png')
 # 定位select对象
-sel = browser1.find_element_by_xpath('//*[@id="OptionDate"]')
+sel = browser1.find_element(By.XPATH,'//*[@id="OptionDate"]')
 time.sleep(2)
 # 调用Select()对sel对象进行封装
 sel_new = Select(sel)
@@ -63,7 +66,7 @@ for i in range(len(sel_new.options)):
 
     # 切换完了之后进行数据的获取
     # 获取表格中的每一行，所以这时候我们要用的是elements
-    trs = browser1.find_elements_by_xpath("/html/body/section/div/div[2]/div/div/div[2]/table/tbody/tr")
+    trs = browser1.find_elements(By.XPATH,"/html/body/section/div/div[2]/div/div/div[2]/table/tbody/tr")
     for tr in trs:
         print(tr.text) #打印每一条数据
     time.sleep(1)

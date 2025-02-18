@@ -8,11 +8,15 @@
 import selenium
 import requests
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.service import Service
 
 # 先创建一个浏览器对象
 # executable_path 指定可执行的chromedriver路径
 # options= 指定配置信息,目前还用不到
-web = Chrome(executable_path='../others/chromedriver.exe')
+# web = Chrome(executable_path='../others/chromedriver.exe')
+# tips:换新的语法了
+service = Service('../others/chromedriver.exe')
+web = Chrome(service=service)
 url = 'https://www.baidu.com'
 
 # 打开url对应的网址,相当于我们在浏览器的搜索框里输入了百度的网址

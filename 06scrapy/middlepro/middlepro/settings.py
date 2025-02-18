@@ -46,6 +46,7 @@ LOG_LEVEL = 'ERROR'
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+# tips:爬虫中间件，这个示例中不用开启
 #SPIDER_MIDDLEWARES = {
 #    "middlepro.middlewares.MiddleproSpiderMiddleware": 543,
 #}

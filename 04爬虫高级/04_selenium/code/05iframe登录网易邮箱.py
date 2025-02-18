@@ -3,16 +3,19 @@
 # @Time      :2024/10/3 10:50
 from selenium.webdriver.common.keys import  Keys
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 import time
 
 # 1. 创建一个ChromeDriver
-driver = Chrome(executable_path='../others/chromedriver.exe')
+service = Service('../others/chromedriver.exe')
+driver = Chrome(service=service)
 
 # 2. 获取网易邮箱的地址
 driver.get('https://www.126.com/')
 
 # 3. 定位到iframe
-login_iframe = driver.find_element_by_xpath("/html/body/div[3]/div[3]/div[1]/div/div[3]/div[1]/div[2]/iframe")
+login_iframe = driver.find_element(By.XPATH,"/html/body/div[3]/div[3]/div[1]/div/div[3]/div[1]/div[2]/iframe")
 
 # 4. 切换到iframe
 driver.switch_to.frame(login_iframe)

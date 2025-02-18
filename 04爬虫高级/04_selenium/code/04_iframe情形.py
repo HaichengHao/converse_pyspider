@@ -9,23 +9,28 @@
 # 先导入需要使用的包和模块
 import time
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
-
+from selenium.webdriver.common.by import By
 #创建浏览器对象
-browser1 = Chrome(executable_path='../others/chromedriver.exe')
+service = Service('../others/chromedriver.exe')
+# browser1 = Chrome(executable_path='../others/chromedriver.exe')
+browser1 = Chrome(service=service)
 
 browser1.get('https://www.mjzj.me/vodplay/32236-1-1.html')
 
 # 定位到iframe
-iframe = browser1.find_element_by_xpath("/html/body/main/div/div[2]/div[1]/div[1]/div/table/tbody/tr/td/iframe")
-# 切换到iframe
+# iframe = browser1.find_element_by_xpath("/html/body/main/div/div[2]/div[1]/div[1]/div/table/tbody/tr/td/iframe")
+iframe = browser1.find_element(By.XPATH,"/html/body/main/div/div[2]/div[1]/div[1]/div/table/tbody/tr/td/iframe")
+# important: 切换到iframe
 time.sleep(4)
 browser1.switch_to.frame(iframe)
 
 
 time.sleep(3)
 # 先定位到发送弹幕的input
-input_ = browser1.find_element_by_xpath("//input[@id='dmtext']")
+# input_ = browser1.find_element_by_xpath("//input[@id='dmtext']")
+input_ = browser1.find_element_by_xpath(By.XPATH,"//input[@id='dmtext']")
 # 再通过这个input找到它的属性placeholder的属性值
 place_holder = input_.get_property('placeholder')
 place_holder2 = input_.get_attribute('placeholder') #这样写也是可以的
@@ -45,5 +50,6 @@ time.sleep(2)
 #     print(item.text)
 
 # 拿到关联推荐
-bind_rc = browser1.find_element_by_xpath("/html/body/main/div/div[3]/div[1]/h2")
+# bind_rc = browser1.find_element_by_xpath("/html/body/main/div/div[3]/div[1]/h2")
+bind_rc = browser1.find_element(By.XPATH,"/html/body/main/div/div[3]/div[1]/h2")
 print(bind_rc.text)

@@ -8,19 +8,21 @@
 下拉列表对象.select_by_index()
 '''
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 import time
 # 导入需要的处理下拉列表(在前端里就是<select>)的包
 from selenium.webdriver.support.select import Select
-
-browser1 = Chrome(executable_path='../others/chromedriver.exe')
+from selenium.webdriver.common.by import By
+service = Service('../others/chromedriver.exe')
+browser1 = Chrome(service=service)
 
 browser1.get('https://www.endata.com.cn/BoxOffice/BO/Year/index.html')
 
 # 定位select对象
-sel = browser1.find_element_by_xpath('//*[@id="OptionDate"]')
+sel = browser1.find_element(By.XPATH,'//*[@id="OptionDate"]')
 time.sleep(2)
-# 调用Select()对sel对象进行封装
+#important: 调用Select()对sel对象进行封装
 sel_new = Select(sel)
 # 获取所有的选项<options>的标签内容
 all_sel = sel_new.options  #.options是获取所有的<options>
@@ -43,7 +45,7 @@ for i in range(len(sel_new.options)):
 
     # 切换完了之后进行数据的获取
     # 获取表格中的每一行，所以这时候我们要用的是elements
-    trs = browser1.find_elements_by_xpath("/html/body/section/div/div[2]/div/div/div[2]/table/tbody/tr")
+    trs = browser1.find_elements(By.XPATH,"/html/body/section/div/div[2]/div/div/div[2]/table/tbody/tr")
     for tr in trs:
         print(tr.text) #打印每一条数据
 

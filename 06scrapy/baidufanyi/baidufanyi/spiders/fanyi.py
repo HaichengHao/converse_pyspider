@@ -20,7 +20,8 @@ class FanyiSpider(scrapy.Spider):
     def parse(self, response):
         res = response.json()['data'][0]['v'] #important:返回的是json格式的数据
         print(res)
-#         tips:如果想在详情页面中发送post请求那就像下面的写法
+
+# tips:如果想在详情页面中发送post请求那就像下面的写法
 '''
      def parse(self, response):
         detail_url = response.xpath('...')

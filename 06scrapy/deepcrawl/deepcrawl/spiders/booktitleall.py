@@ -2,12 +2,13 @@ import scrapy
 from ..items import DeepcrawlItem
 
 class BooktitleallSpider(scrapy.Spider):
+    # important: 类属性
     name = "booktitleall"
     # allowed_domains = ["www.xxx.com"]
     start_urls = ["https://www.shuqi.com/store?spm=aliwx.pc-web-bookstore.0.0"]
                 # https://www.shuqi.com/store?spm=aliwx.list_store.0.0&page=2
     url_model = "https://www.shuqi.com/store?spm=aliwx.list_store.0.0&page=%d"
-    page_number = 2 #定义类属性
+    page_number = 2 #tips: 定义类属性page_number，用于我们进行多页爬取的页数的初始化
     def parse(self, response):
         li_lst = response.xpath('//ul[@class="store-ul clear"]/li')
         for li in li_lst:
