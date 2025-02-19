@@ -14,7 +14,7 @@ from selenium.webdriver.chrome.options import Options
 # opts.add_argument('--headless')
 # opts.add_argument('--disable-gpu')
 # 创建浏览器对象
-service = Service('../others/chromedriver.exe')
+service = Service('E:/converse_spider/converse_pyspider/06scrapy/chromedriver.exe')
 browser1 = Chrome(service=service)
 
 browser1.get('https://www.89ip.cn/index_')
