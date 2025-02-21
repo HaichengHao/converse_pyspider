@@ -9,7 +9,7 @@ from ..items import DoscrawlItem
 class DosSpider(RedisCrawlSpider):
     name = "dos"
     # allowed_domains = ["www.xxx.com"]
-    # start_urls = ["https://www.xxx.com"] #important:注意，起始url是最后添加的，目前不用添加
+    # start_urls = ["https://www.xxx.com"] #important:注意，起始url是最后添加的,详细查看md文件，目前不用添加
     redis_key = 'queueTitle' #tips:表示调度器队列的名称
     rules = (Rule(LinkExtractor(allow=r"id=1&page=\d+"), callback="parse_item", follow=True),)
 

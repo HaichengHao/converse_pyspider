@@ -1,0 +1,80 @@
+2025-02-21 12:25:22 [scrapy.core.scraper] ERROR: Spider error processing <GET https://www.wogif.com/duanzi/> (referer: None)
+Traceback (most recent call last):
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 484, in connect
+    sock = self._connect()
+           ^^^^^^^^^^^^^^^
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 541, in _connect
+    raise err
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 529, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\client.py", line 667, in execute_command
+    connection.send_command(*args)
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 610, in send_command
+    self.send_packed_command(self.pack_command(*args))
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 585, in send_packed_command
+    self.connect()
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 489, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. 由于目标计算机积极拒绝，无法连接。.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 484, in connect
+    sock = self._connect()
+           ^^^^^^^^^^^^^^^
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 541, in _connect
+    raise err
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 529, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\venvs\converse_pyspider\Lib\site-packages\scrapy\utils\defer.py", line 327, in iter_errback
+    yield next(it)
+          ^^^^^^^^
+  File "D:\venvs\converse_pyspider\Lib\site-packages\scrapy\utils\python.py", line 368, in __next__
+    return next(self.data)
+           ^^^^^^^^^^^^^^^
+  File "D:\venvs\converse_pyspider\Lib\site-packages\scrapy\utils\python.py", line 368, in __next__
+    return next(self.data)
+           ^^^^^^^^^^^^^^^
+  File "D:\venvs\converse_pyspider\Lib\site-packages\scrapy\core\spidermw.py", line 106, in process_sync
+    yield from iterable
+  File "D:\venvs\converse_pyspider\Lib\site-packages\scrapy\spidermiddlewares\referer.py", line 379, in <genexpr>
+    return (self._set_referer(r, response) for r in result)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\venvs\converse_pyspider\Lib\site-packages\scrapy\core\spidermw.py", line 106, in process_sync
+    yield from iterable
+  File "D:\venvs\converse_pyspider\Lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 57, in <genexpr>
+    return (r for r in result if self._filter(r, spider))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\venvs\converse_pyspider\Lib\site-packages\scrapy\core\spidermw.py", line 106, in process_sync
+    yield from iterable
+  File "D:\venvs\converse_pyspider\Lib\site-packages\scrapy\spidermiddlewares\depth.py", line 54, in <genexpr>
+    return (r for r in result if self._filter(r, response, spider))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\venvs\converse_pyspider\Lib\site-packages\scrapy\core\spidermw.py", line 106, in process_sync
+    yield from iterable
+  File "e:\converse_spider\converse_pyspider\08增量式_scrapyd部署\eggs\zlsdemo1\1740111827.egg\zlsDEMO1\spiders\duanzi.py", line 28, in parse
+    ex = self.conn.sadd('data_id',data_id) #tips:往集合中插入数据指纹
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\client.py", line 1600, in sadd
+    return self.execute_command('SADD', name, *values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\client.py", line 673, in execute_command
+    connection.send_command(*args)
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 610, in send_command
+    self.send_packed_command(self.pack_command(*args))
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 585, in send_packed_command
+    self.connect()
+  File "D:\venvs\converse_pyspider\Lib\site-packages\redis\connection.py", line 489, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. 由于目标计算机积极拒绝，无法连接。.
