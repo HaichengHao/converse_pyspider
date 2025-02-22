@@ -1,4 +1,4 @@
-# Scrapy settings for doscrawl project
+# Scrapy settings for Douban250 project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,21 +7,19 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "doscrawl"
+BOT_NAME = "Douban250"
 
-SPIDER_MODULES = ["doscrawl.spiders"]
-NEWSPIDER_MODULE = "doscrawl.spiders"
+SPIDER_MODULES = ["Douban250.spiders"]
+NEWSPIDER_MODULE = "Douban250.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "doscrawl (+http://www.yourdomain.com)"
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
-
+# USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
-# LOG_LEVEL = 'ERROR'
-# LOG_LEVEL = 'WARNING'
+LOG_LEVEL = 'ERROR'
+LOG_LEVEL = 'WARNING'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -49,14 +47,18 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "doscrawl.middlewares.DoscrawlSpiderMiddleware": 543,
+#    "Douban250.middlewares.Douban250SpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    "doscrawl.middlewares.DoscrawlDownloaderMiddleware": 543,
-#}
+
+DOWNLOADER_MIDDLEWARES = {
+    # 禁用 Scrapy 自带的 User - Agent 中间件
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    # 启用自定义的随机 User - Agent 中间件
+    'Douban250.middlewares.Random_UserAgent_Proxy_Middleware': 400,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -67,12 +69,8 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "doscrawl.pipelines.DoscrawlPipeline": 300,
+#    "Douban250.pipelines.Douban250Pipeline": 300,
 #}
-# important:指定共享的管道
-ITEM_PIPELINES = {
-   "scrapy_redis.pipelines.RedisPipeline": 400,
-}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -98,18 +96,3 @@ ITEM_PIPELINES = {
 # Set settings whose default value is deprecated to a future-proof value
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
-
-# important:指定使用共享的调度器
-# tips: 使用scrapy-redis组件的去重队列
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-# tips :使用scrapy-redis组件自己的调度器
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-# tips: 是否允许暂停
-SCHEDULER_PERSIST = True
-
-# 指定数据库
-# REDIS_HOST = '127.0.0.1' #tips:redis数据库的ip地址
-REDIS_HOST = '172.22.3.216' #tips:redis数据库的ip地址
-REDIS_PORT = 6379
-# REDIS_ENCODING = 'utf-8'
-# REDIS_PARAMS = {'password':'123456'}
