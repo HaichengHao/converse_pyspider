@@ -1,0 +1,3 @@
+从低到高
+DEBUG INFO WARNING ERROR  CRITICAL
+在settings.py中设置的级别会输出改级别及其以上的级别的日志

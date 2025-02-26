@@ -9,6 +9,7 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from lxml import etree
+# 想毙掉图形界面就给注释解开
 from selenium.webdriver.chrome.options import Options
 # opts = Options()
 # opts.add_argument('--headless')
