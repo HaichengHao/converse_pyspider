@@ -4,3 +4,4 @@
 再之后就是中间件middleware相关的,  
 之后是selenium+scrapy(wangyinews)还有wangyipro
 之后就是新的scrapy补充内容,有的很基础，先是game
+然后是ciapiao
