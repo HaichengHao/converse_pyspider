@@ -20,8 +20,8 @@ class SsqSpider(scrapy.Spider):
     browser = Chrome(service=service)
     name = "ssq"
     # allowed_domains = ["www.xxx.com"]
-    start_urls = ["https://datachart.500.com/ssq/"]
-    model_urls = ["https://datachart.500.com/ssq/"]
+    start_urls = ["https://datachart.500.com/ssq/?"]
+    model_urls = ["https://datachart.500.com/ssq/?"]
     print(start_urls[0])
     browser.get(url=start_urls[0])
     time.sleep(8)
@@ -45,16 +45,16 @@ class SsqSpider(scrapy.Spider):
             # print(blue_ball)
 
             # 要么这样写
-            dic = {
-                'qihao':date,
-                'red_ball':red_ball,
-                'blue_ball':blue_ball
-            }
-            yield dic #tips:将会对其传入管道
+            # dic = {
+            #     'qihao':date,
+            #     'red_ball':red_ball,
+            #     'blue_ball':blue_ball
+            # }
+            # yield dic #tips:将会对其传入管道
             # # tips: 要么就引入item一个个好好写
-            # item= CaipiaoItem()
-            # item['date'] = date
-            # item['red_ball'] = red_ball
-            # item['blue_ball'] = blue_ball
-            # yield item
+            item= CaipiaoItem()
+            item['date'] = date
+            item['red_ball'] = red_ball
+            item['blue_ball'] = blue_ball
+            yield item
             # step :注意，要是用这个方式需要到items文件中进行各个键的Filed

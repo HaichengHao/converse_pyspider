@@ -65,6 +65,8 @@ LOG_LEVEL = 'WARNING'
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "caipiao.pipelines.CaipiaoPipeline": 300,
+
+   "caipiao.pipelines.MySqlPipeline": 301,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
