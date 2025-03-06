@@ -13,5 +13,6 @@
 之后是比较重要的
 处理cookie的shujia,注意，这里对之前的中间件部分相比不同之处有很多，包括init文件中对于cookie
 的定义是字典，所以要处理cookie
+还有一种是直接进行模拟登录的第二套方案，不需要cookie,其实就是post请求传参,和之前的baidufanyi很像
 
-还有一种是直接进行模拟登录的第二套方案，不需要cookie
+然后是新的middleware的详解的midmid项目
