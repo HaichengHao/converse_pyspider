@@ -20,8 +20,8 @@ class SsqSpider(scrapy.Spider):
     browser = Chrome(service=service)
     name = "ssq"
     # allowed_domains = ["www.xxx.com"]
-    start_urls = ["https://datachart.500.com/ssq/?"]
-    model_urls = ["https://datachart.500.com/ssq/?"]
+    start_urls = ["https://datachart.500.com/ssq/?expect=100"]
+    model_urls = ["https://datachart.500.com/ssq/?expect=100"]
     print(start_urls[0])
     browser.get(url=start_urls[0])
     time.sleep(8)

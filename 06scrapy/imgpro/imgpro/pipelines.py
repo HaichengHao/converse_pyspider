@@ -20,6 +20,7 @@ class ImgproPipeline(ImagesPipeline):
         # important:请求传参，将item中的图片名称传递给file_path
         # important:meta会将自身传递给file_path
         yield scrapy.Request(url=img_src,meta={'title':item['title']}) #tips:用的还是请求传参
+    # important:注意，在settings.py里声明一个IMAGES_STORE='指定的路径'
     def file_path(
         self,
         request,

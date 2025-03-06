@@ -77,13 +77,22 @@ class FifthPiplineDbPipeline:
     def close_spider(self,spider):
         self.fp.close()
         print('文件写入成功,正常关闭')
+
+# 存储到mongodb当中，这部分需要看caipiao的，那个写的比较详细
 class MongoPipline:
-    conn = None
-    db = None
+
     def open_spider(self,spider):
-        self.conn = pymongo.MongoClient(
+        self.client = pymongo.MongoClient(
             host='127.0.0.1',
             port=27017
         )
+        db = self.client['spider'] #step 指定要使用的数据库
+        # db.authenticate('admin', 'admin123')
+        self.collection = db['c1'] #step 指定使用的集合
     def process_item(self,items,spider):
-        return items
+        # step 向集合中插入数据
+        self.collection.insert({
+            "title": items['title'],
+        })
+    def close_spider(self, spider):
+        self.client.close()

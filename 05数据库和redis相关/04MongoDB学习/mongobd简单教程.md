@@ -34,7 +34,9 @@ db.dropDatabase();
 
 ```sql
 show collections;
---因为我们还没有，所以什么也不显示，后面会再演示
+--因为我们还没有，所以什么也不显示，后面会再演示  
+创建集合
+db.createCollection('c1');
 ```
 ![img_4.png](img_4.png)  
 
