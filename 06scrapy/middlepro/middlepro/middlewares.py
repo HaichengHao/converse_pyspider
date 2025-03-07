@@ -176,7 +176,7 @@ class MiddleproDownloaderMiddleware:
         # - or return a Request object
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
-        return None
+        # return None
 
     #tips: 拦截处理所有的响应对象
     # 参数:

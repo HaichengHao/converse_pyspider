@@ -1,0 +1,13 @@
+setup.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt
+zlsDEMO1/__init__.py
+zlsDEMO1/items.py
+zlsDEMO1/middlewares.py
+zlsDEMO1/pipelines.py
+zlsDEMO1/settings.py
+zlsDEMO1/spiders/__init__.py
+zlsDEMO1/spiders/duanzi.py

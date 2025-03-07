@@ -1,4 +1,4 @@
-# Scrapy settings for midmid project
+# Scrapy settings for movierank project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,18 +7,18 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "midmid"
+BOT_NAME = "movierank"
 
-SPIDER_MODULES = ["midmid.spiders"]
-NEWSPIDER_MODULE = "midmid.spiders"
+SPIDER_MODULES = ["movierank.spiders"]
+NEWSPIDER_MODULE = "movierank.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "midmid (+http://www.yourdomain.com)"
+#USER_AGENT = "movierank (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
-LOG_LEVEL = 'WARNING'
+LOG_LEVEL='WARNING'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -45,15 +45,14 @@ LOG_LEVEL = 'WARNING'
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-# SPIDER_MIDDLEWARES = {
-#    "midmid.middlewares.MidmidSpiderMiddleware": 543,
-# }
+#SPIDER_MIDDLEWARES = {
+#    "movierank.middlewares.MovierankSpiderMiddleware": 543,
+#}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-   "midmid.middlewares.MidmidDownloaderMiddleware": 543,
-   "midmid.middlewares.MidmidDownloaderMiddleware2": 544, #tips：后面的数字代表其权重，权重高的先执行
+   "movierank.middlewares.MovierankDownloaderMiddleware": 543,
 }
 
 # Enable or disable extensions
@@ -65,7 +64,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "midmid.pipelines.MidmidPipeline": 300,
+#    "movierank.pipelines.MovierankPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

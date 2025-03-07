@@ -1,10 +1,10 @@
 import scrapy
 
 
-class MidwSpider(scrapy.Spider):
-    name = "midw"
+class DoubanSpider(scrapy.Spider):
+    name = "douban"
     # allowed_domains = ["www.xxx.com"]
-    start_urls = ["https://www.baidu.com"]
+    start_urls = ["https://movie.douban.com/top250"]
 
     def parse(self, response):
         print(response.text)

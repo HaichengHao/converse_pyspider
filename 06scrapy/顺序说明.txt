@@ -15,4 +15,14 @@
 的定义是字典，所以要处理cookie
 还有一种是直接进行模拟登录的第二套方案，不需要cookie,其实就是post请求传参,和之前的baidufanyi很像
 
-然后是新的middleware的详解的midmid项目
+然后是新的middleware的详解的midmid项目,注意可以看midmid权重设置后的影响
+对于process_request来说，权重小的先执行，对于process_response来说,权重大的先执行
+所以才会是下面这样
+(converse_pyspider) E:\converse_spider\converse_pyspider\06scrapy\midmid>scrapy crawl midw
+Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Mobile/15E148 Safari/604.1
+我是spider_opened
+我是proecess_request <--权重小的先执行
+我是proecess_request2
+我是process_reqponse2 <--权重大的先执行
+我是process_reqponse
+
