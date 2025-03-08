@@ -8,6 +8,9 @@ from fake_useragent import UserAgent
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
 
+# 从settings.py 获取代理IP列表
+from .settings import PROXY_IP_LIST
+from random import choice
 
 class MovierankSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
@@ -97,7 +100,22 @@ class MovierankDownloaderMiddleware:
     def spider_opened(self, spider):
         spider.logger.info("Spider opened: %s" % spider.name)
 
+#免费代理
 class ProxyDownloaderMiddleware:
-    def process_request(self,request):
-        pass
+
+    def process_request(self,request,spider):
+        ip = choice(PROXY_IP_LIST)
+        print(ip)
+        request.meta['proxy'] = ip
+        return None #important:放行
+    #videotimestamp 1'51''19'''
+
+# 付费代理
+class MoneyProxyDownloaderMiddleware:
+
+    def process_request(self,request,spider):
+        ip = choice(PROXY_IP_LIST)
+        print(ip)
+        request.meta['proxy'] = ip
+        return None #important:放行
     #videotimestamp 1'51''19'''

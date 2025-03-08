@@ -26,3 +26,7 @@ Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHT
 我是process_reqponse2 <--权重大的先执行
 我是process_reqponse
 
+之后是movierank，强化中间件中如ua和代理的配置
+然后是boss,这个和之前写的caipiao有相似之处，不过更加规范
+
+

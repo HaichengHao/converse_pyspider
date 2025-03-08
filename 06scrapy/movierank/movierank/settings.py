@@ -53,6 +53,9 @@ LOG_LEVEL='WARNING'
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    "movierank.middlewares.MovierankDownloaderMiddleware": 543,
+   "movierank.middlewares.ProxyDownloaderMiddleware": 544,
+   # "movierank.middlewares.MoneyProxyDownloaderMiddleware": 544,
+
 }
 
 # Enable or disable extensions
@@ -91,3 +94,17 @@ DOWNLOADER_MIDDLEWARES = {
 # Set settings whose default value is deprecated to a future-proof value
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+# tips:可以在设置中设置ua池和代理池,然后在spider文件中import
+USER_AGENT_LST=[
+   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/9",
+   "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/9",
+   "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/9",
+ ]
+PROXY_IP_LIST=[
+   "http://36.6.145.58:8089",
+   "http://183.164.242.76:8089",
+   "http://114.231.46.171:8089",
+   "http://121.40.97.115:80",
+   "http://36.6.144.229:8089",
+
+]
