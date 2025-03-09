@@ -20,14 +20,14 @@ browser1 = Chrome(service=service)
 
 browser1.get('https://www.89ip.cn/index_')
 time.sleep(2)
-# page_ = browser1.page_source
+page_ = browser1.page_source
 # print(page_)
 
 # IMPORTANT:先验证第一页有没有拿到
 # 创建一个用于存储得到所有页面源码的列表
-# all_page_lst=[page_]
+all_page_lst=[page_]
 
-all_page_lst=[]
+# all_page_lst=[]
 # 实现自定义爬取
 page_number = int(input('请输入要爬取到的页数>>'))
 for i in range(page_number):
@@ -57,8 +57,11 @@ for page_text in all_page_lst:
     for i in range(len(trs)):
         ip = trs[i].strip()  # 去掉前后的空格
         port = ports[i].strip()
-        prox = '{\'http\':' + '\'' + f'{ip}:{port}' + '\'},'
-        print(prox)
+        # prox = '{\'http\':' + '\'' + f'{ip}:{port}' + '\'},'
+        # prox_othertype =  f'\"{ip}:{port}' + '\",'
+        prox_othertype =  f'\"http://{ip}:{port}' + '\",'
+        # print(prox)
+        print(prox_othertype)
 
 '''
 {'http':'114.232.109.88:8089'},

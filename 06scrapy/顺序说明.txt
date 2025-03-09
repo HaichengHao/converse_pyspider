@@ -29,4 +29,6 @@ Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHT
 之后是movierank，强化中间件中如ua和代理的配置
 然后是boss,这个和之前写的caipiao有相似之处，不过更加规范
 
+然后是汽车之家qichezhijia,补充了新知识，即csv文件写入表头
+
 
