@@ -8,11 +8,8 @@ from fake_useragent import UserAgent
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
 
-# 从settings.py 获取代理IP列表
-from .settings import PROXY_IP_LIST
-from random import choice
 
-class MovierankSpiderMiddleware:
+class QicheSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -59,12 +56,9 @@ class MovierankSpiderMiddleware:
         spider.logger.info("Spider opened: %s" % spider.name)
 
 
-class MovierankDownloaderMiddleware:
-    # Not all methods need to be defined. If a method is not defined,
-    # scrapy acts as if the downloader middleware does not modify the
-    # passed objects.
+class QicheDownloaderMiddleware:
     ua = UserAgent().random
-    print(ua)
+    print('your_use_ua:',ua)
     @classmethod
     def from_crawler(cls, crawler):
         # This method is used by Scrapy to create your spiders.
@@ -74,9 +68,6 @@ class MovierankDownloaderMiddleware:
 
     def process_request(self, request, spider):
         request.headers['User-Agent'] = self.ua
-        #important:注意别返回任何东西!!!!
-
-
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
@@ -99,29 +90,3 @@ class MovierankDownloaderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info("Spider opened: %s" % spider.name)
-
-#免费代理
-class ProxyDownloaderMiddleware:
-
-    def process_request(self,request,spider):
-        ip = choice(PROXY_IP_LIST)
-        print(ip)
-        request.meta['proxy'] = ip
-        return None #important:放行
-    #videotimestamp 1'51''19'''
-
-# 付费代理
-class MoneyProxyDownloaderMiddleware:
-
-    def process_request(self,request,spider):
-        ip = choice(PROXY_IP_LIST)
-        print(ip)
-        request.meta['proxy'] = ip
-        return None #important:放行
-    def process_response(self,request,response,spider):
-        if response.status != 200: #如果响应的状态码不对(也就是我们的请求没有正确的发送出去)
-            #                           那么我们下次请求就不进入队列而直接发送
-            request.dont_filter = True
-            return request
-        else:
-            return response
