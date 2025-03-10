@@ -1,0 +1,480 @@
+git 命令学习
+mkdir 创建文件
+yy 复制
+p 粘贴
+esc 退出编辑
+shift ：输入
+wq 保存
+ls  //查看当前目录下的文件
+git help -a //查看所有命令
+git help -t //查看手册 例如：git help add
+按F ，向下翻页
+按B，向上翻页
+ 按下Q，退出信息显示
+
+
+git 配置信息
+
+git init //初始化文件
+
+git config --global user.name +name   //配置用户名
+git config --global user.email +email    //配置邮箱
+
+git config --unset --global user.name   //重置用户名
+git config --global color.ui true //输出的带颜色
+
+cat ~/.gitconfig   //查看当前目录下git的配置文件“.gitconfig”
+
+git init //初始化本地库
+
+git add +文件名 //将文件添加到暂存区
+git commit -m "描述" +文件名 //提交文件
+git status //查看当前工作区状态
+git reflog //查看精简日志
+git log //查看日志
+git branch -v //查看分支状态
+git branch + 名字 //创建自命名的分支
+git checkout +分支名 //切换到某分支
+git merge +分支名a //将分支a合并到当前分支下
+git diff +文件名称 //可以查看指定名字文件的修改前后的不同，如果git diff 后不加名字，则会输出所有修改过的文件的修改前后不同
+git  rm +文件名   //删除文件
+git  mv 旧文件名 新文件名 //重命名文件
+git mv 文件名  +文件目录  //移动文件到指定目录
+git checkout HEAD -- +文件名 //恢复文件到最近一次的提交状态
+git revert +提交id ,可以恢复，回退版本 ，另一个命令  git reset --hard +提交id ,也可回退版本
+git reset --hard  +提交id//硬提交
+git reset --soft+提交id //软提交
+git reset --mixed  +提交id //混合提交 ，需要重新添加暂存区，重新提交
+git diff 分支a..分支b  //比较分支a和分支b的区别
+git merge abort //放弃合并
+git branch -m 旧分支名   新分支名   //重命名分支
+git branch -d 分支名 删除分支
+git stash save '描述信息' //暂存当前修改，做另一个修改
+git stash list 查看修改
+git stash show -p +stash@{xx}查看修改
+git  stash apply +stash@{xx}应用存储的进度
+
+ git团队内协作
+
+git clone //克隆整个项目
+git push //推送自己的更改
+git pull //拉取更改到本地库
+git fork //拉取别人的远程库
+pull request //请求拉取（让别人拉取）
+审核后merge（远程库的合并）
+
+-----------
+创建远程库别名
+语法
+git remote -v //查看远程库
+git remote add +【库名自拟】+远程库链接
+
+
+-----实例-----
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git remote -v
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git remote add gs_alpha https://github.com/HaichengHao/gs_alpha.git  //增加库名为gs_alpha的远程库连接
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git remote -v  //查看远程库
+gs_alpha        https://github.com/HaichengHao/gs_alpha.git (fetch)👈可以推送
+gs_alpha        https://github.com/HaichengHao/gs_alpha.git (push)👈可以拉取
+
+------推送测试------
+git push  +别名+分支
+----实例-----
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git push gs_alpha master
+Enumerating objects: 24, done.
+Counting objects: 100% (24/24), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (16/16), done.
+Writing objects: 100% (24/24), 1.73 KiB | 443.00 KiB/s, done.
+Total 24 (delta 8), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (8/8), done.
+To https://github.com/HaichengHao/gs_alpha.git
+ * [new branch]      master -> master
+
+-------成功啦😊-----
+
+------拉取测试------
+git pull +别名+分支
+-----实例----------
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git pull gs_alpha master
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 650 bytes | 3.00 KiB/s, done.
+From https://github.com/HaichengHao/gs_alpha
+ * branch            master     -> FETCH_HEAD
+   f58cfa0..5e1a51b  master     -> gs_alpha/master
+Updating f58cfa0..5e1a51b
+Fast-forward
+ hello.txt | 2 +-
+ 1 file changed👈一行改变, 1 insertion(+), 1 deletion(-)
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ cat hello.txt
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git  master test
+demo1 input i am a kamenrider
+hello git  hot fix test
+i am here
+
+
+--------2022/2/15---
+-------git clone-----
+git clone +链接
+
+clone 会做出如下操作。1.拉取代码，2.初始化本地库。3创建别名
+
+git remote remove origin
+git remote add origin（库名自己起）
+
+
+
+
+在使用 git的时候 想把码云上的文件拉取到本地发现报错
+git pull --rebase origin master
+
+fatal: Updating an unborn branch with changes added to the index.
+后来发现原来是 提交到版本库中的文件没有没有提交到 分支中,还在暂存区
+
+所以执行
+
+git commit -m 'xx' 就行了
+
+git config --global user.name +【自己设置的名字】//设置用户名
+git config --global user.email +【自己设置的邮箱】//设置用户邮箱
+
+
+
+git init //初始化本地库
+git add +文件名
+git commit -m "【描述】" +文件名
+git reflog //查看日志
+git log //查看完整日志
+cat + 文件名 //查看文件
+-----
+vim //编辑器打开
+i 插入
+esc 退出插入模式
+shift + : 退出编辑
+wq 保存退出
+q! 退出
+yy 复制
+dd删除一行
+p 粘贴
+-----
+ctrl + L //清屏
+------
+版本穿梭方法：
+  git reset --hard +版本号
+例子：
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git reflog
+02f74ef (HEAD -> master) HEAD@{0}: commit: fourth commit
+09b9770 HEAD@{1}: commit: third commit
+fe35e76 HEAD@{2}: commit: second commit
+8acc252 HEAD@{3}: commit (initial): first commit
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git reset --hard 09b9770
+HEAD is now at 09b9770 third commit
+
+查看日志
+$ git reflog
+09b9770 (HEAD -> master) HEAD@{0}: reset: moving to 09b9770   //指针发生变化
+02f74ef HEAD@{1}: commit: fourth commit
+09b9770 (HEAD -> master) HEAD@{2}: commit: third commit
+fe35e76 HEAD@{3}: commit: second commit
+8acc252 HEAD@{4}: commit (initial): first commit
+
+******Git 切换版本，底层其实是移动的head指针*****
+
+------命令------              | ----作用---
+git branch +分支名称    | 创建分支
+git branch -v                  |查看分支
+git checkout +分支名    |切换分支
+git merge +分支名        |把指定的分支合并到当前分支上
+
+---------------例子------------------
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git branch -v
+* master 02f74ef fourth commit
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git branch hot-fix //创建名称为hot-fix的分支
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git branch -v    //查看分支
+  hot-fix 02f74ef fourth commit
+* master  02f74ef fourth commit//当前有两个分支，指针当前指向master分支
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git checkout hot-fix    //切换到hot-fix分支
+Switched to branch 'hot-fix'
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (hot-fix)
+$ git branch -v
+* hot-fix 02f74ef fourth commit  //已经切换到了hot-fix分支
+  master  02f74ef fourth commit
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (hot-fix)
+$ git checkout master //切换到master分支
+Switched to branch 'master'
+
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master) //回到了master分支
+$ git merge hot-fix    // 合并hot-fix分支到master分支
+Updating 02f74ef..3802a75
+Fast-forward
+ hello.txt | 14 +-------------
+ 1 file changed, 1 insertion(+), 13 deletions(-)
+
+------------
+
+冲突产生的原因：合并分支时，两个分支在同一个文件的同一个位置有两套完全不同的修改，git无法替我们决定要使用哪一个，必须人为决定新代码内容
+------例子------
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ vim hello.txt
+//编辑hello.txt
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git add hello.txt
+//添加到暂存区
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git commit -m "master test" hello.txt //提交
+[master 4d871f6] master test
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ cat hello.txt
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git  master test
+hello git
+demo1 input i am a kamenrider
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git checkout hot-fix  //切换到hot-fix 分支
+Switched to branch 'hot-fix'
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (hot-fix)
+$ vim hello.txt
+//修改hello.txt
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (hot-fix)
+$ git add hello.txt
+//添加到暂存区
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (hot-fix)
+$ git commit -m "hot fix test" hello.txt//提交
+[hot-fix 5023662] hot fix test
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (hot-fix)
+$ git checkout master//切换到master
+Switched to branch 'master'
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git merge hot-fix//在master分支下合并hot - fix
+Auto-merging hello.txt
+CONFLICT (content): Merge conflict in hello.txt //合并时发生错误，产生冲突
+Automatic merge failed; fix conflicts and then commit the result.  
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master|MERGING)
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   hello.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master|MERGING)
+$ vim hello.txt
+//手动编辑，删除特殊符号
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master|MERGING)
+$ git add hello.txt 
+//添加到暂存区
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master|MERGING)
+$ git commit -m "merge hot-fix"
+//提交修改后的文件###############！！！！注意：此时用git commit 命令时不能带文件名！！！！
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master|MERGING)←正在合并
+$ git commit -m "merge test"
+[master f58cfa0] merge test
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ cat hello.txt      //查看hello.txt
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git  master test  👈master的内容
+demo1 input i am a kamenrider
+hello git  hot fix test 👈hot -fix的内容    //两项都在，合并成功
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git checkout hot-fix             //切换到hot-fix分支
+Switched to branch 'hot-fix'
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (hot-fix)
+$ cat hello.txt   //在hot-fix分支下查看hello.txt
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git  hot fix test 👈发现hot-fix分支的文件并没有受到影响
+
+------------------https://github.com/HaichengHao/gs_alpha.git
+git团队内协作
+
+git clone //克隆整个项目
+git push //推送自己的更改
+git pull //拉取更改到本地库
+git fork //拉取别人的远程库
+pull request //请求拉取（让别人拉取）
+审核后merge（远程库的合并）
+
+-----------
+创建远程库别名
+语法
+git remote -v //查看远程库
+git remote add +【库名自拟】+远程库链接
+
+
+-----实例-----
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git remote -v
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git remote add gs_alpha https://github.com/HaichengHao/gs_alpha.git  //增加库名为gs_alpha的远程库连接
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git remote -v  //查看远程库
+gs_alpha        https://github.com/HaichengHao/gs_alpha.git (fetch)👈可以推送
+gs_alpha        https://github.com/HaichengHao/gs_alpha.git (push)👈可以拉取
+
+------推送测试------
+git push  +别名+分支
+----实例-----
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git push gs_alpha master
+Enumerating objects: 24, done.
+Counting objects: 100% (24/24), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (16/16), done.
+Writing objects: 100% (24/24), 1.73 KiB | 443.00 KiB/s, done.
+Total 24 (delta 8), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (8/8), done.
+To https://github.com/HaichengHao/gs_alpha.git
+ * [new branch]      master -> master
+
+-------成功啦😊-----
+
+------拉取测试------
+git pull +别名+分支
+-----实例----------
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ git pull gs_alpha master
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 650 bytes | 3.00 KiB/s, done.
+From https://github.com/HaichengHao/gs_alpha
+ * branch            master     -> FETCH_HEAD
+   f58cfa0..5e1a51b  master     -> gs_alpha/master
+Updating f58cfa0..5e1a51b
+Fast-forward
+ hello.txt | 2 +-
+ 1 file changed👈一行改变, 1 insertion(+), 1 deletion(-)
+
+百年@׹▒▒▒▒▒▒ MINGW64 /d/git_space/gs_alpha (master)
+$ cat hello.txt
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git
+hello git  master test
+demo1 input i am a kamenrider
+hello git  hot fix test
+i am here
+
+
+--------2022/2/15---
+-------git clone-----
+git clone +链接
+
+clone 会做出如下操作。1.拉取代码，2.初始化本地库。3创建别名
+
+
+
+
+==团队内协作==
+
+
+
+--配置ssh
+
+SSH免密登录
+ssh-keygen -t(指定加密算法) rsa(非对称加密协议) -C（描述）2020104216@qq.com
+生成了一个公钥和私钥
+cat id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQAMLpRbLFoSBgQDJao6FOoABAA0zNFeHxZPIn6mMqjHlAByK3itcCjdPFAEPUMXtOANd9srVnnzfgifbTZKTlzzoljyBjxrQxb2VOupVURiSIfp0ryNcDNf5ZPO3+yqtWw81rchnftfCGcbH3TrP8j07TgtUt/k38c851tkMptC/xFbHIMxUpwEHorzOXrR4ed9Qucmr3IgeiX8uWwibvscr3A9fOFuT789YqwdiTydQHBtLXSjpfjrcqDa2zCYYG2SlfR0KS3/RFg8WbdwyQIWV5tnP5Juelffyf5jKYHSA0Xnj1dUByb01LchJL1wR/pYOoUQxJXWY2XhSERgr457SbqKMLePp1nw6ypjw6wNudYZe5PKzbOCHjLLDTzVS04kMksfmLn6lPfbNR3SSTslEcU8NPMurOfTRtUYw0ebD7G9qrzAg8u0k/GeO7qUQB4HXCqIHx0EaeQRcJ6H58JP6HhoLoznE8V2effMnAL87ycUr5F44lAM8yh+OJU2fyKAmhYvPyk= 2020104216@qq.com
+得到公钥
+复制到GitHub账号下
+
