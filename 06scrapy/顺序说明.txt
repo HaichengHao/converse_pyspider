@@ -30,5 +30,10 @@ Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHT
 然后是boss,这个和之前写的caipiao有相似之处，不过更加规范
 
 然后是汽车之家qichezhijia,补充了新知识，即csv文件写入表头
+ self.fp=open('carinfo.csv','a+',encoding='utf-8',newline='')
+        self.writer=csv.writer(self.fp)
+        # 检查表头是否为空，如果是空的就写入表头!!
+        if self.fp.tell() == 0:
+            self.writer.writerow(['Car Title', 'Price', 'Licheng', 'Shijian', 'Leixing', 'Area', 'Guobiao'])
 
 
