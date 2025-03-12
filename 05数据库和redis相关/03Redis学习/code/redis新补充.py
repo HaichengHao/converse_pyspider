@@ -30,7 +30,7 @@ conn = Redis(
 # conn.zadd("phonerank", 10, "meizu", 9, "sumsung", 8, "iphone", 7, "xiaomi")
 #python中，新的命令和旧的Redis版本不同
 # 向名为'phonerank'的有序集合中添加成员及其分数
-conn.zadd("phonerank", {"meizu": 10, "sumsung": 9, "iphone": 8, "xiaomi": 7})
+# conn.zadd("phonerank", {"meizu": 10, "sumsung": 9, "iphone": 8, "xiaomi": 7})
 
 # 打印出'phonerank'集合中的所有成员及其分数，验证是否添加成功
 # phonerank_members = conn.zrange("phonerank", 0, -1, withscores=True)
@@ -38,3 +38,6 @@ conn.zadd("phonerank", {"meizu": 10, "sumsung": 9, "iphone": 8, "xiaomi": 7})
 
 # 注意问题解决,需要更新redis, pip install --upgrade redis
 # 而之前的话是redis 2.10.6
+
+# 对score进行增减，将meizu的score加上3分
+conn.zincrby("phonerank",+3,"meizu")

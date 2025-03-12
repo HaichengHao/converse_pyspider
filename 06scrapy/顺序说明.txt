@@ -7,7 +7,7 @@
 
 
 之后就是新的scrapy补充内容,有的很基础，先是game
-然后是ciapiao
+然后是ciapiao 这部分需要重点关注HtmlResponse(url=model_urls[0],encoding='utf-8', body=page_text),将得到的数据封装成真正的response对象
 之后是对应之前的imgpro而新建立的tpzj
 
 之后是比较重要的
