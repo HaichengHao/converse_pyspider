@@ -1,0 +1,11 @@
+只需128M就可以实现亿级数据去重
+
+安装布隆过滤器
+pip install scrapy_redis_bloomfilter
+
+在去重类中使用BloomFilter 替换 DUPEFILTER_CLASS
+DUPEFILTER_CLASS = "scrapy_redis_bloomfilter.dupefilter.RFPDupeFilter"
+哈希函数的个数，默认为6，可以自行修改
+BLOOMFILTER_HASH_MEMBER = 6
+BloomFilter的bit参数，默认30，占用128M空间，去重量级1亿
+BLOOMFILTER_BIT = 30

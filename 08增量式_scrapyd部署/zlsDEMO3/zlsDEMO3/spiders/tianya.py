@@ -68,7 +68,7 @@ class TianyaSpider(scrapy.Spider):
                 yield scrapy.Request(url=detail_url, callback=self.parse_detail)
 
         # tips:可以继续考虑爬取下一页
-        if self.page_number < 6:  # 只爬前4页当个例子看
+        if self.page_number < 6:  # 只爬前6页当个例子看
             new_url = self.model_url % self.page_number
             self.page_number += 1
             yield scrapy.Request(url=new_url, callback=self.parse)
