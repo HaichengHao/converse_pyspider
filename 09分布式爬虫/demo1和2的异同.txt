@@ -1,0 +1,14 @@
+    def __init__(self, name=None, **kwargs):
+        self.redis = Redis(
+            host="localhost",
+            port=6379,
+            db=9,
+        )
+        # 让父类初始化
+        super(TianyaSpider, self).__init__(name, **kwargs) 注意就是redis的设置方面
+
+     conn = Redis(
+        host='localhost',
+        port=6379,
+        db=14
+    )  两者这方面不同 还有就是对于分页的处理也是不同的，一个采用的是翻页逻辑，一个是点击的逻辑
