@@ -1,5 +1,6 @@
 import scrapy
 from scrapy_splash.request import SplashRequest
+from ..items import NewsItem
 class WangyiSpider(scrapy.Spider):
     name = "wangyi"
     # allowed_domains = ["www.xxx.com"]
@@ -58,6 +59,10 @@ class WangyiSpider(scrapy.Spider):
         for a in a_s:
             title = a.xpath('./text()').extract_first()
             href = a.xpath('./@href').extract_first()
+            item = NewsItem()
+            item['title'] = title
+            item['href'] = href
             print(f'Title: {title}, Href: {href}')
+            yield item
 
 

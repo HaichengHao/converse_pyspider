@@ -63,9 +63,9 @@ LOG_LEVEL ='WARNING'
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "news.pipelines.NewsPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "news.pipelines.NewsPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -96,7 +96,8 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 # scrapy_splash
 # 渲染服务的url, 这里换成你自己的
-SPLASH_URL = 'http://192.168.150.133:8050/'
+# SPLASH_URL = 'http://192.168.150.133:8050/' #hero_host
+SPLASH_URL ='http://192.168.88.128:8050/'
 # 下载器中间件, 这个必须要配置
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_splash.SplashCookiesMiddleware': 723,
