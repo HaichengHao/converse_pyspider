@@ -2,7 +2,7 @@ import scrapy
 from scrapy_redis.spiders import RedisSpider
 from redis2 import Redis
 from ..items import SecondItem
-class TyzxSpider(RedisSpider):
+class TyzxSpider(RedisSpider): #important:注意这里换成了继承与RedisSpider
     conn = Redis(
         host='localhost',
         port=6379,
