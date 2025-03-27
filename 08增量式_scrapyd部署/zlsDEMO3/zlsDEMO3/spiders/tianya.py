@@ -56,6 +56,7 @@ class TianyaSpider(scrapy.Spider):
             # 但是这样有一个问题,redis并不会因为spider程序被迫停止就会停止，它仍然会进行请求
             # QUIZ:如何解决这个问题
             # answer :利用sismember来进行判断即可，不进行数据的插入,和刚才的逻辑刚好是反的
+            # result = conn.sismember("tianya:ty:detail:url",detail_url)
             result = self.redis.sismember("tianya:ty:detail:url", detail_url)
             if result:  # 如果已经存在了，那就不存
                 print('this url have been saved,will take no operation')
