@@ -1,0 +1,5 @@
+D:\pywork\Flasklearn\venv\Script\pip.exe install 包
+D:\pywork\Flasklearn\venv\Script\pip.exe freeze > requriment.txt 这样可以将当前项目的所有配置拿到并生成一个叫requriment.txt
+
+只需要在终端输入pip freeze > requirment.txt即可
+使用的时候只需要pip install -r requirment.txt即可完整安装所有需要的包
