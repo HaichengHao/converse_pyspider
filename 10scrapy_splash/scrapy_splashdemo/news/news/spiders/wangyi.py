@@ -35,7 +35,7 @@ class WangyiSpider(scrapy.Spider):
 
     """
     #important:重写父类
-    def start_requests(self):  #tips:这里的思路和boss里的处理selenium的思路很相似
+    def start_requests(self):  #tips:这里的思路和06 scrapy boss里的处理selenium的思路很相似
         yield SplashRequest(
             url = self.start_urls[0],
             callback=self.parse,

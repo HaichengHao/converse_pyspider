@@ -22,3 +22,20 @@ conn.commit()
 print('插入成功')
 cursor.close()
 conn.close()
+
+
+# mysql写法
+# import mysql.connector
+# conn = mysql.connector.connect(
+#     host = 'localhost',
+#     port = 3306,
+#     user='root',
+#     password='',
+#     database = 'spider',
+#     charset = 'utf-8'
+# )
+# cursor = conn.cursor()
+# cursor.execute("insert into user(name,token) values ('%s','%s') "%(name,token))
+# conn.commit()
+# cursor.close()
+# conn.close()
