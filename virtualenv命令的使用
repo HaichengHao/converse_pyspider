@@ -1,0 +1,4 @@
+pip install virtualenv
+pip install virtualenvwrapper-win
+
+WORKON_HOME  环境变量  指定并重启电脑
