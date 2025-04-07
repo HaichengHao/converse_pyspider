@@ -14,9 +14,16 @@ headers = {
 }
 data={
     'key_id':'ec02',
-    # 'hexsign':'',
+    'hexsign':'7011726bb222c87c95a42d08fc02cc798b9bddfc57d8f1db656d482f5be6a6c3',
     'context[ts]':f'{ts}'
 }
 response = requests.post(url=url,headers=headers,data=data)
 resp = response.json()
 print(resp)
+ticket = resp['data'].get('ticket')
+created_at = resp['data'].get('created_at')
+ttl = resp['data'].get('ttl')
+print(f'Ticket: {ticket}\n,created_at:{created_at}\n,ttl:{ttl}')
+# print(type(ttl),type(created_at))
+bili_ticket_expires = created_at+ttl
+print(f'ticket_expires: {bili_ticket_expires}')
