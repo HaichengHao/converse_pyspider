@@ -4,12 +4,14 @@
 @Date    :2025/4/6 22:13 
 """
 import re
-
+import hmac
+import hashlib
 import requests
 import uuid
 import time
 from blsid import get_blsid
-#创建seeion保存cookie
+
+# 创建seeion保存cookie
 session = requests.Session()
 
 session.headers = {
@@ -22,39 +24,102 @@ page_source = resp.text
 buvid3 = res.get('buvid3')
 b_nut = res.get('b_nut')
 print(f'buvid3:{buvid3},bnut:{b_nut}')
-resp.close() #关掉本次链接
+resp.close()  # 关掉本次链接
 
-# step2:生成uuid
+
+# step2:生成_uuid
 def gen_uuid():
     uuid_sec = str(uuid.uuid4())
-    time_sec = str(int(time.time()*1000 % 1e5))
-    time_sec = time_sec.ljust(5,"0")
+    time_sec = str(int(time.time() * 1000 % 1e5))
+    time_sec = time_sec.ljust(5, "0")
 
     return f"{uuid_sec}{time_sec}".upper() + 'infoc'
+
+
 # _uuid = gen_uuid()
 # 设置_uuid和curent_fnval然后将其加入到session中
 session.cookies['_uuid'] = gen_uuid()
 session.cookies['CURRENT_FNVAL'] = '4048'
 
-# 获取blsid
+# step3:获取blsid
 blsid = get_blsid()
 session.cookies['blsid'] = blsid
 
-#step3: 有了这些之后对v2?发起请求来获取sid
+# step4: 有了这些之后对v2?发起请求来获取sid
 
-obj = re.compile(r'</script><script>.*?},"aid":(?P<aid>\d+),"bvid":.*?,"cid":(?P<cid>\d+),',re.S)
+obj = re.compile(r'</script><script>.*?},"aid":(?P<aid>\d+),"bvid":.*?,"cid":(?P<cid>\d+),', re.S)
 result = obj.finditer(page_source)
 for item in result:
     aid = item.group('aid')
     cid = item.group('cid')
     # print(f"aid:{aid}\ncid:{cid}")
-sid_url = 'https://api.bilibili.com/x/player/wbi/v2?'+f'aid={aid}&'+f'cid={cid}'
+sid_url = 'https://api.bilibili.com/x/player/wbi/v2?' + f'aid={aid}&' + f'cid={cid}'
 print(sid_url)
 resp1 = session.get(sid_url)
 cookiedict = resp1.cookies.get_dict()
 # print(cookiedict)
 sid = cookiedict['sid']
-# print(sid)
-session.cookies['sid'] = sid
+print(sid)
+# session.cookies['sid'] = sid
 resp1.close()
-# step4:设置biliticket和
+
+
+# step5:设置biliticket和ticketexpire
+def hmac_sha256(key, message):
+    """
+    使用HMAC-SHA256算法对给定的消息进行加密
+    :param key: 密钥
+    :param message: 要加密的消息
+    :return: 加密后的哈希值
+    """
+    # 将密钥和消息转换为字节串
+    key = key.encode('utf-8')
+    message = message.encode('utf-8')
+
+    # 创建HMAC对象，使用SHA256哈希算法
+    hmac_obj = hmac.new(key, message, hashlib.sha256)
+
+    # 计算哈希值
+    hash_value = hmac_obj.digest()
+
+    # 将哈希值转换为十六进制字符串
+    hash_hex = hash_value.hex()
+
+    return hash_hex
+
+
+o = hmac_sha256("XgwSnGZ1p", f"ts{int(time.time())}")
+# url = "https://api.bilibili.com/bapis/bilibili.api.ticket.v1.Ticket/GenWebTicket"
+# params = {
+#     "key_id": "ec02",
+#     "hexsign": o,
+#     "context[ts]": f"{int(time.time())}",
+#     "csrf": ''
+# }
+resp = session.post(url="https://api.bilibili.com/bapis/bilibili.api.ticket.v1.Ticket/GenWebTicket",
+                     params={
+                         "key_id": "ec02",
+                         "hexsign": o,
+                         "context[ts]": f"{int(time.time())}",
+                         "csrf": ''
+                     }
+                     )
+resp2=resp.json()
+ticket = resp2['data'].get('ticket')
+created_at = resp2['data'].get('created_at')
+ttl = resp2['data'].get('ttl')
+bili_ticket_expires = f'{ttl + created_at}'
+session.cookies['bili_ticket'] = ticket
+session.cookies['bili_ticket_expires'] = bili_ticket_expires
+resp.close()
+# # step6 :拼接buvid4
+
+resp = session.get(url='https://api.bilibili.com/x/frontend/finger/spi')
+resp3 = resp.json()
+buvid4 = resp3['data']['b_4']
+print(buvid4)
+session.cookies['buvid4']=buvid4
+resp.close()
+session.cookies['buvid_fp']='87bf7390de851df5d0d8346a105787d3'
+
+print(session.cookies.get_dict())
