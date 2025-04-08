@@ -5,24 +5,34 @@
 """
 import requests
 import re
+
 # url ='https://www.bilibili.com/video/BV13oZUYGE7d/?spm_id_from=333.337.search-card.all.click'
 # url ='https://www.bilibili.com/video/BV13oZUYGE7d'
-url='https://www.bilibili.com/video/BV165RBYJEGT/'
+url = 'https://www.bilibili.com/video/BV165RBYJEGT/'
 # url ='https://www.bilibili.com/x/player/pagelist?'
-headers={
-    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36'
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36'
 }
 
-response = requests.get(url=url,headers=headers)
+response = requests.get(url=url, headers=headers)
 pagesource = response.text
-# print(pagesource)
+print(pagesource)
 
-obj = re.compile(r'</script><script>.*?},"aid":(?P<aid>\d+),"bvid":.*?,"cid":(?P<cid>\d+),',re.S)
+obj = re.compile(r'''</script><script>.*?},"aid":(?P<aid>\d+),"bvid":.*?,"cid":(?P<cid>\d+),.*?"userInteractionCount":(?P<viewcount>\d+).*?''',
+    re.S)
+# obj2 = re.compile(r'.*?"userInteractionCount":(?P<viewcount>\d+).*?',re.S)
+# result2 = obj2.finditer(pagesource)
 result = obj.finditer(pagesource)
 for item in result:
+    viewcount = item.group('viewcount')
     aid = item.group('aid')
     cid = item.group('cid')
-    print(f"aid:{aid}\ncid:{cid}")
+    # "viewcount:{viewcount}\n
+    print(f"aid:{aid}\ncid:{cid}\n")
+    print(viewcount)
+# for item in result2:
+#     viewcount = item.group('viewcount')
+#     print(viewcount)
 
 # obj = re.compile(r'')
 

@@ -6,6 +6,8 @@
 import re
 import hmac
 import hashlib
+import random
+
 import requests
 import uuid
 import time
@@ -97,14 +99,14 @@ o = hmac_sha256("XgwSnGZ1p", f"ts{int(time.time())}")
 #     "csrf": ''
 # }
 resp = session.post(url="https://api.bilibili.com/bapis/bilibili.api.ticket.v1.Ticket/GenWebTicket",
-                     params={
-                         "key_id": "ec02",
-                         "hexsign": o,
-                         "context[ts]": f"{int(time.time())}",
-                         "csrf": ''
-                     }
-                     )
-resp2=resp.json()
+                    params={
+                        "key_id": "ec02",
+                        "hexsign": o,
+                        "context[ts]": f"{int(time.time())}",
+                        "csrf": ''
+                    }
+                    )
+resp2 = resp.json()
 ticket = resp2['data'].get('ticket')
 created_at = resp2['data'].get('created_at')
 ttl = resp2['data'].get('ttl')
@@ -118,8 +120,80 @@ resp = session.get(url='https://api.bilibili.com/x/frontend/finger/spi')
 resp3 = resp.json()
 buvid4 = resp3['data']['b_4']
 print(buvid4)
-session.cookies['buvid4']=buvid4
+session.cookies['buvid4'] = buvid4
 resp.close()
-session.cookies['buvid_fp']='87bf7390de851df5d0d8346a105787d3'
+session.cookies['buvid_fp'] = '87bf7390de851df5d0d8346a105787d3'
 
 print(session.cookies.get_dict())
+
+# step7 :获取now
+resp = session.get(
+    url='https://api.bilibili.com/x/click-interface/click/now'
+)
+resp4 = resp.json()
+now_ = resp4['data'].get('now')
+print(now_)
+resp.close()
+
+start_ts = int(time.time())
+# step8: 对h5发起请求，传入参数
+resp = session.post(
+    url='https://api.bilibili.com/x/click-interface/click/web/h5',
+    data={
+        "aid": f'{aid}',
+        "cid": f'{cid}',
+        "part": "1",
+        "lv": "0",
+        "ftime": str(start_ts - random.randint(10, 100)),  # 或用now_也是可以的
+        "stime": str(start_ts),
+        "type": "3",
+        "sub_type": "0",
+        "refer_url": "",
+        "outer": "0",
+        "statistics": "%7B%22appId%22%3A100%2C%22platform%22%3A5%2C%22abtest%22%3A%22%22%2C%22version%22%3A%22%22%7D",
+        "mobi_app": "web",
+        "device": "web",
+        "platform": "web",
+        "spmid": "333.788.0.0",
+        "from_spmid": "333.788.0.0",
+        "session": "afc7fe8b01129556602f4e02eac88cd4",
+        "csrf": ""
+    }
+
+)
+# print(resp.text)
+resp.close()
+
+# step9:心跳机制第一次
+resp = session.post(
+    url='https://api.bilibili.com/x/click-interface/web/heartbeat',
+    data={
+        "start_ts": str(start_ts),
+        "aid": f"{aid}",
+        "cid": f"{cid}",
+        "type": "3",
+        "sub_type": "0",
+        "dt": "2",
+        "play_type": "2",
+        "realtime": "3",
+        "played_time": "3",
+        "real_played_time": "0",
+        "refer_url": "",
+        "quality": "0",
+        "video_duration": "7520",
+        "last_play_progress_time": "3",
+        "max_play_progress_time": "3",
+        "outer": "0",
+        "statistics": "%7B%22appId%22%3A100%2C%22platform%22%3A5%2C%22abtest%22%3A%22%22%2C%22version%22%3A%22%22%7D",
+        "mobi_app": "web",
+        "device": "web",
+        "platform": "web",
+        "spmid": "333.788.0.0",
+        "from_spmid": "333.788.0.0",
+        "session": "afc7fe8b01129556602f4e02eac88cd4",
+        "extra": "%7B%22player_version%22%3A%224.9.29%22%7D",
+        "csrf": ""
+    }
+)
+print(resp.text)
+resp.close()
