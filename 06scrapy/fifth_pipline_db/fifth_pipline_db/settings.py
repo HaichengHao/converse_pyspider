@@ -72,6 +72,9 @@ ITEM_PIPELINES = {
    "fifth_pipline_db.pipelines.MySqlPipeline": 300,
    "fifth_pipline_db.pipelines.RedisPipeline": 301, #新增一个叫Redis的pipline
    "fifth_pipline_db.pipelines.FifthPiplineDbPipeline": 302,
+   "fifth_pipline_db.pipelines.toCsv": 303,
+   "fifth_pipline_db.pipelines.MongoPipline": 304,
+
 }
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

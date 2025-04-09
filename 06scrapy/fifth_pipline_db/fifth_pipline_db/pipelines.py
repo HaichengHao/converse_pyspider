@@ -13,7 +13,7 @@ from itemadapter import ItemAdapter
 import redis
 # 既然想用mysql的pipline那就需要导入pymysql或者mysqlconnector
 import mysql.connector
-
+import csv
 # important:负责将数据存储到mysql中
 class MySqlPipeline: #important:这里修改了名称的话需要到piplines.py中把管道配置成相同名称
     conn = None
@@ -77,6 +77,23 @@ class FifthPiplineDbPipeline:
     def close_spider(self,spider):
         self.fp.close()
         print('文件写入成功,正常关闭')
+# important:将数据写入csv当中
+class toCsv:
+    fp = None
+    def open_spider(self,spider):
+        self.fp = open('Data.csv','a+',encoding='utf-8',newline='')
+        self.writer = csv.writer(self.fp)
+        # 判读表头是否为空，如果为空就写入表头
+        if self.fp.tell() == 0:
+            self.writer.writerow(['标题'])
+        print('csv文件创建成功')
+    def process_item(self,item,spider):
+        title = item['title']
+        self.writer.writerow([title,])
+        return item
+    def close_spider(self,spider):
+        self.fp.close()
+
 
 # 存储到mongodb当中，这部分需要看caipiao的，那个写的比较详细
 class MongoPipline:

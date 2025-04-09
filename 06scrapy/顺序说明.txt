@@ -1,5 +1,5 @@
 ## 顺序说明  
-最开始就是按照英文顺序，
+最开始就是按照英文顺序，可以关注一下第六个imagespipline,然后看第七个实例
 之后就是deepcrawl和deeppro
 再之后为baidufanyi用来补全scrapy的post请求
 再之后就是中间件middleware相关的,  
