@@ -19,8 +19,11 @@ def getvv(bvid):
     page_source = res.text
     print(page_source)
     # obj = re.compile(r'</script><script>.*?},"aid":(?P<aid>\d+),"bvid":.*?,"cid":(?P<cid>\d+),', re.S)
+    # obj = re.compile(
+    #     r'''<script>.*?"timelength":(?P<duration>\d+).*?</script><script>.*?},"aid":(?P<aid>\d+),"bvid":(?P<bvid_>.*?),"cid":(?P<cid>\d+),.*?"userInteractionCount":(?P<viewcount>\d+).*?''',
+    #     re.S)
     obj = re.compile(
-        r'''<script>.*?"timelength":(?P<duration>\d+).*?</script><script>.*?},"aid":(?P<aid>\d+),"bvid":(?P<bvid_>.*?),"cid":(?P<cid>\d+),.*?"userInteractionCount":(?P<viewcount>\d+).*?''',
+        r'''"seek_type":"offset","dash":{"duration":(?P<duration>\d+).*?</script><script>.*?},"aid":(?P<aid>\d+),"bvid":(?P<bvid_>.*?),"cid":(?P<cid>\d+),.*?"userInteractionCount":(?P<viewcount>\d+).*?''',
         re.S)
     result = obj.finditer(page_source)
     for item in result:

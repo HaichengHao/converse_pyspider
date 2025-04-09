@@ -48,8 +48,9 @@ blsid = get_blsid()
 session.cookies['blsid'] = blsid
 
 # step4: 有了这些之后对v2?发起请求来获取sid
-
-obj = re.compile(r'</script><script>.*?},"aid":(?P<aid>\d+),"bvid":.*?,"cid":(?P<cid>\d+),', re.S)
+obj = re.compile(
+        r'''"seek_type":"offset","dash":{"duration":(?P<duration>\d+).*?</script><script>.*?},"aid":(?P<aid>\d+),"bvid":(?P<bvid_>.*?),"cid":(?P<cid>\d+),.*?"userInteractionCount":(?P<viewcount>\d+).*?''',
+        re.S)
 result = obj.finditer(page_source)
 for item in result:
     aid = item.group('aid')

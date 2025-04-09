@@ -1,8 +1,9 @@
 """
-@File    :v01tunnel.py
+@File    :v02完播.py
 @Editor  : 百年
-@Date    :2025/4/8 14:45 
+@Date    :2025/4/8 21:55 
 """
+
 import requests
 import re
 import hmac
@@ -163,7 +164,7 @@ class PcAnonymous(object):
         res.close()
 
     # tips:第一次心跳开始
-    def heart_beat(self):
+    def heart_beat_first(self):
         res = self.session.post(
             url='https://api.bilibili.com/x/click-interface/web/heartbeat',
             data={
@@ -197,6 +198,90 @@ class PcAnonymous(object):
         print(res.text)
         res.close()
 
+    # tips:中间心跳卡完播率
+    def heartbeat_ing(self):
+        loop_count, div = divmod(int(self.duration), 15)
+        #     loop_count总时长//15s，看看需要多少次心跳机制
+        #     div表示总时长%15s，看看最后不满15s的心跳还需要多长时间
+        # tips:但是这里会有一个问题，如果视频时长刚好就是15的倍数，那么div就是0了，该如何处理呢?
+        if div == 0:
+            div = 15
+            loop_count -= 1
+        for i in range(1, loop_count + 1):
+            interval = i * 15
+            time.sleep(15)
+            # tips:配置中间心跳机制需要的数据字典
+            data_dict = {
+                "start_ts": str(self.start_ts),
+                "aid": f"{self.aid}",
+                "cid": f"{self.cid}",
+                "type": "3",
+                "sub_type": "0",
+                "dt": "2",
+                "play_type": "0",
+                "realtime": f"{interval - 1}",
+                "played_time": f"{interval}",
+                "real_played_time": f"{interval}",
+                "refer_url": "",
+                "quality": "0",
+                "video_duration": f"{self.duration}",
+                "last_play_progress_time": f"{interval}",
+                "max_play_progress_time": "3",
+                "outer": "0",
+                "statistics": "%7B%22appId%22%3A100%2C%22platform%22%3A5%2C%22abtest%22%3A%22%22%2C%22version%22%3A%22%22%7D",
+                "mobi_app": "web",
+                "device": "web",
+                "platform": "web",
+                "spmid": "333.788.0.0",
+                "from_spmid": "333.788.0.0",
+                "session": "afc7fe8b01129556602f4e02eac88cd4",
+                "extra": "%7B%22player_version%22%3A%224.9.29%22%7D",
+                "csrf": ""
+            }
+            # tips:执行心跳机制
+            res = self.session.post(
+                url='https://api.bilibili.com/x/click-interface/web/heartbeat',
+                data=data_dict
+            )
+            res.close()
+
+    #     tips:最后一次心跳
+        time.sleep(interval)
+        data_dict = {
+            "start_ts": str(self.start_ts),
+            "aid": f"{self.aid}",
+            "cid": f"{self.cid}",
+            "type": "3",
+            "sub_type": "0",
+            "dt": "2",
+            "play_type": "4",
+            "realtime": f"{interval}",
+            "played_time":-1, #tips:最后一次心跳的该值发生变化
+            "real_played_time": f"{self.duration}",
+            "refer_url": "",
+            "quality": "0",
+            "video_duration": f"{self.duration}",
+            "last_play_progress_time": f"{interval}",
+            "max_play_progress_time": f"{self.duration}",
+            "outer": "0",
+            "statistics": "%7B%22appId%22%3A100%2C%22platform%22%3A5%2C%22abtest%22%3A%22%22%2C%22version%22%3A%22%22%7D",
+            "mobi_app": "web",
+            "device": "web",
+            "platform": "web",
+            "spmid": "333.788.0.0",
+            "from_spmid": "333.788.0.0",
+            "session": "afc7fe8b01129556602f4e02eac88cd4",
+            "extra": "%7B%22player_version%22%3A%224.9.29%22%7D",
+            "csrf": ""
+        }
+        # tips:执行心跳机制
+        res = self.session.post(
+            url='https://api.bilibili.com/x/click-interface/web/heartbeat',
+            data=data_dict
+        )
+        res.close()
+
+    # important:即心跳机制少跳一次，然后让最后一次心跳的时长等于15s
     def run(self):
         try:
             self.get_buvid3()
@@ -205,8 +290,10 @@ class PcAnonymous(object):
             self.gen_ticket()
             self.gen_buvid4()
             self.click_h5()
-            self.heart_beat()
-            print('成功!')
+            self.heart_beat_first()
+            print('第一次成功!')
+            self.heartbeat_ing()
+            print('结束')
         except BaseException as e:
             print('请求异常', e)
 
@@ -233,12 +320,14 @@ def getvv(bvid):
         viewcount = item.group('viewcount')
         return aid, bvid_, cid, viewcount, duration
 
+
 def tunnel_proxies():
     url = 'https://share.proxy.qg.net/get?key=073A3D69&num=1&area=&isp=0&format=txt&seq=,&distinct=true'
     resp = requests.get(url=url)
-    c = 'http://'+resp.text
+    c = 'http://' + resp.text
     # print('http://'+c)
     return c
+
 
 # if __name__ == '__main__':
 #     c = tunnel_proxies()
@@ -252,15 +341,17 @@ def handler(bvid):
     # print(aid, bvid_, cid, viewcount, duration )
     print(f'aid:{aid}, bvid:{bvid_},cid: {cid}, 观看人数:{viewcount}, 时长{duration}')
     # 播放
-    count,div = divmod(duration,15) #important:观察发现每次心跳机制都是15s,利用divmod,返回两个数值，一个是整除，一个是取余
+    # count,div = divmod(duration,15) #important:观察发现每次心跳机制都是15s,利用divmod,返回两个数值，一个是整除，一个是取余
     # tips:创建类对象，传入参数，由于这里没有用到隧道代理故先不传入
-    proxy = tunnel_proxies()
-    print("本次使用代理:",proxy)
-    pc = PcAnonymous(aid, bvid_, cid, viewcount, duration,proxy)
-    pc.run() #tips:调用实例方法，运行代码
+    # proxy = tunnel_proxies()
+    # print("本次使用代理:", proxy)
+    pc = PcAnonymous(aid, bvid_, cid, viewcount, duration, None)
+    pc.run()  # tips:调用实例方法，运行代码
+
+
 if __name__ == '__main__':
     bv = input('输入视频的bvid')
-    for i in range(15):
+    for i in range(3):
         handler(bv)
 
 # https://www.bilibili.com/video/BV1mRRvYsEvD/?spm_id_from=333.788.recommend_more_video.4

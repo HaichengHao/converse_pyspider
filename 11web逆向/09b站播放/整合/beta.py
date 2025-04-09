@@ -222,7 +222,7 @@ def getvv(bvid):
     res = session.get(url=url)
     page_source = res.text
     obj = re.compile(
-        r'''<script>.*?"duration":(?P<duration>\d+).*?</script><script>.*?},"aid":(?P<aid>\d+),"bvid":(?P<bvid_>.*?),"cid":(?P<cid>\d+),.*?"userInteractionCount":(?P<viewcount>\d+).*?''',
+        r'''"seek_type":"offset","dash":{"duration":(?P<duration>\d+).*?</script><script>.*?},"aid":(?P<aid>\d+),"bvid":(?P<bvid_>.*?),"cid":(?P<cid>\d+),.*?"userInteractionCount":(?P<viewcount>\d+).*?''',
         re.S)
     result = obj.finditer(page_source)
     for item in result:
