@@ -8,6 +8,7 @@
 import pymongo
 from itemadapter import ItemAdapter
 import mysql.connector
+import csv
 # from settings import MY_SQL #另一种方式导入数据库
 
 # important:负责将数据存储到mysql中
@@ -60,6 +61,9 @@ class MySqlPipeline:  # important:这里修改了名称的话需要到piplines.p
 class CaipiaoPipeline:
     def open_spider(self,spider):
         self.fp = open('./双色球.csv', 'a', encoding='utf-8')
+        self.writer = csv.writer(self.fp)
+        if self.fp.tell() == 0:
+            self.writer.writerow(['日期','红球','蓝球'])
     def process_item(self, item, spider):
         item['red_ball'] = ','.join(item['red_ball']) if item['red_ball'] else None
         item['blue_ball'] = ','.join(item['blue_ball']) if item['blue_ball'] else None

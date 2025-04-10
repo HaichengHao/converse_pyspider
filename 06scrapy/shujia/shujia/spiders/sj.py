@@ -28,6 +28,7 @@ class SjSpider(scrapy.Spider):
     user_name = input('请输入用户名:')
     passwd = input('请输入密码:')
 
+    #important:重写父类Spider的方法
     def start_requests(self):
         data = {
             'comeurl': '/user/mark/index.html',

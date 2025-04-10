@@ -106,6 +106,7 @@ print(lst1)
 # ['abc', 'def', ['啊', '播', '次', '的', 123], 'gh', ['hello', ['WORLD']]]'''
 
 # 列表的循环删除
+'''
 lst1=['张三','李四','王五','赵六','钱七','孙八','张九']
 print(len(lst1))
 # 7
@@ -130,3 +131,10 @@ for remove_item in tmp:
     lst1.remove(remove_item)
 print(lst1)
 # ['王五', '赵六', '钱七', '孙八']
+
+# 列表的join操作
+'''
+
+lst=['a','b']
+str = ''.join(lst)
+print(str)

@@ -7,7 +7,7 @@ from redis2 import Redis
 from ..items import Dosdemo1Item
 
 
-class TianyaSpider(RedisSpider):  # 注意括号内的内容也要跟着换
+class TianyaSpider(RedisSpider):  #important:注意括号内的内容也要跟着换
     # conn = redis.Redis(
     #     host='localhost',
     #     port=6379,

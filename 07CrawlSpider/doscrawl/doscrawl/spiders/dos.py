@@ -6,7 +6,7 @@ from ..items import DoscrawlItem
 # important:导入需要的包
 #  修改爬虫类的父类为导入的RedisCrawlSpider
 #  将start_urls注释掉 新写redis_key
-class DosSpider(RedisCrawlSpider):
+class DosSpider(RedisCrawlSpider): #tips:继承自RedisCrawlSpider
     name = "dos"
     # allowed_domains = ["www.xxx.com"]
     # start_urls = ["https://www.xxx.com"] #important:注意，起始url是最后添加的,详细查看md文件，目前不用添加
