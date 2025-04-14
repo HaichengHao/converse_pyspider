@@ -10,6 +10,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\10scrapy_splash\scrapy_splashdemo\news\news\spiders\news.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\练手\qikankan\data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\练手\tianqi.csv">
           <value>
             <Attribute>
