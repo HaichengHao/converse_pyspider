@@ -11,23 +11,23 @@ fp = open('../others/doubantop250new.csv', 'a+', encoding='utf-8',
 writer = csv.writer(fp)
 url = "https://movie.douban.com/top250?start="
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1660.57"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"
 }
-proxies = [
-    {'http': '42.63.65.37:80'},
-    {'http': '42.63.65.13:80'},
-    {'http': '42.63.65.15:80'},
-    {'http': '42.63.65.7:80'},
-    {'http': '42.63.65.8:80'},
-    {'http': '42.63.65.9:80'},
-    {'http': '39.173.106.248:80'},
-    {'http': '39.173.106.249:80'},
-]
-
-proxy = random.choice(proxies)
+# proxies = [
+#     {'http': '42.63.65.37:80'},
+#     {'http': '42.63.65.13:80'},
+#     {'http': '42.63.65.15:80'},
+#     {'http': '42.63.65.7:80'},
+#     {'http': '42.63.65.8:80'},
+#     {'http': '42.63.65.9:80'},
+#     {'http': '39.173.106.248:80'},
+#     {'http': '39.173.106.249:80'},
+# ]
+#
+# proxy = random.choice(proxies)
 for i in range(0, 226, 25):
     new_url = url + str(i)
-    response = requests.get(url=new_url, headers=headers, proxies=proxy)
+    response = requests.get(url=new_url, headers=headers)
     content = response.text
     # print(content)
 
