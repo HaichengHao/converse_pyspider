@@ -4,8 +4,10 @@
 import random
 import re
 import requests
-import csv #关于csv文件的读写操作，查看02python高阶/17python文件读写之CSV
-fp = open('../others/doubantop250.csv','a+',encoding='utf-8',newline='') #其中newline=""表示不再进行换行，因为csv.write()会默认换行，所以如果不加这个会出现隔行问题
+import csv  # 关于csv文件的读写操作，查看02python高阶/17python文件读写之CSV
+
+fp = open('../others/doubantop250new.csv', 'a+', encoding='utf-8',
+          newline='')  # 其中newline=""表示不再进行换行，因为csv.write()会默认换行，所以如果不加这个会出现隔行问题
 writer = csv.writer(fp)
 url = "https://movie.douban.com/top250?start="
 headers = {
@@ -38,7 +40,7 @@ for i in range(0, 226, 25):
         re.S)  # re.S可以让正则中的.匹配换行符
     # 2调用re模块的方法，注意要将待匹配内容其转化为字符串类型先看看匹配到了什么，之后我们用迭代器
     result = moviestitle.finditer(content)
-    # print(result)
+    print(result)
     # [] 空列表，这是为什么呢？因为最开始我们没有加上re.S，修改后再次运行查看结果
     # <callable_iterator object at 0x00000129CF79AFB0> <--加上之后成功，我们利用01Python基础回顾中的41提取分组数据中的提取方式来对迭代器内容进行提取
     for item in result:
@@ -49,7 +51,7 @@ for i in range(0, 226, 25):
         score = item.group("score")
         numbersofevaluators = item.group("numbersofevaluators")
         print(name, editor, actor, year, score, numbersofevaluators)
-        movieinfo=[name,editor,actor,year,score,numbersofevaluators]
+        movieinfo = [name, editor, actor, year, score, numbersofevaluators]
         writer.writerow(movieinfo)
 
 fp.close()
