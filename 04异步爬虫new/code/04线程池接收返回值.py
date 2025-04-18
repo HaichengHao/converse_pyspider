@@ -43,7 +43,7 @@ if __name__ == '__main__':
 if __name__ == '__main__':
     with ThreadPoolExecutor(3) as t:
         # IMPORTANT:如果忘记了就回看python基础的37,内置函数（下）
-        result = t.map(func,['周杰伦','王力宏','王富贵'],[2,1,3])
+        result = t.map(func,['周杰伦','王力宏','王富贵'],[2,1,3]) #tips:map(函数/匿名函数,可迭代对象,参数)
         print(type(result))
 #  <class 'generator'> <--注意Result的类型是生成器
 # 我是 王力宏

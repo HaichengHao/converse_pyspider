@@ -74,7 +74,7 @@ for line in content.split('\n'):
                 stp3_url = urljoin(base_url,line)
                 print(stp3_url)
                 final_response = requests.get(url=stp3_url,headers=headers,proxies=proxies)
-                bin_content = final_response.content
+                bin_content = final_response.content #important:视频也是二进制数据
                 ts_name = stp3_url.split('/')[-1]
                 print(ts_name)
                 s_path = dirname + '/' + ts_name

@@ -19,6 +19,8 @@ from concurrent.futures.thread import ThreadPoolExecutor
 from multiprocessing import Process,Queue #important:注意我们要使用的是multiprocessing下的队列而不是python带的哪个普通的队列
 from lxml import etree
 from urllib import parse
+# from urllib.parse import urljoin #或者这样写
+
 # 构造headers
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1660.57",

@@ -9,7 +9,7 @@
 如果超过5个则新来的第6个等待五个中的任何一个结束链接
 需要使用一个包dbutils,既数据库实用工具
 '''
-import pymysql
+import mysql.connector
 from dbutils.pooled_db import PooledDB
 import hashlib
 from flask import Flask, jsonify, request
@@ -21,7 +21,7 @@ app = Flask(__name__)
 可以尝试在运行时往表中插入新的数据，看看会不会产生错误，发现并不会，文件授权也不会，这就是分开写的好处'''
 # 配置连接池
 Pool = PooledDB(
-    creator=pymysql, #使用链接数据库的模块,如果用的是mysql就用pymysql
+    creator=mysql.connector, #使用链接数据库的模块,如果用的是mysql就用pymysql
     mincached=2,#初始化时，连接池中至少创建的空闲的链接，0表示不创建,表示刚启动时创建的
     maxcached=5,#连接池中最多闲置的链接,0和None不限制
     maxconnections=10,#链接池允许的最大连接数，0和None表示不限制链接数

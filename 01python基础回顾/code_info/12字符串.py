@@ -209,3 +209,19 @@ print(lst_s1)
 s2='-'.join(lst_s1)
 print(s2)
 # hello-world-hi-python
+
+
+# rjust和ljust
+s3 = '8088'
+res = s3.rjust(8,'0')
+print(res)
+# 00008088
+res2 = s3.ljust(8,'a')
+print(res2)
+# 8088aaaa
+
+
+# zfill 默认向左边填充0且指定的是宽度
+res3 = s3.zfill(8)
+print(res3)
+# 00008088
