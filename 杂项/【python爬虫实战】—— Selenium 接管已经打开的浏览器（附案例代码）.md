@@ -39,8 +39,9 @@
 
 为了方便启动 Chrome 浏览器并开启调试端口，我们可以创建一个 bat 文件。以下是 bat 文件的内容（先在记事本输入并保存，然后改后缀为bat）：
 
-```cobol
-cd C:\Users\lby\AppData\Local\Google\Chrome\Applicationchrome --remote-debugging-port=9527 --user-data-dir="C:\Users\lby\Desktop\selenium\selenium_t"
+```cmd
+cd C:\Users\lby\AppData\Local\Google\Chrome\Application
+chrome --remote-debugging-port=9527 --user-data-dir="C:\Users\lby\Desktop\selenium\selenium_t"
 ```
 
 **bat 文件解释：**
@@ -58,7 +59,8 @@ cd C:\Users\lby\AppData\Local\Google\Chrome\Applicationchrome --remote-debugging
 
 ```python
 from selenium import webdriverfrom selenium.webdriver.chrome.options import Options 
-chrome_options=Options()chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:9527")# 连接已开的浏览器  
+chrome_options=Options()
+chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:9527")# 连接已开的浏览器  
 driver = webdriver.Chrome(options=chrome_options) # 操作已打开的浏览器driver.get("https://www.baidu.com")print(driver.title) # 关闭浏览器driver.quit()
 ```
 
