@@ -72,7 +72,7 @@ REDIS_HOST = "127.0.0.1"
 REDIS_PORT = 6379
 REDIS_DB = 14
 
-# tips: 使用scrapy-redis组件的过滤器去重队列
+# tips: 使用scrapy-redis组件的过滤器去重队列RequestFingerPrintDuplicatesFilter
 # DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 # tips :使用scrapy-redis组件自己的调度器
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
