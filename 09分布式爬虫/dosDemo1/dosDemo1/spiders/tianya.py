@@ -34,7 +34,7 @@ class TianyaSpider(RedisSpider):  #important:注意括号内的内容也要跟�
 
     def parse(self, response):
         urls = response.xpath(
-            '//div[@class="card card-threadlist"]//ul/li/div[@class="media-body"]/div/a/@href').extract()
+            '//div[@class="card card-threadlist"]//ul/li/div[@class="media-body"]/div/a/@href').extract() #//div[@class="card-threadlist"]//ul/li/@data-href
         for url in urls:
             detail_url = 'https://xintianya.net/' + url
             print(detail_url)

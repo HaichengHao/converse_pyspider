@@ -16,7 +16,7 @@ class NewsPipeline:
         self.fp = open('news.csv','a+',encoding='utf-8',newline='')
         self.writer = csv.writer(self.fp)
         if self.fp.tell() == 0:
-            self.writer.writerow(['Title','Href'])
+            self.writer.writerow(['标题','链接'])
     def process_item(self, item, spider):
         title = item['title']
         href = item['href']

@@ -17,7 +17,7 @@ url_lst = [
     # 'https://www.iikx.com//sci/medcine/15693.html',
     # 'https://www.iikx.com//sci/medcine/18770.html',
     # 'https://www.iikx.com//sci/medcine/15740.html',
-    'https://www.iikx.com//sci/medcine/10047.html',
+    # 'https://www.iikx.com//sci/medcine/10047.html',
     # 'https://www.iikx.com//sci/medcine/17089.html',
     # 'https://www.iikx.com//sci/medcine/10960.html',
     # 'https://www.iikx.com//sci/medcine/9800.html',
