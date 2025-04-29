@@ -48,6 +48,7 @@ class WangyiSpider(RedisSpider):
             args={
                 "lua_source": self.lua_source,
             },
+            # cookies={} 也可以传入已经切割为字典形式的cookies
             dont_filter=True #tips:因为只是爬这一页的数据，所以不需要去重，那么布隆过滤器即使生效也不会在redis里有request和bloomfilter
         )
 
