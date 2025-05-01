@@ -44,3 +44,5 @@ Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHT
 还有要加的就是请求的数据是json所以要加上content-type
 其中x-requested-with是ajax这种请求中常常含有的参数
 之后做那种页面链接不变但是内容改变的网站对其发送请求的时候也可以利用这种思路
+
+新案例desk爬取图片
