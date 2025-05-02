@@ -1169,7 +1169,7 @@ class Base {
         return String.format("%s", this.email);
     }
 }
-
+//person继承Base实现IUser和Iperson接口
 class Person extends Base implements IUser, IPerson {
 
     public Person(String name, Integer age, String email) {
