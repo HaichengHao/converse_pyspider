@@ -14,8 +14,8 @@ os.popen(r'start chrome.exe --remtoe-debugging-port=9527') #important:注意这�
 # os.popen(r'start chrome.exe --remote-debugging-port=9527 --user-data-dir="F:\selenium\"') 或者这样打开新的环境
 
 # tips:第二种写法，先转到自己的可执行路径(在chrome里输入chrome://version)查看
-os.chdir(r'C:\Program Files\Google\Chrome\Application')
-os.popen(r'chrome.exe --remtoe-debugging-port=9527')
+# os.chdir(r'C:\Program Files\Google\Chrome\Application')
+# os.popen(r'chrome.exe --remtoe-debugging-port=9527')
 # os.popen(r'chrome.exe --remote-debugging-port=9527 --user-data-dir="F:\selenium\"') 或者这样打开新的环境
 
 
