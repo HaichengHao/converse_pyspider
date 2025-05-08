@@ -1,21 +1,25 @@
 # @Author    : 百年
 # @FileName  :parseData.py
-# @DateTime  :2025/4/1 19:08
+# @DateTime  :2024/4/1 19:08
 import base64
 
 import hashlib
 
-from crypto.Cipher import AES
-from crypto.Cipher.AES import new
+from Crypto.Cipher import AES
+# from crypto.Cipher import AES
+from Crypto.Cipher.AES import new
 # from cryptography.hazmat.primitives.ciphers.algorithms import AES
 # from Crypto.Cipher import AES
 
 def decode_data(text):
     # 偏移量
-    decodeiv = "ydsecret://query/iv/C@lZe2YzHtZ2CYgaXKSVfsb7Y4QWHjITPPZ0nQp87fBeJ!Iv6v^6fvi2WN@bYpJ4"
+    # decodeiv = "ydsecret://query/iv/C@lZe2YzHtZ2CYgaXKSVfsb7Y4QWHjITPPZ0nQp87fBeJ!Iv6v^6fvi2WN@bYpJ4"
 
     # 秘钥
-    decodekey = "ydsecret://query/key/B*RGygVywfNBwpmBaZg*WT7SIOUP2T0C9WHMZN39j^DAdaZhAnxvGcCY6VYFwnHl"
+    # decodekey = "ydsecret://query/key/B*RGygVywfNBwpmBaZg*WT7SIOUP2T0C9WHMZN39j^DAdaZhAnxvGcCY6VYFwnHl"
+
+    decodekey ="ydsecret://query/key/B*RGygVywfNBwpmBaZg*WT7SIOUP2T0C9WHMZN39j^DAdaZhAnxvGcCY6VYFwnHl"
+    decodeiv = "ydsecret://query/iv/C@lZe2YzHtZ2CYgaXKSVfsb7Y4QWHjITPPZ0nQp87fBeJ!Iv6v^6fvi2WN@bYpJ4"
     # 先把密匙和偏移量进行md5加密 digest()是返回二进制的值
     key = hashlib.md5(decodekey.encode(encoding='utf-8')).digest()
     iv = hashlib.md5(decodeiv.encode(encoding='utf-8')).digest()
@@ -27,5 +31,7 @@ def decode_data(text):
     a = aes_en.decrypt(data_new).decode('utf-8').strip()
     return a
 
-res = decode_data('_jsUyA02rwkOJ4enKX7c4Sdm4hPbMmosJtqyVVdpmzJXBjQPm4jwIuyJpaboih_vQ0Efxi8bNY0gR2oTrn6FH1zwXMT2Q9YpzDoBJ7q9QJjQcgVdeKjmW9XBf2tgUSzNBimGqRgOBPqEjog4mAEJItQVBV44_4cpgy44R45auFGI-ra7VqLJeYXfX8z5xQXchv3FrCRNrOT58u5dxuhUDBN80131f8GF4MW6Lcc5JlQ=')
+# res = decode_data('_jsUyA02rwkOJ4enKX7c4Sdm4hPbMmosJtqyVVdpmzJXBjQPm4jwIuyJpaboih_vQ0Efxi8bNY0gR2oTrn6FH1zwXMT2Q9YpzDoBJ7q9QJjQcgVdeKjmW9XBf2tgUSzNBimGqRgOBPqEjog4mAEJItQVBV44_4cpgy44R45auFGI-ra7VqLJeYXfX8z5xQXchv3FrCRNrOT58u5dxuhUDBN80131f8GF4MW6Lcc5JlQ=')
+# res = decode_data('_jsUyA02rwkOJ4enKX7c4Sdm4hPbMmosJtqyVVdpmzLypmsO-h0Y4u4A_9Fj-TuA9FxGNRQ_3vxVKinIJcFbE7WpWak_L-Ed9bRqgp1kA5jh5avL_EqSUibAK1rRVO761LwhjZQ2erN3GkNN7x8nRRl86NYuGcA_QCqf5einE-eLp1SE6IqFhf3xdMLnh-Mu')
+res = decode_data('_jsUyA02rwkOJ4enKX7c4Sdm4hPbMmosJtqyVVdpmzLO1YGh3NbII8SLMj0GD9RKLli5ed8gAUGEep7cptPst7YTFqbpbCGjuqXOGLo4bF_1zVR_vNxfgXpC-ByOTdrLrH3zGzoqYDo6j9ZQGRE5kyVnCuPjxBCJ_S7lOf_mrds=')
 print(res)

@@ -1,7 +1,7 @@
 """
 @File    :yd.py
 @Editor  : 百年
-@Date    :2025/3/28 13:58 
+@Date    :2024/3/28 13:58
 """
 import requests
 import fake_useragent
@@ -12,8 +12,8 @@ import time
 
 url = 'https://dict.youdao.com/webtranslate'
 headers = {
-    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-    'Cookie':"OUTFOX_SEARCH_USER_ID=-949120315@2001:da8:9000:a835:611c:f5ae:87f8:cf85; OUTFOX_SEARCH_USER_ID_NCOO=1052122220.6186857; _uetsid=de5cede00eb311f092f2c3ab082b0406; _uetvid=a4bcc1900af711f090db7fac1e6cb752; DICT_DOCTRANS_SESSION_ID=MTUzYWVkYzctNGJlYS00Y2Q1LWE5ZTctYzYwMTRhMzI5NTk4"
+    'User-Agent':"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+    'Cookie':"OUTFOX_SEARCH_USER_ID=-949120315@2001:da8:9000:a835:611c:f5ae:87f8:cf85; OUTFOX_SEARCH_USER_ID_NCOO=1052122220.6186857; _uetsid=b1c02df02c1911f080426bbe57cdc13d; _uetvid=a4bcc1900af711f090db7fac1e6cb752; ___rl__test__cookies=1746714947009"
 }
 word = input('输入单词>>')
 
@@ -34,9 +34,10 @@ result = ctx.eval(funcname)
 print(result)
 data = {
     "i": word,
-    "from": "auto",
-    'to': 'auto',
+    "from": "en",
+    'to': 'zh-CHS',
     "useTerm": "false",
+    "domain":0,
     "dictResult": "true",
     "keyid": "webfanyi",
     "sign": result,
@@ -45,7 +46,7 @@ data = {
     "appVersion": "1.0.0",
     "vendor": "web",
     "pointParam": "client,mysticTime,product",
-    "mysticTime": "1743496011851",
+    "mysticTime": f"{i}",
     "keyfrom": "fanyi.web",
     "mid": "1",
     "screen": "1",
@@ -57,4 +58,5 @@ data = {
 }
 
 response = requests.post(url=url, headers=headers, data=data)
-print(response.json())
+print(response.text)
+# print(response.json())
