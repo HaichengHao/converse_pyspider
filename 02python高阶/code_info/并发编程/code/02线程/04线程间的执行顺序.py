@@ -13,7 +13,9 @@ import time
 def getinfo():
     time.sleep(0.5) #如果不写这一行，那么运行起来像是有序运行，但是加上这一行再运行就会发现在时间片内线程的运行是无序的
     current_thread=threading.current_thread()
+    current_thread_tid = threading.current_thread().ident ##important:获取线程id
     print(current_thread)
+    print(current_thread_tid)
 
 if __name__ == '__main__':
     for i in range(10):
