@@ -15,7 +15,7 @@ class KaoshiSpider(scrapy.Spider):  # important:注意这里并没用到Ruel,所
         le = LinkExtractor(restrict_xpaths='//div[@class="send-title"]/a')
         a_list = le.extract_links(response)
         for a in a_list:
-            print(a.text, a.url)
+            print(a.text, a.url)  #这样可以获取a标签中的文本和a标签的url链接值
             first_title = a.text  # important:一级目录标题
             exampoint_url = a.url.replace('TestPaper', 'exampoint')
             yield scrapy.Request(url=exampoint_url, callback=self.parse_second_level, meta={'first_title': first_title})
