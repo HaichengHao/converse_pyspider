@@ -13,7 +13,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 #创建浏览器对象
-service = Service('../others/chromedriver.exe')
+service = Service('../../../练手/chromedriver.exe')
 # browser1 = Chrome(executable_path='../others/chromedriver.exe')
 browser1 = Chrome(service=service)
 

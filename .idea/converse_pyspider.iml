@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/06scrapy/boss" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/11web逆向/09b站播放/整合" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.11 (converse_pyspider)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.10 (converse_pyspider)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
