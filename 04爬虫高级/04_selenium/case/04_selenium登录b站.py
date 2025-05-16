@@ -66,7 +66,7 @@ time.sleep(3)
 # )
 # 等待验证码容器出现（Geetest 验证码面板）
 code_tag = WebDriverWait(browser1, 20).until(
-    EC.visibility_of_element_located((By.CSS_SELECTOR, '.geetest_panel_next'))
+    EC.visibility_of_element_located((By.CSS_SELECTOR, '.geetest_widget'))
 )
 print(code_tag)
 print("验证码元素大小:", code_tag.size)
