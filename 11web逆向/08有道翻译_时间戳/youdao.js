@@ -164,4 +164,4 @@ var sign = md5("fanyideskweb" + e + i + "Ygy_4c=r#e#4EX^NUGUc5");
 return sign;
 }
 
-//getSign("dog", "1743141920570");
+// getSign("dog", "1743141920570");

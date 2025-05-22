@@ -8,7 +8,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 # 定义一个函数
 def func(name):
-    for i in range(100):
+    for i in range(20):
         print(name,i)
 
 if __name__ == '__main__':
