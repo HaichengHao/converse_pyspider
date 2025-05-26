@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\04异步爬虫new\dataset\druginfo.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\06scrapy\caipiao\caipiao\双色球.csv">
           <value>
             <Attribute>
@@ -35,6 +42,13 @@
           <value>
             <Attribute>
               <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\练手\foru\tianqinew.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>

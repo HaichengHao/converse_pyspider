@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "cryptojs": "^2.5.3"
+  }
+}

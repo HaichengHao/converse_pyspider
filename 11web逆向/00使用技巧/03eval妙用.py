@@ -12,6 +12,7 @@ var obj={
         }
         有时候遇到这种对象,我们可能会想把它转成python
         """
+import json
 import subprocess
 from functools import partial
 subprocess.Popen = partial(subprocess.Popen,encoding='utf-8')
@@ -23,6 +24,22 @@ with open('./jsfile/eval妙用.js','r',encoding='utf-8') as jsf:
 
 res = ctx.eval('obj')
 print(res)
-
+print('类型是',type(res))
 # {'name': 'jojo', 'age': 8, 'gender': 'male', 'hobby': 'the world'}
-# important:可以发现，都加上引号了，这样我们就可以把
+# 类型是 <class 'dict'>
+# important:可以发现，都加上引号了，这样我们就可以把它转换成json格式的数据
+
+json_str = json.dumps(res) #序列化,python字符串化
+print(type(json_str))
+print(json_str)
+
+#尝试反序列化，json字典化
+json_dic = json.loads(json_str)
+print(type(json_dic))
+
+''' 运行结果
+{'name': 'jojo', 'age': 8, 'gender': 'male', 'hobby': 'the world'}
+<class 'str'>
+{"name": "jojo", "age": 8, "gender": "male", "hobby": "the world"}
+<class 'dict'>
+'''

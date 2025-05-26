@@ -3,6 +3,8 @@
 @Editor  : 百年
 @Date    :2025/4/21 12:50 
 """
+import time
+
 '''
 chrome://version 先在chrome里查看自己的chrome可执行路径
 然后转到这个路径
@@ -16,7 +18,8 @@ from selenium.webdriver.chrome.options import Options
 
 # 接管已经打开的浏览器
 options = Options()
-options.add_experimental_option("debuggerAddress","127.0.0.1:9527")
-browsesr = webdriver.Chrome(options=options)
-browsesr.get('https://www.bilibili.com/')
-print(browsesr.title)
+options.add_experimental_option("debuggerAddress","127.0.0.1:9528")
+browser = webdriver.Chrome(options=options)
+browser.get('https://www.bilibili.com/')
+time.sleep(6)
+print(browser.title)

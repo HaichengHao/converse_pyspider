@@ -5,7 +5,7 @@ import time
 from lxml import etree
 import csv
 
-fp = open('./tianqi.csv', 'a+', encoding='utf-8', newline='')
+fp = open('./tianqinew.csv', 'a+', encoding='utf-8', newline='')
 writer = csv.writer(fp)
 if fp.tell() == 0:
     writer.writerow(['日期', '星期', '最低温度', '最高温度', '天气', '风向', '风力'])
