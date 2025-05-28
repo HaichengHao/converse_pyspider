@@ -18,7 +18,7 @@ from selenium.webdriver.chrome.options import Options
 
 # 接管已经打开的浏览器
 options = Options()
-options.add_experimental_option("debuggerAddress","127.0.0.1:9528")
+options.add_experimental_option("debuggerAddress","127.0.0.1:9527")
 browser = webdriver.Chrome(options=options)
 browser.get('https://www.bilibili.com/')
 time.sleep(6)

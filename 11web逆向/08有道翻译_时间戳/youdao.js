@@ -160,7 +160,7 @@ v = r(v, a);
 return (p(s) + p(m) + p(g) + p(v)).toLowerCase()
 }
 function getSign(e,i) {
-var sign = md5("fanyideskweb" + e + i + "Ygy_4c=r#e#4EX^NUGUc5");
+var sign = md5("fanyideskweb" + e + i + "R4B#{3qFI@3ARN6I)w3#N");
 return sign;
 }
 
