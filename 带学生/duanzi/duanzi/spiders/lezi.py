@@ -1,5 +1,5 @@
 import scrapy
-
+from ..items import DuanziItem
 
 class LeziSpider(scrapy.Spider):
     name = "lezi"
@@ -15,3 +15,6 @@ class LeziSpider(scrapy.Spider):
         for p in p_all:
             p = p.xpath('./text()').extract_first()
             print(p)
+            item = DuanziItem()
+            item['content'] = p
+            yield item
