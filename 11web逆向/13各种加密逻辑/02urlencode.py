@@ -22,7 +22,7 @@ http://www.baidu.com/tieba/index.html?name=hero&age=20
 就会让整个url产生歧义 
 '''
 
-from urllib.parse import urlencode
+from urllib.parse import urlencode,quote,quote_plus,unquote,unquote_plus #quote是最基本的encode操作
 
 url = 'http://www.baidu.com/s?'
 
@@ -39,8 +39,37 @@ print(final_url)
 '''
 了解即可,因为requests直接就给我们处理好了'''
 
-import requests
-r = requests.get(url=url,params=params)
-print(r.request.url)
+# import requests
+# r = requests.get(url=url,params=params)
+# print(r.request.url)
 
 # http://www.baidu.com/s?wd=%E7%88%B1%E6%83%85
+
+#requests有些情况下对于cookie的维护是需要我们手动计算的
+
+s = '你好, 蟒蛇'
+print(quote(s))
+# %E4%BD%A0%E5%A5%BD%2C%20%E8%9F%92%E8%9B%87
+# quote不需要传入的是字典
+print(quote_plus(s))
+# %E4%BD%A0%E5%A5%BD%2C+%E8%9F%92%E8%9B%87
+"""Like quote(), but also replace ' ' with '+', as required for quoting
+    HTML form values. Plus signs in the original string are escaped unless
+    they are included in safe. It also does not have safe default to '/'.
+    """
+
+s2 = 'abcd///qq'
+print(quote(s2))
+print(quote_plus(s2))
+# abcd///qq
+# abcd%2F%2F%2Fqq 把/换成了%2F
+
+s3 = quote(s2)
+s4 = quote_plus(s)
+
+print(unquote(s3))
+print(unquote_plus(s2))
+
+# abcd///qq
+# 你好, 蟒蛇
+# 可以看到解码是成功的
