@@ -25,3 +25,10 @@ fu_points = points.xpath('./ancestor-or-self::ul[@class="chapter-item" or @class
 
 #找到一个包含有section类的节点
 pois = tree.xpath('//div[contains(@class,"section")]')
+
+
+'''
+与案例无关新补充:
+以...开头 查找div标签中class属性值以pop开头的节点
+res = tree.xpath('//div[starts-with(@class,"pop")]//text()')
+'''

@@ -29,12 +29,14 @@ base64.b64decode(b64str).encode()
 #tips:将字符串进行b64编码成b64的字节然后再进行转码
 b64s = base64.b64encode(bs).decode()
 # 把b64字符串解码为b64的字节
+print('要进行转换的数据',b64s)
+# 要进行转换的数据 5aSp56m65aW95YOP5LiL6Zuo
 print(base64.b64decode(b64s))
 # b'\xe5\xa4\xa9\xe7\xa9\xba\xe5\xa5\xbd\xe5\x83\x8f\xe4\xb8\x8b\xe9\x9b\xa8'
 print(len(base64.b64encode(bs)))
 # 24 important:注意base64编码的字节长度一定是4的倍数
 #important:将b64的字节解码并'可以指定'解码的编码规则是utf-8
-print(base64.b64decode(b64s).decode())
+print(base64.b64decode(b64s).decode())  #important:b64decode
 print(base64.b64decode(b64s).decode('utf-8'))
 # 天空好像下雨
 # 天空好像下雨

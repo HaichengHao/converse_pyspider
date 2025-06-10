@@ -1,6 +1,6 @@
 """
 @File    :sims_cmq.py
-@Editor  : cmq <--!!
+@Editor  : breaze
 """
 # 定义要保存成的文件
 import os.path
@@ -15,7 +15,7 @@ def main():
         choice = int(input('请选择功能:'))
         if choice in func_lst:
             if choice == 0:
-                answer = input('确定退出吗？')
+                answer = input('确定退出吗？(y/n)')
                 if answer == 'y' or answer == 'Y':
                     print('感谢使用')
                     break
@@ -49,7 +49,7 @@ def menu():
     print("===============++=SIMS=++=================")
     print("==============学生信息管理系统==================\n")
     print("|-----------功能菜单---------------|")
-    print("1.\t\t\t\t\t\t录入学生信息\n2.\t\t\t\t\t\t查找学生信息\n3.\t\t\t\t\t\t删除学生信息\n"
+    print("0.\t\t\t\t\t\t退出系统\n1.\t\t\t\t\t\t录入学生信息\n2.\t\t\t\t\t\t查找学生信息\n3.\t\t\t\t\t\t删除学生信息\n"
           "4.\t\t\t\t\t\t修改学生信息\n5.\t\t\t\t\t\t对学生成绩进行排序\n6.\t\t\t\t\t\t统计学生人数\n7.\t\t\t\t\t\t显示所有的学生信息\n"
           "8.\t\t\t\t\t\t查询成绩范围内的学生信息\n9.\t\t\t\t\t\t成绩评定统计")  # 新增成绩评定统计
 

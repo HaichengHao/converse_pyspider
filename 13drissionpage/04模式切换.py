@@ -36,10 +36,11 @@ ele_login_btn.click()
 #切换到收发数据包的模式
 page.change_mode() #切换的时候程序会在新模式重新访问当前的url
 #访问我的主页
-page.get('https://gitee.com/geekbus')
+page.get('https://gitee.com/muguilin',timeout=2)
 
-# # 根据class属性值获取div标签，然后将该div下面class为item的元素标签批量获取
+# 根据class属性值获取div标签，然后将该div下面class为item的元素标签批量获取
 items = page.ele('.ui middle aligned list').eles('.item')
-
+# 遍历获取到的元素
 for item in items:
+    # 打印元素文本
     print(item('.content').text)

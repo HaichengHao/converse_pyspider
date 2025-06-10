@@ -686,7 +686,7 @@ setMaxDigits(20),
 //     'level': "exhigh"
 // };
 // '"{"s":"爱要","limit":"8","csrf_token":"77ddf93cdc2cda59db3e088d3c2e38b6"}"';
-var param2 = "010001";
+var param2 = "010001";    //这就是rsa加密中的那个e,这里是回看这个加密过程ing....
 var param3 =
     "00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7";
 var param4 = "0CoJUm6Qyw8W8jud";

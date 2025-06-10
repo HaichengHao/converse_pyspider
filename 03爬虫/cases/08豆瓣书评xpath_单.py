@@ -108,7 +108,7 @@ def parse_content(content):
 
 
 def down_load(page, comments):
-    with open('./douban.txt', 'a+', encoding='utf-8') as file:
+    with open('./douban2.txt', 'a+', encoding='utf-8') as file:
         for item in comments:
             file.write(str(item))
             file.write('\n')
@@ -134,5 +134,5 @@ if __name__ == '__main__':
         content = get_content(url)
         comment = parse_content(content)
         down_load(i, comment)
-        save2db(comment, 'douban.db')
+        # save2db(comment, 'douban.db')
     print("运行结束")
