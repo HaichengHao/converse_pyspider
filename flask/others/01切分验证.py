@@ -13,7 +13,7 @@
 fc4431fc-33e3-4d36-b1e0-a8d6934ebeb3,李四
 ['fc4431fc-33e3-4d36-b1e0-a8d6934ebeb3', '李四']'''
 
-with open('../code/db.txt','r',encoding='utf-8') as fp:
+with open('../00web服务/db.txt', 'r', encoding='utf-8') as fp:
     for line in fp:
         line = line.strip()
         token,name= line.split(',') #切分行

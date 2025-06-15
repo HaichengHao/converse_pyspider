@@ -62,7 +62,7 @@ def dbverify(sql, params):
     cursor = conn.cursor()
     cursor.execute(sql, params)
     result = cursor.fetchone()
-    cursor.close()
+    cursor.close()  #这里不再是关闭链接,而是将链接释放,交还给连接池
     conn.close()
     return result
 # def dbverify(sql, params):
@@ -83,7 +83,7 @@ def dbverify(sql, params):
 @app.route('/bili', methods=['POST', 'GET'])
 def bili():
     # 注意token是url携带的，所以要用args.get获取的方式
-    token = request.args.get("token")  # 先获取token
+    token = request.args.get("token")  # 先获取token,这是链接携带的
     if not token:  # 如果未携带token,则直接返回认证失败
         return jsonify({"status": False, "error": "认证失败,请联系管理员获取token"})
 
@@ -95,6 +95,7 @@ def bili():
         return jsonify({"status": False, "error": "认证失败,令牌错误"})
 
     # 如果在就正常的往后进行
+    # 拿到orderd_string,这是post请求中的json携带的
     ordered_string = request.json.get("ordered_string")
     if not ordered_string:  # 如果没有得到ordered_string
         return jsonify({"status": False, "error": "参数错误"})

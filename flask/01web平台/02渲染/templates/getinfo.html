@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户数据表</title>
+    <style>
+        *{
+            width: 1000px;
+            margin: 0 auto;
+        }
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th{
+            background-color: orange;
+        }
+        tr,td{
+            border:0.2px solid black;
+            text-align: center;
+        }
+        td:nth-child(2){
+            background-color: blueviolet;
+            color: white;
+        }
+        td:hover{
+            scale: 1.2;
+            background-color: mediumaquamarine;
+            transition: 0.2s all linear;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tbody>
+          <thead>
+            <tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>密码</th>
+                <th>昵称</th>
+                <th>状态</th>
+                <th>性别</th>
+                <th>邮箱</th>
+                <th>电话</th>
+            </tr>
+          </thead>
+            {% for v in items%}
+            <tr>
+                {% for va in v.values() %}
+                <td>
+                    {{ va }}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

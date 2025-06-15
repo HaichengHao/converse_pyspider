@@ -29,7 +29,7 @@ Pool = PooledDB(
     setsession=[],#开始会话前执行的命令列表。如:["set datestyle to...","set time zone..."]
     ping=0,
     check_same_thread=False,
-    host='',port=3306,user='root',passwd='',charset='utf8',db='uandt.db' #这里传入参数，就是之前写的连接参数
+    host='',port=3306,user='root',passwd='HHCzio20',charset='utf8',db='uandt' #这里传入参数，就是之前写的连接参数
 
 )
 

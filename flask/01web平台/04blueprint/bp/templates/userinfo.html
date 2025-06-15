@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息页面</title>
+    <link rel="stylesheet" href="/static/userinfo.css">
+</head>
+<body>
+    <table>
+        <thead>
+            <th>序号</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>昵称</th>
+            <th>状态</th>
+            <th>性别</th>
+            <th>邮箱</th>
+            <th>电话</th>
+        </thead>
+        <tbody>
+            {% for item in info %}
+            <tr>
+                {% for v in item.values() %}
+                <td>{{ v }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

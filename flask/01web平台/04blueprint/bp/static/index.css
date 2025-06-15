@@ -1,0 +1,12 @@
+*{
+    width: 900px;
+    margin: 0 auto;
+}
+table{
+    border-collapse: collapse;
+    border:0.4px solid black;
+    text-align: center;
+}
+tr,td{
+    background-color: bisque;
+}

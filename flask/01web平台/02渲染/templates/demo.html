@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试页面</title>
+</head>
+<style>
+    table{
+        border: 0.3px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: blueviolet;
+        color: white;
+    }
+    tr,td{
+        border: 0.4px solid black;
+    }
+    td:hover{
+        background-color: orange;
+        scale: 1.2;
+        transition: 0.5s all linear;
+    }
+</style>
+<body>
+  <div>{{n1}}</div>
+  <div>{{n2}}</div>
+<!--  <div>{{n3.0}}</div>  &lt;!&ndash;可以用.0或者[0]这样&ndash;&gt;-->
+<!--  <div>{{n3.1}}</div>-->
+<!--  <div>{{n3.2}}</div>-->
+  <ul>
+      {% for item in n3 %}
+            <li>{{item}}</li>
+      {% endfor %}
+  </ul>
+  <select>
+      {%for item in n3 %}
+      <option>{{item}}</option>
+      {% endfor %}
+  </select>
+  <div>{{n4}}</div>
+  <table>
+      <tbody>
+      <tr>
+          <th>姓名</th>
+          <th>年龄</th>
+      </tr>
+
+        {% for item in n5 %}
+        <tr>
+            <td>{{item['name']}}</td>
+            <td>{{item['age']}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</body>
+</html>

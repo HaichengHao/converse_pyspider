@@ -1,4 +1,4 @@
-//导入需要的npm
+//导入需要的npm包
 var CryptoJS = require("crypto-js");
 
 function a(a) {
@@ -696,6 +696,8 @@ function myrealfunc(param1) {
     return d(param1, param2, param3, param4);
 }
 
+
+//测试成功
 // console.log(
 //     "======================================================================="
 // );

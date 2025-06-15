@@ -29,7 +29,7 @@ def index():
     xx=request.form.get('xx') #post请求用form来获取
     yy=request.form.get('yy')
     print(xx,yy)
-    # JSON格式
+    # JSON格式,注意传入的是json,在postman中点击raw,选择json
     print(request.json)
     return "成功"
 @app.route('/err')
@@ -38,4 +38,4 @@ def err():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1',port=5000) #不写host和port就会用默认的端口
+    app.run(host='127.0.0.1',port=5000,debug=True) #不写host和port就会用默认的端口
