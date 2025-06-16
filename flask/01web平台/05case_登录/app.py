@@ -7,6 +7,15 @@ from flask import Flask,render_template,request,redirect
 from utils import dbhelper
 app = Flask(__name__)
 
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+    user = request.form.get('user')
+    pwd = request.form.get('pwd')
+    result = dbhelper.add_user(name=user,pwd=pwd)
+    if result:
+        #插入成功
+        return redirect('/login',msg="注册成功请登录") #重定向到登录页面进行登录
 @app.route('/index')
 def index():
     return render_template('index.html')

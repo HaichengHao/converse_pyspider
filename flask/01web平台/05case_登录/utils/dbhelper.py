@@ -28,6 +28,12 @@ def dbverify(sql,params):
     result = cursor.fetchall()
     return result
 
+def add_user(name,pwd):
+    conn = POOL.connection()
+    cursor = conn.cursor()
+    cursor.execute("insert into user_info(displayname,pwd) values (%s,%s)",(name,pwd))
+    conn.commit()
+
 # if __name__ == '__main__':
 #     res = dbverify(sql='select * from user_info where account_name=%s and pwd=%s',params=('qw','1234'))
 #     print(res)
