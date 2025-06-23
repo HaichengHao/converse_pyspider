@@ -18,6 +18,8 @@ conn = pymysql.Connection(
 cursor = conn.cursor()
 cursor.execute('select * from user_info')
 
+#直接查看表头
+# cursor.execute('select column_name from information_schema.columns where table_name="user_info";')
 result = cursor.fetchall()
 # print(result,type(result))
 

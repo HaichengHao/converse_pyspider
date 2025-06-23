@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+    <h1>欢迎登录{{ msg[0]['account_name'] }}</h1>
+    <div>
+        我是主页
+    </div>
+    <div>
+        当前用户:{{ current_user() }}
+    </div>
+    <div>当前时间{{time}}</div>
+    <div>
+        <form method="post">
+            <input placeholder="请输入用户名" type="text" name="user">
+            <input placeholder="输入密码" type="text" name="pwd">
+            <input
+            type="submit"
+            value="提交">
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
