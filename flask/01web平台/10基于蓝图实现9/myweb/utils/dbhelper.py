@@ -1,8 +1,9 @@
 """
 @File    :dbhelper.py
 @Editor  : 百年
-@Date    :2025/6/15 21:32 
+@Date    :2025/6/23 19:41 
 """
+
 import pymysql
 from dbutils.pooled_db import PooledDB
 
@@ -60,7 +61,4 @@ def getinfo():
     cursor.execute("select * from user_info")
     result = cursor.fetchall()
     return result
-# if __name__ == '__main__':
-#     # res = dbverify(sql='select * from user_info where account_name=%s and pwd=%s',params=('qw','1234'))
-#     res = add_user("李二虎","12345678")
-#     print(res)
+

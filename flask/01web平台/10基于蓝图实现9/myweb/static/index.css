@@ -1,0 +1,18 @@
+
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: center;
+    background-color: orange;
+}
+
+thead {
+    background-color: blueviolet;
+    color: white;
+}
+
+td, th, tr {
+    border: 0.2px solid black;
+    color: white;
+
+}

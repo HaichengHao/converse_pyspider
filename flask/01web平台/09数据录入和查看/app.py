@@ -13,6 +13,7 @@
 from flask import Flask, render_template, request, redirect, session
 from utils import dbhelper
 from datetime import datetime
+
 app = Flask(__name__)
 # important:想要设置session成功这个是必须的!!!!,需要为app对象设置密钥
 app.secret_key = ';ouahsef;euahiuhiluh'
@@ -37,17 +38,26 @@ def signup():
         return render_template('signup.html', msg="注册失败,请重新注册")
 
 
-@app.route('/index',methods=['POST','GET'])
+@app.route('/index', methods=['POST', 'GET'])
 def index():
+    uid = session['user_info'][0]['ID']
+    data = get_index_data()
     # important:注意,到这里先读取凭证,凭证一致才返回
     # 读取凭证加解密
     # step2:
     if request.method == 'GET':
-        result = session.get('user_info')
-        return render_template('index.html', msg=result)
+        return render_template('index.html',**data)
     user = request.form.get('user')
-    pwd  = request.form.get('pwd')
-    dbhelper.add_user(user,pwd)
+    pwd = request.form.get('pwd')
+    print(user, pwd)
+
+    dbhelper.add_info(user, pwd, uid)
+    item = dbhelper.show_info(uid)
+    print(item)
+    # newdata=get_index_data()
+    # return render_template('index.html',**newdata)
+    # return render_template('index.html',item=dbhelper.show_info())
+    return redirect('/index')
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -67,28 +77,33 @@ def login():
     # important:设置session
     # step1:
     session['user_info'] = result
-    ctimestr = datetime.now().strftime('%Y-%m-%d %H:%M')
-    return render_template('index.html',msg = result,time=ctimestr)
+
+    # data = get_index_data()
+    # ctimestr = datetime.now().strftime('%Y-%m-%d %H:%M')
+
+    return redirect('/index')
 
 
 @app.before_request
 def auth():
     # important:设置白名单,不然用户会卡循环登录最后报错,白名单里放的是无需登录就能访问的页面
-    if request.path == "/login":
+    if request.path in ["/login", '/signup']:
         return
     print('请求前操作')
     result = session.get('user_info')
     print(result)
-    if result:  # 如果正确则返回页面
-        return render_template('index.html', msg=result)
+    # if result:  # 如果正确则返回页面
+    #     return render_template('index.html', msg=result)  important:这样做会产生逻辑循环,导致index中插入数据不会返回结果
 
     # 如果为空那就唤起无权访问界面
-    return redirect('/login')
+    if not result:
+        return redirect('/login')
 
 
 '''
 新的需求:想让每个页面都显示登录的用户名,但是如果还是按照之前的写法的话那每个页面的url都需要一个用户名
 那么如何解决呢?这时候就需要定义全局模板'''
+
 
 # important:这个函数只要被装饰了,那就可以直接利用JinJA执行这个函数
 # tips:现在去index界面修改html
@@ -96,5 +111,13 @@ def auth():
 def current_user():
     return session['user_info'][0]['account_name']
 
+def get_index_data():
+    uid = session['user_info'][0]['ID']
+    item = dbhelper.show_info(uid)  # 推荐按 uid 查询当前用户的数据
+    return {
+        'msg': session['user_info'],
+        'item': item,
+        'time': datetime.now().strftime('%Y-%m-%d %H:%M')
+    }
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)
