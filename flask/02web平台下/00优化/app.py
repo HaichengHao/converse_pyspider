@@ -3,7 +3,7 @@
 @Editor  : 百年
 @Date    :2025/6/23 19:37 
 """
-from myweb import create_app
+from myweb_new import create_app
 
 # 创建app对象
 

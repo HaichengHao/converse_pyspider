@@ -47,10 +47,10 @@ def add_info(name, pwd, uid):
     conn.close()
 
 
-def show_info(uid):
+def show_info(uid,per_page_count,offset):
     conn = POOL.connection()
     cursor = conn.cursor()
-    cursor.execute("select * from jd where uid = %s",(uid,))
+    cursor.execute("select username,pwd from jd where uid = %s limit %s offset %s", (uid,per_page_count,offset))
     result = cursor.fetchall()
     return result
 

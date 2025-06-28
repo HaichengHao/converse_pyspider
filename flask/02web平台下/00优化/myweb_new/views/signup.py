@@ -4,7 +4,7 @@
 @Date    :2025/6/23 19:46 
 """
 from flask import Blueprint, render_template, request, redirect
-from myweb.utils import dbhelper
+from myweb_new.utils import dbhelper
 
 signup = Blueprint(name='signup', import_name=__name__)
 

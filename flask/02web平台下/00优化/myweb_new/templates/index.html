@@ -17,6 +17,13 @@
             margin-bottom: 10px;
         }
 
+        tbody tr:hover {
+
+            color: green;
+            /*scale: 1.1;*/
+            transition: 0.2s all linear;
+        }
+
         form {
             padding: 20px;
         }
@@ -45,13 +52,14 @@
                 <li><a href="#">当前时间{{time}}</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">{{ current_user() }}<span class="caret"></span></a>
+                       aria-expanded="false" style="color: blueviolet">{{ current_user() }}<span
+                            class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="/logout"  style="color: white;background-color: red"><span class="glyphicon glyphicon-off"></span>&nbsp;注销</a></li>
                     </ul>
                 </li>
             </ul>
@@ -62,43 +70,58 @@
     <div>
         <div class="box">
             <div class="panel panel-default">
-              <div class="panel-heading">新建订单</div>
-              <div class="panel-body">
-                <form method="post">
-                <input placeholder="请输入用户名" type="text" name="user">
-                <input placeholder="输入密码" type="text" name="pwd">
-                <input
-                        class="btn-success"
-                        type="submit"
-                        value="新建订单">
-                <input
-                class="btn-warning"
-                type="reset"
-                value="重置输入"
-                >
-            </form>
-              </div>
+                <div class="panel-heading"><span class="glyphicon glyphicon-copy"></span>&nbsp;新建订单</div>
+                <div class="panel-body">
+                    <form method="post">
+                        <input placeholder="请输入用户名" type="text" name="user">
+                        <input placeholder="输入密码" type="text" name="pwd">
+                        <input
+                                class="btn-success"
+                                type="submit"
+                                value="新建订单">
+                        <input
+                                class="btn-warning"
+                                type="reset"
+                                value="重置输入"
+                        >
+                    </form>
+                </div>
             </div>
         </div>
-        <table class="table table-hover">
-            <thead>
 
-            <tr>
-                {% for k in item[0].keys() %}
-                <th>{{k}}</th>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>&nbsp;订单信息</div>
+
+            <!-- Table -->
+            <table class="table table-hover">
+                <thead>
+
+                <tr>
+                    <th>序号</th>
+                    {% for k in item[0].keys() %}
+                    <th>{{k}}</th>
+                    {% endfor %}
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in item %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    {% for v in i.values() %}
+                    <td>{{v}}</td>
+                    {% endfor %}
+                    <td style="text-align: center">
+                        <a class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>&nbsp;
+                        <a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a>
+                    </td>
+                </tr>
                 {% endfor %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for i in item %}
-            <tr>
-                {% for v in i.values() %}
-                <td>{{v}}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+        {{ getpage() }}
     </div>
 </div>
 
