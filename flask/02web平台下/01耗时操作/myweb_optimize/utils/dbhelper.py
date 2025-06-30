@@ -43,14 +43,16 @@ def add_info(name, pwd, uid):
     conn = POOL.connection()
     cursor = conn.cursor()
     cursor.execute("insert into jd(username,pwd,uid) values (%s,%s,%s)", (name, pwd, uid))
+    new_id = cursor.lastrowid
     conn.commit()
     conn.close()
+    return new_id
 
 
 def show_info(uid,per_page_count,offset):
     conn = POOL.connection()
     cursor = conn.cursor()
-    cursor.execute("select username,pwd from jd where uid = %s limit %s offset %s", (uid,per_page_count,offset))
+    cursor.execute("select username,pwd,status from jd where uid = %s order by id desc limit %s offset %s", (uid,per_page_count,offset))
     result = cursor.fetchall()
     return result
 

@@ -112,9 +112,24 @@
                 {% for i in item %}
                 <tr>
                     <td>{{loop.index}}</td>
-                    {% for v in i.values() %}
-                    <td>{{v}}</td>
+                    {% for v in i.keys() %}
+                    {% if v=='status'%}
+                    {% if i[v]==1 %}
+                    <td class="text-muted">待执行</td>
+                    {% endif %}
+                    {% if i[v]==2 %}
+                    <td class="text-primary">执行中</td>
+                    {% endif %}
+                    {% if i[v]==0 %}
+                    <td class="text-success">执行完毕</td>
+                    {% endif %}
+
+                    {% endif %}
+                    {% if v!='status' %}
+                    <td>{{i[v]}}</td>
+                    {%endif%}
                     {% endfor %}
+
                     <td style="text-align: center">
                         <a class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>&nbsp;
                         <a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a>

@@ -9,8 +9,16 @@ from datetime import datetime
 def get_index_data(per_page_count,offset):
     uid = session['user_info'][0]['ID']
     item = dbhelper.show_info(uid,per_page_count=per_page_count,offset=offset)  # 推荐按 uid 查询当前用户的数据
+    datanum = dbhelper.get_count(uid).get('count(*)')  #获取数据的总条数
+    # pagenum = datanum//per_page_count
+    pagesize = 5
+    total_pages = (datanum + pagesize - 1) // pagesize
+    print(total_pages)
     return {
         'msg': session['user_info'],
         'item': item,
-        'time': datetime.now().strftime('%Y-%m-%d %H:%M')
+        'time': datetime.now().strftime('%Y-%m-%d %H:%M'),
+        'datanum':datanum,
+        # 'pagenum':pagenum,
+        'total_pages':total_pages
     }
