@@ -41,7 +41,7 @@ tag3 = page.eles('@|id=row1@|id=row2')
 
 print(first_title.text)
 
-
+# important:与或非三种操作对应的是@ @| @!
 '''
 
 #当需要以或关系条件查找元素时，每个属性用'@|'开头。
