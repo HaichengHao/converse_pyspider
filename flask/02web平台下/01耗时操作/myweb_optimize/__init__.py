@@ -55,6 +55,8 @@ def getpage():
     return Markup(pageinfo)
 def create_app():
     app = Flask(__name__)
+    app.config['ENV'] = 'development'
+    app.config['DEBUG'] = True
     app.secret_key = ';ouahsef;euahiuhiluh'
 
     # important:这样可以简洁一些
