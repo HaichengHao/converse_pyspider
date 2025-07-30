@@ -21,6 +21,9 @@ def login():
 
     return render_template('index.html',msg=f'登录成功,欢迎你{user_name}')
 
+
+
+#当然,登录操作也可以使用get方式,不过一般的逻辑都是post
 if __name__ == '__main__':
     app.run(port=8090)
     print(app.url_map) #important:可以打印路由规则表查看规则

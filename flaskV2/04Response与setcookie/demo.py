@@ -3,6 +3,8 @@
 @Editor  : 百年
 @Date    :2025/7/29 14:54 
 """
+import time
+
 '''
 flask的返回类型多种多样'''
 
@@ -55,6 +57,15 @@ def indexn():
         'aloha'
     )
     response.set_cookie('name','haha')
+    return response
+
+@app.route('/sethead')
+def sethead():
+    response = Response(
+        'nihao'
+    )
+    response.headers['name'] = 'user1'
+    response.headers['logintime'] = int(time.time()*1000)
     return response
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=8090)
