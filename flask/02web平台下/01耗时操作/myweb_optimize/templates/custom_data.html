@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改数据</title>
+</head>
+<body>
+    <div>{{ res }}</div>
+<form action="{{ url_for('index.updata') }}" method="post">
+    <input hidden name="oldname" value="{{ res[0].username }}">
+    序号:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="{{ res[0].id }}" disabled><br>
+    用户名:<input type="text" value="{{ res[0].username }}" name="username"><br>
+    密码:&nbsp;<input type="text" value="{{ res[0].pwd }}" name="password"><br>
+    <input type="submit">
+</form>
+</body>
+</html>

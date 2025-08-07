@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<div>
+    {{item}}
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>序号</th>
+        {% for k in item[0].keys() %}
+        <th>{{k}}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in item %}
+    <tr>
+        <td>{{loop.index}}</td>
+        {% for v in i.keys() %}
+        <td {% if loop.last %} style="background-color:red" {% endif %} >{{i[v]}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

@@ -131,8 +131,8 @@
                     {% endfor %}
 
                     <td style="text-align: center">
-                        <a class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>&nbsp;
-                        <a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a>
+                        <a class="btn btn-success btn-xs" href="javascript:;" onclick="update_data('{{ i.username }}')"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>&nbsp;
+                        <a class="btn btn-danger btn-xs"  href="javascript:;" onclick="del_data('{{ i.username }}')"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -143,7 +143,7 @@
                     <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
                     </li>
                     {% for p in range(total_pages)%}
-                    <li class="active"><a href="?page=}}">{{p+1}}<span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="?page=}}">{{p + 1}}<span class="sr-only">(current)</span></a></li>
                     {%endfor%}
                 </ul>
             </nav>
@@ -156,5 +156,16 @@
 <!--要想下拉菜单起作用需要下载jQuery并且导入,且要将bootstrap的js导入-->
 <script src="../static/jquery.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
+<script>
+    function del_data(username){
+        console.log(username)
+        location.href = 'del?username='+ username
+    }
+
+    function update_data(username){
+        console.log(username)
+        location.href = 'updata?username='+username
+    }
+</script>
 </body>
 </html>

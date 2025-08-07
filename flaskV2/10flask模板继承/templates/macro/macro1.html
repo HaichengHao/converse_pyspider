@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>macro1</title>
+</head>
+<body>
+{#定义宏#}
+{% macro form(action,value='登录',method='post') %}
+    <form action="{{ action }}" method="{{ method }}">
+        <input type="text" placeholder="用户名" name="username"> <br>
+        <input type="password" placeholder="密码" name="password"> <br>
+        <input type="submit">
+
+    </form>
+{% endmacro %}
+{#调用宏#}
+
+{{ form('/') }}
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <div>{{msg | safe }}</div>
+    <div>{{msg2 | capitalize }}</div>
+    <div> {{ '%s is %d years-old' | format('jaky',70) }}</div>
+    <div>{{ 'hello from jinja' | truncate(7)}}</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+pip install pymysql
+pip install flask-sqlalchemy
+pip install flask-migrate
+
+1
+配置数据库的链接路径
+A.外部引入写法,在settings中编写
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://sql用户名:密码@host:port/databasename'
+app.config.from_object(settings)
+
+B.app文件内编写
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://sql用户名:密码@host:port/databasename'
+
+
+2.创建扩展
+exts/__init__.py中添加
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
+
+然后在app.py中引入并利用它
+app = create_app()
+app.config.from_object(devConfig)  # 使用开发环境
+db.init_app(app)
+
+3.使用migrate
+它是命令工具
+之前已经创建好了app以及db
+接下来就是引入from migrate import Migrate
+mig = Migrate(app=app,db=db) 这样就可以了

@@ -48,6 +48,19 @@ def add_info(name, pwd, uid):
     conn.close()
     return new_id
 
+def del_info(name):
+    conn = POOL.connection()
+    cursor = conn.cursor()
+    cursor.execute("delete from jd where username =%s ",name)
+    conn.commit()
+    conn.close()
+
+def show_info_jd(name):
+    conn = POOL.connection()
+    cursor = conn.cursor()
+    cursor.execute("select * from jd where username = %s" ,name)
+    res = cursor.fetchall()
+    return res
 
 def show_info(uid,per_page_count,offset):
     conn = POOL.connection()
@@ -55,8 +68,15 @@ def show_info(uid,per_page_count,offset):
     cursor.execute("select username,pwd,status from jd where uid = %s order by id desc limit %s offset %s", (uid,per_page_count,offset))
     result = cursor.fetchall()
     return result
+def updata_info(old_name,newname,newpwd):
+    conn = POOL.connection()
+    cursor = conn.cursor()
+    cursor.execute("update jd set username = %s , pwd = %s where username = %s ",(newname,newpwd,old_name))
+    conn.commit()
+    conn.close()
 
 def get_count(uid):
+    print('数据开始修改')
     conn = POOL.connection()
     cursor = conn.cursor()
     cursor.execute("select count(*) from jd where uid = %s",(uid,))

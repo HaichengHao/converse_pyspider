@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            用户中心
+        {% endblock %}
+    </title>
+    {% block mycss %}
+    {% endblock %}
+</head>
+<body>
+    <div id="head"></div>
+    <div id="middle">
+        {% block middle %}
+        {% endblock %}
+    </div>
+    <div id="foot"></div>
+</body>
+
+{% block myjs %}
+{% endblock %}
+</html>

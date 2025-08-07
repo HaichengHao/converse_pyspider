@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} 首页 {% endblock %}
+{% block mystylesheet %}
+<style>
+    #mid{
+        background-color: blueviolet;
+        color: white;
+    }
+</style>
+
+<!--下面的写法如果忘了的话可以回看一眼02路由的变量规则中的demo2-->
+<link  rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+{% endblock %}
+
+{% block myjs %}
+<script>
+        const btn =document.querySelector('button')
+        {#let n = setInterval()#}
+        btn.addEventListener('click',function(){
+            alert('别点了')
+            this.style.backgroundColor = 'red'
+        })
+        btn.addEventListener('mouseenter',function(){
+            this.style.backgroundColor = 'blue'
+        })
+        btn.addEventListener('mouseleave',function(){
+            this.style.backgroundColor = 'orange'
+        })
+</script>
+{% endblock %}

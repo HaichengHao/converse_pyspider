@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+    用户注册
+{% endblock %}
+{% block middle %}
+    <form action="{{ url_for('user.register_route') }}" method="post">
+        <p><input type="text" name="username" placeholder="用户名"></p>
+        <p><input type="password" name="password" placeholder="密码"></p>
+        <p><input type="password" name="re_password" placeholder="确认密码"></p>
+        <p><input type="text" name="phone" placeholder="输入手机号"></p>
+        <p><input type="submit" value="用户注册"></p>
+    </form>
+{% endblock %}

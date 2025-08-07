@@ -1,0 +1,6 @@
+过滤器本身就是一个函数
+1.可以通过add_template_filter方法实现 app.add_template_filter(函数名,'自定义过滤器名')
+2.使用装饰器完成
+@app.template_filter('自定义过滤器名')
+def xxx(x):
+    函数体

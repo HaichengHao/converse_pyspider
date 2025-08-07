@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>宏的使用2</title>
+</head>
+<body>
+{% import 'macro/macro.html' as func %}
+
+{{ func.form('/welcome',value='注册') }}
+
+{% set num1 = '2' %}
+<div>{{ nunm1 }}</div>
+
+{% with num2 = 3 %}
+<div>{{ num2 }}</div>
+{% endwith %}
+
+{#尝试在外调用局部变量num2#}
+<div>{{ num2 }}</div>
+
+</body>
+</html>

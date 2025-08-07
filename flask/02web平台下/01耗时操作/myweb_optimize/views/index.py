@@ -37,3 +37,29 @@ def index_route():
 
     # tips:创建新的视图函数用于存放任务
     return redirect('/index')
+
+
+@index.route('/del')
+def del_data():
+    username = request.args.get('username')
+    dbhelper.del_info(username)
+    print(f'{username}信息删除成功')
+    return redirect('/index')
+
+
+@index.route('/updata', methods=['POST', 'GET'], endpoint='updata')
+def updata_data():
+
+    if request.method == 'GET':
+        username = request.args.get('username')
+        res = dbhelper.show_info_jd(username)
+        print(res)
+        return render_template('custom_data.html', res=res)
+
+    oldname = request.form.get('oldname')
+    nusername = request.form.get('username')
+    npassword = request.form.get('password')
+    print(nusername, npassword)
+    dbhelper.updata_info(old_name=oldname,newname=nusername,newpwd=npassword)
+
+    return redirect('/index')
