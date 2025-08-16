@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+    <h1>用户注册</h1>
+    <form action="{{ url_for('user.register') }}" method="post">
+        <p><input type="text"  name="username" placeholder="用户名"></p>
+        <p><input type="text"  id='000' name="password" placeholder="密码"></p>
+        <p><input type="text" id ='001'name="repassword" placeholder="再次输入密码"></p>
+        <p><input type="text" name="phone" placeholder="输入手机号"></p>
+        <p><input type="submit"></p>
+    </form>
+<div style="color: red" id="002">{{ errorinfo }}</div>
+</body>
+{#<script>#}
+{#    let pwd  = document.getElementById('000')#}
+{#    let prepwd = document.getElementById('001')#}
+{#    let msg = document.getElementById('002')#}
+{#    if(pwd){#}
+{#        if(pwd === prepwd){msg.innerText = '密码一致'}#}
+{#    }else {#}
+{#        msg.innerText=''#}
+{#    }#}
+{#</script>#}
+</html>

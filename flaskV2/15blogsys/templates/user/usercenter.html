@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            border: 0.7px solid black;
+        }
+        td,th{
+            border: 0.5px solid black;
+        }
+        th{
+            background-color: orangered;
+            color: white;
+            text-align: center;
+            vertical-align: center;
+        }
+    </style>
+</head>
+<body>
+<div><a href="{{ url_for('user.register') }}">注册</a></div>
+<div>
+    <h1>用户信息</h1>
+    {% if users %}
+        <table>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>手机号</th>
+                <th>注册时间</th>
+                <th>操作</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+                    {% for user in users %}
+                        <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.regi_date }}</td>
+                        <td>
+                            <a href="javascript:;" onclick="del('{{ user.username }}')">删除</a>
+                            <a href="javascript:;" onclick="modifydata('{{ user.username }}')">修改数据</a>
+                        </td>
+                        </tr>
+                    {% endfor %}
+
+            </tbody>
+        </table>
+    {% else %}
+        <p>当前暂无数据</p>
+    {% endif %}
+</div>
+</body>
+<script>
+    function del(name){
+        console.log(name)
+        location.href ='deldata?username='+name
+    }
+    function modifydata(name){
+        console.log(name)
+        location.href = 'modifydata?username='+name
+    }
+</script>
+</html>

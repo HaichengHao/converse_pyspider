@@ -7,6 +7,7 @@
 #         line = line.strip()
 #         res = line.split(',') #切分行
 #         print(res)
+
 '''
 224131ee-6584-4f30-bcf8-0ec6f6dfb1ca,张三
 ['224131ee-6584-4f30-bcf8-0ec6f6dfb1ca', '张三'] 切分返回的是一个列表对象，可以使用两个变量来接收

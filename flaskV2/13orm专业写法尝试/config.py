@@ -7,7 +7,7 @@ import os
 #读取env中的配置项
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL') #读取.env文件中的配置
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # 2. 禁用追踪修改（强烈建议关闭，节省性能）
     SQLALCHEMY_TRACK_MODIFICATIONS = False

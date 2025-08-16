@@ -241,6 +241,23 @@ flask db downgrade
 flask db history
 ```
 
+是的，`flask db downgrade` 命令可以指定版本号。通常情况下，这个命令用于将数据库降级到之前的某个迁移版本。你可以通过提供具体的迁移版本号来实现这一点。使用的参数是 `--revision` 或者简写 `-r`。例如：
+
+```bash
+flask db downgrade --revision=版本号
+```
+
+或者
+
+```bash
+flask db downgrade -r 版本号
+```
+
+这里的“版本号”是你想要回退到的迁移版本的标识符。通常，这个标识符是一个带有前缀的哈希值，你也可以使用相对标识如 'head~1' 来表示距离最新版本前一个版本。
+
+请确保在执行此操作之前备份好数据，因为降级操作可能会导致数据丢失。如果你不确定应该使用哪个版本号，可以先使用 `flask db history` 查看项目中的迁移历史。
+
+
 > ✅ `Flask-Migrate` 会自动检测 `db.Model` 的变化，生成 `alembic` 脚本。
 
 ---
@@ -271,3 +288,166 @@ flask db history
 如果你告诉我你想实现的具体功能（比如“用户注册登录”、“文章系统”），我还可以给你 **完整的模型 + 路由 + 模板示例**！
 
 继续加油，你已经走在正确的路上了！🚀
+
+### 补充:常见的数据类型  
+| 名称 | 解释 |
+|--------|---------|  
+|Integer | 整型 | 
+|String(Size)| 字符串类型,务必制定大小| 
+|Text | 长文本类型 | 
+|Dataime| 日期时间| 
+| Float | 浮点类型 | 
+|Boolean | 布尔类型  | 
+| PickleType | 存储pickle类型,主要和序列化有关| 
+| LargeBinary| 存储大的二进制类型 |  
+
+| 可选功能 | 解释 | 
+|--------|--------|  
+|primary_key=True| 主键| 
+|autoincrement | 自增 | 
+|nullable=False | 非空约束 | 
+| unique = True | 唯一约束 | 
+|default=datatime.now| 默认值,可以自由设置 | 
+
+
+你问得非常好！你想在查询时同时用 **用户名、密码、手机号** 三个字段做筛选，相当于原生 SQL 的 `AND` 条件：
+
+```sql
+SELECT * FROM user 
+WHERE username = 'xxx' AND password = 'yyy' AND phone = 'zzz';
+```
+
+在 Flask-SQLAlchemy 中，`filter_by()` 和 `filter()` 都可以实现，但用法略有不同。
+
+---
+
+### ✅ 方法一：使用 `filter_by()`（推荐，简洁）
+
+```python
+user = User.query.filter_by(
+    username=username,
+    password=password,
+    phone=phone
+).first()
+```
+
+> ✅ `filter_by(**kwargs)` 支持多个字段用 `AND` 连接，**这是最简单的方式**。
+
+---
+
+### ✅ 方法二：使用 `filter()`（更灵活，支持复杂条件）
+
+```python
+from sqlalchemy import and_
+
+user = User.query.filter(
+    and_(
+        User.username == username,
+        User.password == password,
+        User.phone == phone
+    )
+).first()
+```
+
+或者不用 `and_()`（Flask-SQLAlchemy 默认多个 `filter` 是 `AND` 关系）：
+
+```python
+user = User.query.filter(User.username == username) \
+                 .filter(User.password == password) \
+                 .filter(User.phone == phone) \
+                 .first()
+```
+
+这三种写法生成的 SQL 都是等价的。
+
+---
+
+### 🔁 对比总结
+
+| 写法 | 优点 | 适用场景 |
+|------|------|---------|
+| `filter_by(username=u, password=p, phone=p)` | 简洁、易读 | 字段名是合法 Python 变量名，且是精确匹配 |
+| `filter(User.username==u, User.password==p, ...)` | 更接近原生 SQL | 需要复杂表达式或非等值查询 |
+| `filter(...).filter(...)` 链式调用 | 可动态拼接条件 | 条件不确定，比如某些字段可选 |
+
+---
+
+### ⚠️ 注意：密码是加密存储的！
+
+你在代码中是这样存密码的：
+
+```python
+user.password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+```
+
+所以查询时，**你也必须对输入的密码进行同样的加密**，否则查不到！
+
+```python
+from hashlib import sha256
+
+hashed_password = sha256(password.encode('utf-8')).hexdigest()
+
+user = User.query.filter_by(
+    username=username,
+    password=hashed_password,  # 必须是加密后的密码
+    phone=phone
+).first()
+```
+
+---
+
+### ✅ 完整示例（带密码加密）
+
+```python
+from hashlib import sha256
+
+# 假设从前端获取
+username = request.form.get('username')
+password = request.form.get('password')
+phone = request.form.get('phone')
+
+# 对密码加密
+hashed_password = sha256(password.encode('utf-8')).hexdigest()
+
+# 多条件查询（AND）
+user = User.query.filter_by(
+    username=username,
+    password=hashed_password,
+    phone=phone
+).first()
+
+if user:
+    print("用户匹配成功！")
+else:
+    print("用户名、密码或手机号不匹配")
+```
+
+---
+
+### ✅ 拓展：如果只想匹配其中两个字段？
+
+比如：验证“用户名和密码”，忽略手机号：
+
+```python
+user = User.query.filter_by(
+    username=username,
+    password=hashed_password
+).first()
+```
+
+或者“用户名和手机号”用于找回密码：
+
+```python
+user = User.query.filter_by(
+    username=username,
+    phone=phone
+).first()
+```
+
+---
+
+✅ 总结：
+
+> 要实现多个字段的 `AND` 查询，**直接在 `filter_by()` 中传多个参数即可**，它天生支持多条件 `AND` 匹配，简洁又高效！
+
+需要我帮你封装成一个通用的用户验证函数，也可以告诉我 😊

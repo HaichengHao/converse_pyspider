@@ -4,7 +4,7 @@
 @Date    :2025/8/6 16:51 
 """
 from app import create_app
-
+from app.user.model import User,UserInfo
 app = create_app()
 
 if __name__ == '__main__':

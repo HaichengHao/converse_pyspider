@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+    <h1>用户登录</h1>
+
+    <form action="{{ url_for('user.login') }}" method="post">
+        <p><input type="text"  name="username" placeholder="用户名"></p>
+        <p><input type="password"  id="password" name="password" placeholder="密码"></p>
+        <p><input type="text" name="phone" placeholder="输入手机号"></p>
+        <p><input type="submit"></p>
+    </form>
+    <button id="shbtn" onclick="toggletype()">显示密码</button>
+<div style="color: red" >{{ errorinfo }}</div>
+</body>
+<script>
+    let btn = document.getElementById("shbtn")
+    function toggletype(){
+        let pwdfield = document.getElementById("password")
+        if(pwdfield.type === "password"){
+            pwdfield.type = "text"
+            btn.innerText = "隐藏密码"
+        }else {
+            pwdfield.type ="password"
+            btn.innerText = "显示密码"
+        }
+    }
+</script>
+</html>

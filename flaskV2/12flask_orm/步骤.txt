@@ -4,12 +4,33 @@ pip install flask-migrate
 
 1
 配置数据库的链接路径
-A.外部引入写法,在settings中编写
+A.外部引入写法,在settings/config中编写
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://sql用户名:密码@host:port/databasename'
 app.config.from_object(settings)
-
 B.app文件内编写
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://sql用户名:密码@host:port/databasename'
+
+C.
+或者专业的写法
+.env文件中 DATABASE_URL=mysql+pymysql://root:HHCzio20@127.0.0.1:3306/flaskv2
+然后在config.py文件中
+class Config:
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL') #读取.env文件中的配置
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # 2. 禁用追踪修改（强烈建议关闭，节省性能）
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    # 3. 是否打印 SQL 语句（开发时有用）
+    SQLALCHEMY_ECHO = True  # 开发时打开，生产关闭
+然后在__init__中
+def create_app(config_name=None):
+    app = Flask(__name__)
+
+    # 加载配置项  若指定了配置则使用指定配置否则使用默认的配置
+    config_name = config_name or os.getenv('FLASK_ENV', 'default')
+    app.config.from_object(config[config_name])
+
+
 
 
 2.创建扩展
@@ -22,8 +43,67 @@ app = create_app()
 app.config.from_object(devConfig)  # 使用开发环境
 db.init_app(app)
 
+专业写法:
+或者在extensions.py中写
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+migrate = Migrate()
+
+然后执行
+
 3.使用migrate
 它是命令工具
 之前已经创建好了app以及db
 接下来就是引入from migrate import Migrate
 mig = Migrate(app=app,db=db) 这样就可以了
+
+专业写法的话那就是导入之前创建好的extensions.py中的migrate
+然后migrate.init_app
+db.init_app(app)
+migrate.init_app(app, db)
+
+4.创建模型类,这个类要继承自db.Model
+既然是表那就需要创建字段
+class User(db.Model):  本质上是创建了一个表
+    __tablename__ = 'user' #可选,指定表名
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(15), unique=True, nullable=False)  # 设置不允许为空 即not null
+    password = db.Column(db.String(12), unique=True, nullable=False)
+    phone = db.Column(db.String(11), unique=True)
+    register_time = db.Column(db.DateTime,default=datetime.now) #获取注册时间
+
+    def __str__(self):
+        return self.username
+
+
+然后就可以调用这个类来创建自己要创建的对象
+user1 = User(username = 'xxx',password = 'xxx' , phone = 'xxx')
+db.session.add(user)
+db.session.commit()
+
+另外一些详细用法就看flask_sqlalchemy用例.md
+
+5.使用命令 flask db --help 查看细节
+flask db init 会产生一个migrations文件夹
+flask db migrate 会在migrations的versions中生成一个.py文件
+flask db upgrade 就会利用映射关系将表建立好了 可以打开mysql cml 查看发现表(或者说模型)已经建好了
+注意我们刚才创建模型的时候用的是__tablename__='user' 所以我们的表的名字也是user
+
+mysql> use flaskv2;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_flaskv2 |
++-------------------+
+| alembic_version   |
+| user              |
++-------------------+
+2 rows in set (0.00 sec)
+
+这个alembic_version是用来方便我们自己控制的
+
+版本操作命令就是 flask db downgrade 这样就回退到了当前版本的上一个版本
+也可以
+flask db downgrade -r 指定版本号 来指定回退到指定的版本

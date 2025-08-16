@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改数据</title>
+</head>
+<body>
+{% if user %}
+<form action="{{ url_for('user.modifydata') }}" method="post">
+        <p><input type="text" name="username" value="{{ user.username }}"></p>
+        <p><input type="text"  name="newusername" placeholder="输入新的用户名"></p>
+        <p><input type="text"  id='000' name="password" placeholder="新密码"></p>
+        <p><input type="text" id ='001'name="repassword" placeholder="再次输入新密码"></p>
+        <p><input type="text" name="phone" placeholder={{ user.phone }}></p>
+        <p><input type="submit"></p>
+    </form>
+    {% else %}
+    <p>{{ errorinfo }}</p>
+{% endif %}
+</body>
+</html>
