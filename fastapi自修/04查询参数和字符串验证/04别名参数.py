@@ -24,6 +24,7 @@ app = FastAPI()
 # 现在假设您不再喜欢这个参数了。
 # 您必须让它在那里保留一段时间，因为有客户端正在使用它，但您希望文档清晰地将其显示为已废弃。
 # 然后将参数 deprecated=True 传递给 Query
+# 声明了别名之后,api的输入框中会有自己写的alias的字段,可以看看docs显示的内容
 async def read_items(q:Annotated[str|None,Query(alias="item-query" ,deprecated=True)]=None):
     results={"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
     if q:

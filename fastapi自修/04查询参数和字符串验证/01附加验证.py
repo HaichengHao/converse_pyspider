@@ -11,6 +11,7 @@
 '''
 Query 来自 fastapi
 Annotated 来自 typing
+Annotated 可以用来为您的参数添加元数据
 '''
 
 import uvicorn
@@ -21,6 +22,7 @@ app = FastAPI()
 
 @app.get('/items/')
 
+#tips:简单理解,就是对查询参数加上了一些限制,这样方便对查询参数的类型、长度等进行约束
 #tips:现在我们有了这个可以放置更多信息（在本例中是一些附加验证）的 Annotated，将 Query 添加到 Annotated 内部，并将参数 max_length 设置为 50
 async def read_items(q:Annotated[str | None,Query(min_length=3,max_length=50,pattern="^fixedquery$")]=None):
     result = {

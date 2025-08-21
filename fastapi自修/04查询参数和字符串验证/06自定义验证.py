@@ -39,7 +39,7 @@ async def read_items(
         item = data.get(id)
     else:
         id,item = random.choice(list(data.items()))
-        print(list(data.items()))
+
     return {'id':id,'name':item}
 if __name__ == '__main__':
     uvicorn.run('06自定义验证:app', reload=True, log_level='debug', host='127.0.0.1', port=8099)
@@ -47,8 +47,11 @@ if __name__ == '__main__':
 '''
 通过 data.items()，我们得到一个可迭代对象，其中包含每个字典项的键和值的元组。
 
-我们将这个可迭代对象通过 list(data.items()) 转换为一个真正的 list。
 
+我们将这个可迭代对象通过 list(data.items()) 转换为一个真正的 list。
+[ ("isbn-9781529046137", "The Hitchhiker's Guide to the Galaxy"),
+    ("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy"),
+    ("isbn-9781439512982", "Isaac Asimov: The Complete Stories, Vol. 2)"]
 然后使用 random.choice()，我们可以从列表中获取一个随机值，因此，我们得到一个包含 (id, name) 的元组。它会是类似 ("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy") 的东西。
 
 然后我们将元组的这两个值分配给变量 id 和 name。

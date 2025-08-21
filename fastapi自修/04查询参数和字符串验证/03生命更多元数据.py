@@ -12,6 +12,8 @@
 
 
 #tips:可以添加title以及 description
+import uvicorn
+
 from typing import Annotated
 
 from fastapi import FastAPI, Query
@@ -31,3 +33,6 @@ async def read_items(
     if q:
         results.update({"q": q})
     return results
+
+if __name__ == '__main__':
+    uvicorn.run('03生命更多元数据:app',reload=True,log_level='debug',host='127.0.0.1',port=8099)

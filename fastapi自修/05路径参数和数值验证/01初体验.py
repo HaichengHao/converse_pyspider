@@ -8,6 +8,7 @@
 与使用 Query 为查询参数声明更多验证和元数据的方式相同，
 你也可以使用 Path 为路径参数声明相同类型的验证和元数据。'''
 
+import uvicorn
 from typing import Annotated
 from fastapi import FastAPI, Query, Path
 
@@ -25,3 +26,7 @@ async def read_items(
     if q:
         results.update({'q': q})
     return results
+
+
+if __name__ == '__main__':
+    uvicorn.run('01初体验:app', reload=True, log_level='debug', host='127.0.0.1', port=8099)
